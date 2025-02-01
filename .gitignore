@@ -1,4 +1,6 @@
 aux/
+tmp/
+thesis.pdf
 
 # In case you are not using latexmk with the output directory set:
 *.aux
@@ -11,3 +13,4 @@ aux/
 *.toc
 *.xmpdata
 *.xmpi
+*.fls
