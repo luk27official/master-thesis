@@ -59,3 +59,4 @@
   - poresit GPU, kde se to da poustet
   - zacit se ptat na ten clustering
   - podivat se na custom Celery status... https://celery.school/custom-celery-task-states
+  - fix warningy z Celery apod.
