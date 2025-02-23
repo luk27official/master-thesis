@@ -44,3 +44,18 @@
     - Backend post-processes results and sends updates to frontend -> Uses WebSockets for real-time updates
     - Frontend receives and displays the final results
   - cele to bude zabalene do Docker Compose
+
+## 23.2.2025
+
+- mam prvni navrzenou architekturu
+  - frontend: NginX, ktery dokaze servnout static files a je tam React
+  - backend: FastAPI pro pousteni predikci
+  - worker: Celery, CUDA support
+  - redis: pro komunikaci FastAPI a Celery
+  - chceme checkovat postupne task-status, asi se vykaslat na WebSockets a radsi to udelat pres polling? idk
+  - 32 GB RAM requirement...
+- TODO:
+  - zacit pracovat na frontendu
+  - poresit GPU, kde se to da poustet
+  - zacit se ptat na ten clustering
+  - podivat se na custom Celery status... https://celery.school/custom-celery-task-states
