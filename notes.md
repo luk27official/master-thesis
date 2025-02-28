@@ -60,3 +60,19 @@
   - zacit se ptat na ten clustering
   - podivat se na custom Celery status... https://celery.school/custom-celery-task-states
   - fix warningy z Celery apod.
+
+## 27.2.2025 (meeting)
+
+- Vita mi pretrenoval model na mensi, takze uz to rozjedu = pog
+- TODOs:
+  - zacit delat clustering, pripadne si promyslet, jak by se dalo na CryptoBench datasetu natrenovat neco pro ty pockety
+  - podivat se na single-linkage clustering
+  - insight: muze se hodit pocitat pairwise distances
+  - po clusteringu se muzeme posunout dal
+
+## TODOs checklist
+
+- [ ] poresit GPU s Klimkem/Yaghobem
+- [ ] udelat si initial clustering
+- [ ] implementovat Celery status
+- [ ] fix TODOs v kodu
