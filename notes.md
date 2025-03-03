@@ -81,3 +81,7 @@
 ## Abstract proposal
 
 Proteins are a key element in many biological interactions. Some amino acids (also called residues) of proteins have more potential to bind additional molecules, which is important in drug design and research. So-called cryptic binding sites are spots on the proteins that interact with these molecules. The goal of this thesis is to create a new web interface enabling easy user interaction, allowing the user to predict the cryptic binding sites and to view the results. The user provides a protein structure, for which a residue-level prediction is computed by a machine learning model. These results are then post-processed by clustering and shown to the user in a visually pleasant way.
+
+## ideas etc.
+
+- co by slo udelat, tak je u toho clusteringu nejaky threshold, pod ktery bychom to neuvazovali jako pocket... tak by se tam dal dat nejaky input, kterym by se to ridilo a dalo zmenit a pripadne by se to dalo pustit znovu s nejakym jinym tim thresholdem
