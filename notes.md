@@ -86,6 +86,9 @@
 - [ ] dodelat clustering poradne
 - [ ] moznost dat treba export do PyMOLu by se celkem hodila (jako vytvorit z toho nejaky prikaz do PyMOL)
 - [ ] custom upload struktury
+- [ ] pridat templating pro head apod.
+- [ ] pridat auto-deployment Dockeru
+- [ ] pridat nejaky CI blbosti do GitHubu
 
 ## Abstract proposal
 
