@@ -70,13 +70,22 @@
   - insight: muze se hodit pocitat pairwise distances
   - po clusteringu se muzeme posunout dal
 
+## 13.3.2025
+
+- zacal jsem delat na clusteringu, zatim mam nejaky DBScan clustering
+- TODOs:
+  - zejmena se podivat na frontend, zprovoznit Mol*, udelat nejakou dalsi stranku, kde budou videt ty vysledky
+
 ## TODOs checklist
 
 - [ ] poresit GPU s Klimkem/Yaghobem
-- [ ] udelat si initial clustering
-- [ ] implementovat Celery status
+- [x] udelat si initial clustering
+- [x] implementovat Celery status
 - [ ] fix TODOs v kodu
 - [ ] napsat abstrakt do SIS
+- [ ] dodelat clustering poradne
+- [ ] moznost dat treba export do PyMOLu by se celkem hodila (jako vytvorit z toho nejaky prikaz do PyMOL)
+- [ ] custom upload struktury
 
 ## Abstract proposal
 
