@@ -89,6 +89,8 @@
 - [ ] pridat templating pro head apod.
 - [ ] pridat auto-deployment Dockeru
 - [ ] pridat nejaky CI blbosti do GitHubu
+- [ ] pridat Docker healthcheck
+- [ ] pridat testy??
 
 ## Abstract proposal
 
