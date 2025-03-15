@@ -80,24 +80,36 @@
 
 ## TODOs checklist
 
+### DevOps
+
 - [ ] poresit GPU s Klimkem/Yaghobem
-- [x] udelat si initial clustering
-- [x] implementovat Celery status
-- [ ] fix TODOs v kodu
-- [ ] napsat abstrakt do SIS
-- [ ] dodelat clustering poradne
-- [ ] moznost dat treba export do PyMOLu by se celkem hodila (jako vytvorit z toho nejaky prikaz do PyMOL)
-- [ ] custom upload struktury
-- [ ] pridat templating pro head apod.
 - [ ] pridat auto-deployment Dockeru na Hub nebo alespon do GitHub
 - [ ] pridat nejaky CI blbosti do GitHubu
 - [ ] pridat Docker healthcheck
-- [ ] pridat testy??
+
+### Backend
+
+- [x] udelat si initial clustering
+- [x] implementovat Celery status
+- [ ] fix TODOs v kodu
+- [ ] dodelat clustering poradne
+
+### Frontend
+
+- [ ] fix TODOs v kodu
+- [ ] moznost dat treba export do PyMOLu by se celkem hodila (jako vytvorit z toho nejaky prikaz do PyMOL)
+- [ ] custom upload struktury
+- [ ] pridat templating pro head apod.
 - [ ] pridat moznost videt stare joby (asi ukladat v localStorage)
 - [x] pridat do Mol* barvy
 - [ ] pridat do Mol* label, ktery bude obsahovat informaci o predikci, pripadne i o pocketu
 - [ ] u clusteringu pridat threshold (ted tam je fixni), aby se dal menit uzivatelem
 - [ ] pridat do Mol* animaci (jeste nevim ceho ale)
+
+### Others
+
+- [ ] napsat abstrakt do SIS
+- [ ] pridat testy??
 
 ## SIS proposal
 
