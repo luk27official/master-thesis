@@ -75,6 +75,8 @@
 - zacal jsem delat na clusteringu, zatim mam nejaky DBScan clustering
 - TODOs:
   - zejmena se podivat na frontend, zprovoznit Mol*, udelat nejakou dalsi stranku, kde budou videt ty vysledky
+- na co se zeptat
+  - Mol* funkcionalita - co presne budeme chtit? taky ruzne reprezentace, nebo staci cartoon? jak s temi barvami, potrebujeme neco togglable? budeme mit vice struktur? co se bude nakonec animovat?
 
 ## TODOs checklist
 
