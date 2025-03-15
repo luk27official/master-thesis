@@ -87,15 +87,16 @@
 - [ ] moznost dat treba export do PyMOLu by se celkem hodila (jako vytvorit z toho nejaky prikaz do PyMOL)
 - [ ] custom upload struktury
 - [ ] pridat templating pro head apod.
-- [ ] pridat auto-deployment Dockeru
+- [ ] pridat auto-deployment Dockeru na Hub nebo alespon do GitHub
 - [ ] pridat nejaky CI blbosti do GitHubu
 - [ ] pridat Docker healthcheck
 - [ ] pridat testy??
+- [ ] pridat moznost videt stare joby (asi ukladat v localStorage)
+- [ ] pridat do Mol* barvy
+- [ ] pridat do Mol* label, ktery bude obsahovat informaci o predikci, pripadne i o pocketu
+- [ ] u clusteringu pridat threshold (ted tam je fixni), aby se dal menit uzivatelem
+- [ ] pridat do Mol* animaci (jeste nevim ceho ale)
 
-## Abstract proposal
+## SIS proposal
 
-Proteins are a key element in many biological interactions. Some amino acids (also called residues) of proteins have more potential to bind additional molecules, which is important in drug design and research. So-called cryptic binding sites (CBS) are spots on the proteins interacting with these molecules. However, detecting CBS requires specialized models. The goal of this thesis is to leverage existing models focused on CBS, and create a new web interface enabling easy user interaction, allowing the user to predict the CBS and view the results. The user provides a protein structure, for which a residue-level prediction is computed by the model. These results are then post-processed into individual binding sites by clustering and shown to the user in a visually pleasant way.
-
-## ideas etc.
-
-- co by slo udelat, tak je u toho clusteringu nejaky threshold, pod ktery bychom to neuvazovali jako pocket... tak by se tam dal dat nejaky input, kterym by se to ridilo a dalo zmenit a pripadne by se to dalo pustit znovu s nejakym jinym tim thresholdem
+Proteins are a key element in many biological interactions. Some amino acids (also called residues) of proteins have more potential to bind additional molecules, which is important in drug design and research. So-called cryptic binding sites (CBS) are spots on the proteins interacting with these molecules. However, detecting CBS requires specialized models. The goal of this thesis is to leverage existing models focused on CBS, and create a new web interface enabling easy user interaction, allowing the user to predict the CBS and view the results. The user provides a protein structure, for which a residue-level prediction is computed by the model. These results are then post-processed into individual binding sites by clustering and shown to the user.
