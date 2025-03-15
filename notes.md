@@ -98,7 +98,7 @@
 
 - [ ] fix TODOs v kodu
 - [ ] moznost dat treba export do PyMOLu by se celkem hodila (jako vytvorit z toho nejaky prikaz do PyMOL)
-- [ ] custom upload struktury
+- [x] custom upload struktury
 - [ ] pridat templating pro head apod.
 - [ ] pridat moznost videt stare joby (asi ukladat v localStorage)
 - [x] pridat do Mol* barvy
