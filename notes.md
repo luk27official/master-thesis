@@ -100,7 +100,7 @@
 - [ ] moznost dat treba export do PyMOLu by se celkem hodila (jako vytvorit z toho nejaky prikaz do PyMOL)
 - [x] custom upload struktury
 - [ ] pridat templating pro head apod.
-- [ ] pridat moznost videt stare joby (asi ukladat v localStorage)
+- [x] pridat moznost videt stare joby (asi ukladat v localStorage)
 - [x] pridat do Mol* barvy
 - [ ] pridat do Mol* label, ktery bude obsahovat informaci o predikci, pripadne i o pocketu
 - [ ] u clusteringu pridat threshold (ted tam je fixni), aby se dal menit uzivatelem
