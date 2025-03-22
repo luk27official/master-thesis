@@ -77,15 +77,19 @@
   - zejmena se podivat na frontend, zprovoznit Mol*, udelat nejakou dalsi stranku, kde budou videt ty vysledky
 - na co se zeptat
   - Mol* funkcionalita - co presne budeme chtit? taky ruzne reprezentace, nebo staci cartoon? jak s temi barvami, potrebujeme neco togglable? budeme mit vice struktur? co se bude nakonec animovat?
+  - vypsat v SISu tema podle abstraktu
+  - u clusteringu - chceme teda delat nejaky "fine-tuning"? nemusi to byt vylozene primo trenovany model, ale minimalne gridsearch k tem parametrum
 
 ## TODOs checklist
 
 ### DevOps
 
 - [ ] poresit GPU s Klimkem/Yaghobem
-- [ ] pridat auto-deployment Dockeru na Hub nebo alespon do GitHub
+- [x] pridat auto-deployment Dockeru do GitHub repa
+- [ ] pridat auto-deployment Dockeru na Docker Hub https://docs.github.com/en/actions/use-cases-and-examples/publishing-packages/publishing-docker-images#publishing-images-to-docker-hub-and-github-packages
 - [ ] pridat nejaky CI blbosti do GitHubu
-- [ ] pridat Docker healthcheck
+- [x] pridat Docker healthcheck
+- [ ] test healthchecks
 
 ### Backend
 
@@ -105,10 +109,13 @@
 - [ ] pridat do Mol* label, ktery bude obsahovat informaci o predikci, pripadne i o pocketu
 - [ ] u clusteringu pridat threshold (ted tam je fixni), aby se dal menit uzivatelem
 - [ ] pridat do Mol* animaci (jeste nevim ceho ale)
+- [ ] pridat query do AHoJ
 
 ### Others
 
-- [ ] napsat abstrakt do SIS
+- [x] napsat abstrakt do SIS
+- [ ] vypsat zadani v SISu
+- [ ] nechat si zapsat zapocty
 - [ ] pridat testy??
 
 ## SIS proposal
