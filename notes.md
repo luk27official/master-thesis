@@ -106,7 +106,7 @@
 - [ ] pridat templating pro head apod.
 - [x] pridat moznost videt stare joby (asi ukladat v localStorage)
 - [x] pridat do Mol* barvy
-- [ ] pridat do Mol* label, ktery bude obsahovat informaci o predikci, pripadne i o pocketu
+- [x] pridat do Mol* label, ktery bude obsahovat informaci o predikci, pripadne i o pocketu
 - [ ] u clusteringu pridat threshold (ted tam je fixni), aby se dal menit uzivatelem
 - [ ] pridat do Mol* animaci (jeste nevim ceho ale)
 - [ ] pridat query do AHoJ
