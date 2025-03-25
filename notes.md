@@ -80,6 +80,14 @@
   - vypsat v SISu tema podle abstraktu
   - u clusteringu - chceme teda delat nejaky "fine-tuning"? nemusi to byt vylozene primo trenovany model, ale minimalne gridsearch k tem parametrum
 
+## 25.3.2025 (meeting)
+
+- na co se zamerit do priste
+  - PrankWeb features: pridat tam to prepinani reprezentaci jako mam v PW, pridat i cartoon pro pockety, vylepsit trochu vizualy k tomu stavajicimu interface
+  - AHoJ integrace - co bude potreba, je vlastne udelat nejakou query do AHoJ podle PDB ID a potom zas nejaky prostredni residuum, AHoJ nebude dostupna v pripade custom struktury, dostanu list APO/HOLO struktur pro kazdy pocket, takze to chci nejak zobrazit. pak pro kazdou strukturu chci nejake info o tom (treba pritomnost ligandu, seq shoda s orig. strukturou), pro nejakou vyssi shodu struktur pak chci umet udelat interpolaci - vystrihnu stejna rezidua a udelam mezi nima interpolaci, kterou pak vlastne animuju po kliknuti na nejaky play tlacitko
+  - dal se taky podivat co v AHoJ je pro me uzitecne a jak by se dalo improvnout API, nejlepe treba vytvorit pouze jeden JSON soubor
+  - clustering - pridat metriky, pomerit to s nejakym existujicim datasetem (CryptoBench)
+
 ## TODOs checklist
 
 ### DevOps
@@ -96,19 +104,19 @@
 - [x] udelat si initial clustering
 - [x] implementovat Celery status
 - [ ] fix TODOs v kodu
-- [ ] dodelat clustering poradne
+- [ ] dodelat clustering poradne, implementovat metriky pro lepsi pocket creation (nechceme jen brat podle thresholdu)
 
 ### Frontend
 
 - [ ] fix TODOs v kodu
-- [ ] moznost dat treba export do PyMOLu by se celkem hodila (jako vytvorit z toho nejaky prikaz do PyMOL)
-- [x] custom upload struktury
+- [ ] moznost dat treba export do PyMOLu by se celkem hodila (jako vytvorit z toho nejaky prikaz do PyMOL na zobrazeni tech pocketu)
 - [ ] pridat templating pro head apod.
+- [x] custom upload struktury
 - [x] pridat moznost videt stare joby (asi ukladat v localStorage)
 - [x] pridat do Mol* barvy
 - [x] pridat do Mol* label, ktery bude obsahovat informaci o predikci, pripadne i o pocketu
-- [ ] u clusteringu pridat threshold (ted tam je fixni), aby se dal menit uzivatelem
-- [ ] pridat do Mol* animaci (jeste nevim ceho ale)
+- [ ] u clusteringu pridat threshold (ted tam je fixni), aby se dal menit uzivatelem?? uvidim podle toho clusteringu
+- [ ] pridat do Mol* animaci (viz meeting 25/3)
 - [ ] pridat query do AHoJ
 
 ### Others
