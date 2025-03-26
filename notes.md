@@ -105,8 +105,9 @@
 - [x] implementovat Celery status
 - [ ] fix TODOs v kodu
 - [ ] dodelat clustering poradne, implementovat metriky pro lepsi pocket creation (nechceme jen brat podle thresholdu)
-- [ ] misto UUID nastavit nazvy jobu na MD5 nebo nejaky hash toho .cif/.pdb file a udelat caching
+- [x] misto UUID nastavit nazvy jobu na MD5 nebo nejaky hash toho .cif/.pdb file a udelat caching
 - [ ] pridat OpenAPI specifikaci, nejlepsi by bylo to delat nejak automaticky
+- [ ] zkusit pridat nejakou lepsi hlasku na zacatek processingu (mozna na frontend), protoze ted se tam kvuli cachovani stahuje struktura a vypada to pomaly
 
 ### Frontend
 
