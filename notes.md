@@ -106,6 +106,7 @@
 - [ ] fix TODOs v kodu
 - [ ] dodelat clustering poradne, implementovat metriky pro lepsi pocket creation (nechceme jen brat podle thresholdu)
 - [ ] misto UUID nastavit nazvy jobu na MD5 nebo nejaky hash toho .cif/.pdb file a udelat caching
+- [ ] pridat OpenAPI specifikaci, nejlepsi by bylo to delat nejak automaticky
 
 ### Frontend
 
