@@ -106,9 +106,11 @@
 - [ ] fix TODOs v kodu
 - [ ] dodelat clustering poradne, implementovat metriky pro lepsi pocket creation (nechceme jen brat podle thresholdu)
 - [x] misto UUID nastavit nazvy jobu na MD5 nebo nejaky hash toho .cif/.pdb file a udelat caching
-- [ ] pridat OpenAPI specifikaci, nejlepsi by bylo to delat nejak automaticky
-- [ ] zkusit pridat nejakou lepsi hlasku na zacatek processingu (mozna na frontend), protoze ted se tam kvuli cachovani stahuje struktura a vypada to pomaly
-- [ ] poresit pripad, kdy vypocet failne, tak aby se pustil znovu s novym task-id...
+- [x] pridat OpenAPI specifikaci, nejlepsi by bylo to delat nejak automaticky
+- [ ] improvnout OpenAPI, pridat response types, pridat errory, ...
+- [x] zamyslet se nad tim, jestli nebude lepsi pridat error codes jako 400 etc.
+- [x] zkusit pridat nejakou lepsi hlasku na zacatek processingu (mozna na frontend), protoze ted se tam kvuli cachovani stahuje struktura a vypada to pomaly
+- [x] poresit pripad, kdy vypocet failne - momentalne se ten result neulozi, takze se to vlastne resi timhle :)
 
 ### Frontend
 
