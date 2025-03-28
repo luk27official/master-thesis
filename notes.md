@@ -88,6 +88,11 @@
   - dal se taky podivat co v AHoJ je pro me uzitecne a jak by se dalo improvnout API, nejlepe treba vytvorit pouze jeden JSON soubor
   - clustering - pridat metriky, pomerit to s nejakym existujicim datasetem (CryptoBench)
 
+## 28.3.2025
+
+- AHoJ insights: pravdepodobne bude nejvic uzitecne pouzit `global_results.csv`, mozna taky `pocket_residues.csv`? pro samotnou superpozici struktur bud muzeme pouzit primo ty alignovane struktury `structure_files` - nutno udelat unzip, nebo pripadne `matrices`, ale tam se bude blbe parsovat ty samotne matice, `summarized_data.csv` jsou agregovane statistiky APO/HOLO
+- melo by stacit udelat 3 API calls
+
 ## TODOs checklist
 
 ### DevOps
@@ -123,7 +128,9 @@
 - [x] pridat do Mol* label, ktery bude obsahovat informaci o predikci, pripadne i o pocketu
 - [ ] u clusteringu pridat threshold (ted tam je fixni), aby se dal menit uzivatelem?? uvidim podle toho clusteringu
 - [ ] pridat do Mol* animaci (viz meeting 25/3)
-- [ ] pridat query do AHoJ
+- [x] pridat query do AHoJ
+- [ ] pridat AHoJ fetch results, ulozeni na backend, rozbaleni archivu apod.
+- [ ] pridat docstrings
 
 ### Others
 
