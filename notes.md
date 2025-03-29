@@ -116,6 +116,7 @@
 - [x] zamyslet se nad tim, jestli nebude lepsi pridat error codes jako 400 etc.
 - [x] zkusit pridat nejakou lepsi hlasku na zacatek processingu (mozna na frontend), protoze ted se tam kvuli cachovani stahuje struktura a vypada to pomaly
 - [x] poresit pripad, kdy vypocet failne - momentalne se ten result neulozi, takze se to vlastne resi timhle :)
+- [ ] interpolace AHoJ struktur - je potreba vyresit jak samotnou animaci, tak trimming struktur
 
 ### Frontend
 
@@ -129,8 +130,12 @@
 - [ ] u clusteringu pridat threshold (ted tam je fixni), aby se dal menit uzivatelem?? uvidim podle toho clusteringu
 - [ ] pridat do Mol* animaci (viz meeting 25/3)
 - [x] pridat query do AHoJ
-- [ ] pridat AHoJ fetch results, ulozeni na backend, rozbaleni archivu apod.
-- [ ] pridat docstrings
+- [x] pridat AHoJ fetch results, ulozeni na backend, rozbaleni archivu apod.
+- [ ] zlepsit tabulku s vysledky vpravo, pridat informace o AHoJ predikci
+- [ ] pridat docstrings k metodam
+- [ ] smazat `console.log` apod.
+- [ ] prepinani jednotlivych vizualizaci, chceme `surface | ball-and-stick | cartoon` pro oboji, jak pockety, tak struktury
+- [ ] pridat download vysledku? a co AHoJ vysledky (tam by mozna stacilo odkazat primo na AHoJ stranky)?
 
 ### Others
 
@@ -146,3 +151,5 @@ Proteins are a key element in many biological interactions. Some amino acids (al
 ## Architecture sketch
 
 <img src="./img/sketch.jpg" />
+
+<img src="./img/sketch-2.jpg" />
