@@ -134,8 +134,9 @@
 - [ ] zlepsit tabulku s vysledky vpravo, pridat informace o AHoJ predikci
 - [ ] pridat docstrings k metodam
 - [ ] smazat `console.log` apod.
-- [ ] prepinani jednotlivych vizualizaci, chceme `surface | ball-and-stick | cartoon` pro oboji, jak pockety, tak struktury
+- [x] prepinani jednotlivych vizualizaci, chceme `surface | ball-and-stick | cartoon` pro oboji, jak pockety, tak struktury
 - [ ] pridat download vysledku? a co AHoJ vysledky (tam by mozna stacilo odkazat primo na AHoJ stranky)?
+- [ ] fixnout prepinani vizualizaci pro vice struktur (pripadne vice struktur s pockety)
 
 ### Others
 
