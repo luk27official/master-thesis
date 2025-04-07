@@ -149,8 +149,8 @@
 - [x] pridat download AHoJ vysledku (tam by mozna stacilo odkazat primo na AHoJ stranky - v tuhle chvili je tam proklik na stranky AHoJ jobu)
 - [x] fixnout prepinani vizualizaci pro vice struktur (pripadne vice struktur s pockety)
 - [x] pridat moznost jit na vizualizaci primo z hashe, pripadne z id struktury?
-- [ ] vic DBs?
-- [ ] upravit co zobrazujeme u AHoJ predikce? chceme vlastne i APO, nebo jen HOLO?
+- [ ] pridat AF databazi na vstup
+- [ ] upravit co zobrazujeme u AHoJ predikce - chceme jak APO, tak HOLO a zobrazit zejmena SASA a umoznit proklik do databaze na tu strukturu, asi do UniProt? proste nekam, kde to dokaze vzit oboji
 
 ### Others
 
