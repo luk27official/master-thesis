@@ -93,6 +93,16 @@
 - AHoJ insights: pravdepodobne bude nejvic uzitecne pouzit `global_results.csv`, mozna taky `pocket_residues.csv`? pro samotnou superpozici struktur bud muzeme pouzit primo ty alignovane struktury `structure_files` - nutno udelat unzip, nebo pripadne `matrices`, ale tam se bude blbe parsovat ty samotne matice, `summarized_data.csv` jsou agregovane statistiky APO/HOLO
 - melo by stacit udelat 3 API calls
 
+## 7.4.2025
+
+- nejak jsem pokrocil s frontendem
+- na co se zeptat
+  - jake DBs podporujeme, je to jen PDB nebo mam pridat i AlphaFold/AlphaFill/UniProt?
+  - zeptat se co vlastne chceme zobrazovat z toho (APO/HOLO, jake metriky?)
+- na co se zamerit
+  - udelat animaci
+  - potom zlepsit clustering
+
 ## TODOs checklist
 
 ### DevOps
@@ -135,13 +145,17 @@
 - [ ] pridat docstrings k metodam
 - [ ] smazat `console.log` apod.
 - [x] prepinani jednotlivych vizualizaci, chceme `surface | ball-and-stick | cartoon` pro oboji, jak pockety, tak struktury
-- [ ] pridat download vysledku? a co AHoJ vysledky (tam by mozna stacilo odkazat primo na AHoJ stranky)?
-- [ ] fixnout prepinani vizualizaci pro vice struktur (pripadne vice struktur s pockety)
+- [x] pridat download vysledku
+- [x] pridat download AHoJ vysledku (tam by mozna stacilo odkazat primo na AHoJ stranky - v tuhle chvili je tam proklik na stranky AHoJ jobu)
+- [x] fixnout prepinani vizualizaci pro vice struktur (pripadne vice struktur s pockety)
+- [x] pridat moznost jit na vizualizaci primo z hashe, pripadne z id struktury?
+- [ ] vic DBs?
+- [ ] upravit co zobrazujeme u AHoJ predikce? chceme vlastne i APO, nebo jen HOLO?
 
 ### Others
 
 - [x] napsat abstrakt do SIS
-- [ ] vypsat zadani v SISu
+- [x] vypsat zadani v SISu
 - [ ] nechat si zapsat zapocty
 - [ ] pridat testy??
 
