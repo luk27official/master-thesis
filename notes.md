@@ -141,7 +141,7 @@
 - [ ] pridat do Mol* animaci (viz meeting 25/3)
 - [x] pridat query do AHoJ
 - [x] pridat AHoJ fetch results, ulozeni na backend, rozbaleni archivu apod.
-- [ ] zlepsit tabulku s vysledky vpravo, pridat informace o AHoJ predikci
+- [x] zlepsit tabulku s vysledky vpravo, pridat informace o AHoJ predikci
 - [ ] pridat docstrings k metodam
 - [ ] smazat `console.log` apod.
 - [x] prepinani jednotlivych vizualizaci, chceme `surface | ball-and-stick | cartoon` pro oboji, jak pockety, tak struktury
@@ -151,6 +151,7 @@
 - [x] pridat moznost jit na vizualizaci primo z hashe, pripadne z id struktury?
 - [ ] pridat AF databazi na vstup
 - [ ] upravit co zobrazujeme u AHoJ predikce - chceme jak APO, tak HOLO a zobrazit zejmena SASA a umoznit proklik do databaze na tu strukturu, asi do UniProt? proste nekam, kde to dokaze vzit oboji
+- [ ] k animaci pridat moznosti `backbone + ball-and-stick (pocket)` a pak `cartoon + bns`
 
 ### Others
 
@@ -158,10 +159,33 @@
 - [x] vypsat zadani v SISu
 - [ ] nechat si zapsat zapocty
 - [ ] pridat testy??
+- [ ] zlepsit osnovu a zacit premyslet o textu
 
 ## SIS proposal
 
 Proteins are a key element in many biological interactions. Some amino acids (also called residues) of proteins have more potential to bind additional molecules, which is important in drug design and research. So-called cryptic binding sites (CBS) are spots on the proteins interacting with these molecules. However, detecting CBS requires specialized models. The goal of this thesis is to leverage existing models focused on CBS, and create a new web interface enabling easy user interaction, allowing the user to predict the CBS and view the results. The user provides a protein structure, for which a residue-level prediction is computed by the model. These results are then post-processed into individual binding sites by clustering and shown to the user.
+
+## Thesis contents (WIP)
+
+1. Intro to bioinformatics
+   1. Proteins, ligands, amino acids, ...
+   2. Structure, sequence, differences
+   3. Databases - RCSB, AF, custom structures, formats (pdb, CIF)
+   4. Binding sites, cryptic binding sites
+   5. Related tools (PrankWeb, AHoJ, PyMOL, Mol*, CryptoBench)
+2. Programming documentation (maybe we could split this into BE/FE/DevOps?)
+   1. Architecture, used technologies
+   2. Clustering
+   3. Trajectory animation
+   4. Frontend in Mol*
+   5. Tests??
+   6. Deployment??
+3. User documentation
+   1. How to run
+   2. Use cases - what would an user do with a custom/PDB structure
+4. Discussion
+   1. Future ideas, improvements
+
 
 ## Architecture sketch
 
