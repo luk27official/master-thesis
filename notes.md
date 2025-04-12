@@ -103,16 +103,25 @@
   - udelat animaci
   - potom zlepsit clustering
 
+## 12.4.2025
+
+- animace
+  - podivat se na TODOs v kodu, jsou to takove detaily
+- TODOs
+  - clustering :p
+  - zeptat se na testy, jestli budou nejake potreba (akceptacni, Selenium, RobotFramework?)
+
 ## TODOs checklist
 
 ### DevOps
 
-- [ ] poresit GPU s Klimkem/Yaghobem
 - [x] pridat auto-deployment Dockeru do GitHub repa
 - [ ] pridat auto-deployment Dockeru na Docker Hub https://docs.github.com/en/actions/use-cases-and-examples/publishing-packages/publishing-docker-images#publishing-images-to-docker-hub-and-github-packages
 - [ ] pridat nejaky CI blbosti do GitHubu
 - [x] pridat Docker healthcheck
 - [ ] test healthchecks
+- [ ] poresit GPU s Klimkem/Yaghobem?? spis to metacentrum
+- [ ] vyzkouset namisto MFF hostingu MetaCentrum
 
 ### Backend
 
@@ -127,6 +136,8 @@
 - [x] zkusit pridat nejakou lepsi hlasku na zacatek processingu (mozna na frontend), protoze ted se tam kvuli cachovani stahuje struktura a vypada to pomaly
 - [x] poresit pripad, kdy vypocet failne - momentalne se ten result neulozi, takze se to vlastne resi timhle :)
 - [ ] interpolace AHoJ struktur - je potreba vyresit jak samotnou animaci, tak trimming struktur
+- [ ] zkusit se podivat, jestli nekde nejde dat common basepath "/app/data/", protoze se pouziva na dost mistech
+- [ ] vylepsit dokumentaci docstrings pro metody
 
 ### Frontend
 
@@ -150,8 +161,8 @@
 - [x] fixnout prepinani vizualizaci pro vice struktur (pripadne vice struktur s pockety)
 - [x] pridat moznost jit na vizualizaci primo z hashe, pripadne z id struktury?
 - [ ] pridat AF databazi na vstup
-- [ ] upravit co zobrazujeme u AHoJ predikce - chceme jak APO, tak HOLO a zobrazit zejmena SASA a umoznit proklik do databaze na tu strukturu, asi do UniProt? proste nekam, kde to dokaze vzit oboji
-- [ ] k animaci pridat moznosti `backbone + ball-and-stick (pocket)` a pak `cartoon + bns`
+- [ ] upravit co zobrazujeme u AHoJ predikce - chceme jak APO, tak HOLO a zobrazit zejmena SASA a umoznit proklik do databaze na tu strukturu, asi do UniProt? proste nekam, kde to dokaze vzit oboji (i AlphaFold)
+- [ ] k animaci pridat moznosti `backbone + ball-and-stick (pocket)` a pak `cartoon + bns` (respektive nastavit jako default)
 
 ### Others
 
