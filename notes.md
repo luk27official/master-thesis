@@ -125,6 +125,7 @@
 - [ ] test healthchecks
 - [ ] poresit GPU s Klimkem/Yaghobem?? spis to metacentrum
 - [ ] vyzkouset namisto MFF hostingu MetaCentrum
+- [ ] pridat nejaky monitoring (Grafana?)
 
 ### Backend
 
@@ -152,7 +153,7 @@
 - [x] pridat do Mol* barvy
 - [x] pridat do Mol* label, ktery bude obsahovat informaci o predikci, pripadne i o pocketu
 - [ ] u clusteringu pridat threshold (ted tam je fixni), aby se dal menit uzivatelem?? uvidim podle toho clusteringu
-- [ ] pridat do Mol* animaci (viz meeting 25/3)
+- [x] pridat do Mol* animaci (viz meeting 25/3)
 - [x] pridat query do AHoJ
 - [x] pridat AHoJ fetch results, ulozeni na backend, rozbaleni archivu apod.
 - [x] zlepsit tabulku s vysledky vpravo, pridat informace o AHoJ predikci
@@ -165,7 +166,7 @@
 - [x] pridat moznost jit na vizualizaci primo z hashe, pripadne z id struktury?
 - [ ] pridat AF databazi na vstup
 - [ ] upravit co zobrazujeme u AHoJ predikce - chceme jak APO, tak HOLO a zobrazit zejmena SASA a umoznit proklik do databaze na tu strukturu, asi do UniProt? proste nekam, kde to dokaze vzit oboji (i AlphaFold)
-- [ ] k animaci pridat moznosti `backbone + ball-and-stick (pocket)` a pak `cartoon + bns` (respektive nastavit jako default)
+- [x] k animaci pridat moznosti `backbone + ball-and-stick (pocket)` a pak `cartoon + bns` (respektive nastavit jako default) - nakonec jsem to nechal volne
 
 ### Others
 
