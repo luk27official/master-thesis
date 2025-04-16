@@ -125,7 +125,10 @@
 - [ ] test healthchecks
 - [ ] poresit GPU s Klimkem/Yaghobem?? spis to metacentrum
 - [ ] vyzkouset namisto MFF hostingu MetaCentrum
-- [ ] pridat nejaky monitoring (Grafana?)
+- [ ] pridat nejaky monitoring (Grafana?, Sentry?)
+- [ ] podivat se na testovani API - k6.io
+- [ ] GitHub zkusit se podivat na pipelines (jestli davaji smysl v mem pripade)
+- [ ] zkusit pridat React render info - https://www.youtube.com/watch?v=JpJYm3B6UwM
 
 ### Backend
 
