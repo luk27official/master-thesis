@@ -109,7 +109,10 @@
   - podivat se na TODOs v kodu, jsou to takove detaily
 - TODOs
   - clustering :p
+    - improvement idea: spocitat si pro ty clustery co mam ted nejaky stred a potom includnout treba vsechny rezidua okolo toho stredu do nejaky vzdalenosti 0.5x nejvzdalenejsi reziduum? nebo treba do 5-10 A?
   - zeptat se na testy, jestli budou nejake potreba (akceptacni, Selenium, RobotFramework?)
+  - zeptat se na case, kdy aligned struktura nema ten pocket, coz bych ocekaval, deje se to podezrele casto
+    - staci se podivat, jestli ta nova struktura obsahuje vsechna rezidua z pocketu?
 
 ## TODOs checklist
 
