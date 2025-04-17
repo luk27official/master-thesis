@@ -110,9 +110,18 @@
 - TODOs
   - clustering :p
     - improvement idea: spocitat si pro ty clustery co mam ted nejaky stred a potom includnout treba vsechny rezidua okolo toho stredu do nejaky vzdalenosti 0.5x nejvzdalenejsi reziduum? nebo treba do 5-10 A?
-  - zeptat se na testy, jestli budou nejake potreba (akceptacni, Selenium, RobotFramework?)
   - zeptat se na case, kdy aligned struktura nema ten pocket, coz bych ocekaval, deje se to podezrele casto
     - staci se podivat, jestli ta nova struktura obsahuje vsechna rezidua z pocketu?
+
+## 17.4.2025 (meeting)
+
+- clustering
+  - to, co jsem resil s Vitou vypada rozumne
+  - dca (distance to closest ligand atom)
+  - dcc (distance from centre to centre)
+  - jednu z tech metrik budeme muset pouzit
+  - potom budeme chtit overit to, ze to porovname oproti CryptoBench pocketum
+- zeptat se na testy, jestli budou nejake potreba (akceptacni, Selenium, RobotFramework?)
 
 ## TODOs checklist
 
@@ -145,6 +154,7 @@
 - [ ] interpolace AHoJ struktur - je potreba vyresit jak samotnou animaci, tak trimming struktur
 - [ ] zkusit se podivat, jestli nekde nejde dat common basepath "/app/data/", protoze se pouziva na dost mistech
 - [ ] vylepsit dokumentaci docstrings pro metody
+- [ ] najit si strukturu s jinym poctem atomu u rezidui (potential bug pri animaci)
 
 ### Frontend
 
@@ -170,6 +180,8 @@
 - [ ] pridat AF databazi na vstup
 - [ ] upravit co zobrazujeme u AHoJ predikce - chceme jak APO, tak HOLO a zobrazit zejmena SASA a umoznit proklik do databaze na tu strukturu, asi do UniProt? proste nekam, kde to dokaze vzit oboji (i AlphaFold)
 - [x] k animaci pridat moznosti `backbone + ball-and-stick (pocket)` a pak `cartoon + bns` (respektive nastavit jako default) - nakonec jsem to nechal volne
+- [ ] pridat reprezentaci pro ligand
+- [ ] pridat transparent reprezentaci puvodniho proteinu do te animace
 
 ### Others
 
