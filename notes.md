@@ -180,7 +180,7 @@
 - [ ] pridat AF databazi na vstup
 - [ ] upravit co zobrazujeme u AHoJ predikce - chceme jak APO, tak HOLO a zobrazit zejmena SASA a umoznit proklik do databaze na tu strukturu, asi do UniProt? proste nekam, kde to dokaze vzit oboji (i AlphaFold)
 - [x] k animaci pridat moznosti `backbone + ball-and-stick (pocket)` a pak `cartoon + bns` (respektive nastavit jako default) - nakonec jsem to nechal volne
-- [ ] pridat reprezentaci pro ligand
+- [x] pridat reprezentaci pro ligand
 - [ ] pridat transparent reprezentaci puvodniho proteinu do te animace
 
 ### Others
