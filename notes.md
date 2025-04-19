@@ -146,7 +146,7 @@
 - [x] udelat si initial clustering
 - [x] implementovat Celery status
 - [ ] fix TODOs v kodu
-- [ ] dodelat clustering poradne, implementovat metriky pro lepsi pocket creation (nechceme jen brat podle thresholdu, chceme to udelat napriklad tak, ze vezmeme stred potencialniho pocketu a potom vezmeme vsechny rezidua, co jsou v nejake vzdalenosti od toho stredu)
+- [x] dodelat clustering poradne, implementovat metriky pro lepsi pocket creation (nechceme jen brat podle thresholdu, chceme to udelat napriklad tak, ze vezmeme stred potencialniho pocketu a potom vezmeme vsechny rezidua, co jsou v nejake vzdalenosti od toho stredu)
 - [x] misto UUID nastavit nazvy jobu na MD5 nebo nejaky hash toho .cif/.pdb file a udelat caching
 - [x] pridat OpenAPI specifikaci, nejlepsi by bylo to delat nejak automaticky
 - [ ] improvnout OpenAPI, pridat response types, pridat errory, ...
