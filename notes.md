@@ -186,6 +186,7 @@
 - [x] pridat reprezentaci pro ligand
 - [x] pridat transparent reprezentaci puvodniho proteinu do te animace
 - [ ] u HOLO struktur, chceme urcite ukazovat i ligand (podivat se, jestli mi ho nesmaze backend...)
+- [ ] fixnout zobrazeni pro mobily, aby to bylo responzivni
 
 ### Others
 
