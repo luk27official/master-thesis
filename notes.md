@@ -134,7 +134,8 @@
 - [ ] test healthchecks
 - [ ] poresit GPU s Klimkem/Yaghobem?? spis to metacentrum
 - [ ] vyzkouset namisto MFF hostingu MetaCentrum
-- [ ] pridat nejaky monitoring (Grafana?, Sentry?)
+- [ ] pridat nejaky monitoring (Grafana)
+- [x] pridat dalsi monitoring (Sentry)
 - [ ] podivat se na testovani API - k6.io
 - [ ] GitHub zkusit se podivat na pipelines (jestli davaji smysl v mem pripade)
 - [ ] zkusit pridat React render info - https://www.youtube.com/watch?v=JpJYm3B6UwM
@@ -144,14 +145,14 @@
 - [x] udelat si initial clustering
 - [x] implementovat Celery status
 - [ ] fix TODOs v kodu
-- [ ] dodelat clustering poradne, implementovat metriky pro lepsi pocket creation (nechceme jen brat podle thresholdu)
+- [ ] dodelat clustering poradne, implementovat metriky pro lepsi pocket creation (nechceme jen brat podle thresholdu, chceme to udelat napriklad tak, ze vezmeme stred potencialniho pocketu a potom vezmeme vsechny rezidua, co jsou v nejake vzdalenosti od toho stredu)
 - [x] misto UUID nastavit nazvy jobu na MD5 nebo nejaky hash toho .cif/.pdb file a udelat caching
 - [x] pridat OpenAPI specifikaci, nejlepsi by bylo to delat nejak automaticky
 - [ ] improvnout OpenAPI, pridat response types, pridat errory, ...
 - [x] zamyslet se nad tim, jestli nebude lepsi pridat error codes jako 400 etc.
 - [x] zkusit pridat nejakou lepsi hlasku na zacatek processingu (mozna na frontend), protoze ted se tam kvuli cachovani stahuje struktura a vypada to pomaly
 - [x] poresit pripad, kdy vypocet failne - momentalne se ten result neulozi, takze se to vlastne resi timhle :)
-- [ ] interpolace AHoJ struktur - je potreba vyresit jak samotnou animaci, tak trimming struktur
+- [x] interpolace AHoJ struktur - je potreba vyresit jak samotnou animaci, tak trimming struktur
 - [ ] zkusit se podivat, jestli nekde nejde dat common basepath "/app/data/", protoze se pouziva na dost mistech
 - [ ] vylepsit dokumentaci docstrings pro metody
 - [ ] najit si strukturu s jinym poctem atomu u rezidui (potential bug pri animaci)
@@ -178,17 +179,18 @@
 - [x] fixnout prepinani vizualizaci pro vice struktur (pripadne vice struktur s pockety)
 - [x] pridat moznost jit na vizualizaci primo z hashe, pripadne z id struktury?
 - [ ] pridat AF databazi na vstup
-- [ ] upravit co zobrazujeme u AHoJ predikce - chceme jak APO, tak HOLO a zobrazit zejmena SASA a umoznit proklik do databaze na tu strukturu, asi do UniProt? proste nekam, kde to dokaze vzit oboji (i AlphaFold)
+- [ ] pridat AF do AHoJ results, pridat proklik do AFdb
+- [x] upravit co zobrazujeme u AHoJ predikce - chceme jak APO, tak HOLO a zobrazit zejmena SASA a umoznit proklik do databaze na tu strukturu, asi do UniProt? proste nekam, kde to dokaze vzit oboji (i AlphaFold)
 - [x] k animaci pridat moznosti `backbone + ball-and-stick (pocket)` a pak `cartoon + bns` (respektive nastavit jako default) - nakonec jsem to nechal volne
 - [x] pridat reprezentaci pro ligand
-- [ ] pridat transparent reprezentaci puvodniho proteinu do te animace
+- [x] pridat transparent reprezentaci puvodniho proteinu do te animace
 
 ### Others
 
 - [x] napsat abstrakt do SIS
 - [x] vypsat zadani v SISu
 - [ ] nechat si zapsat zapocty
-- [ ] pridat testy??
+- [ ] promyslet testy (user acceptance? nebo nejake integracni, Selenium etc?)
 - [ ] zlepsit osnovu a zacit premyslet o textu
 
 ## SIS proposal
