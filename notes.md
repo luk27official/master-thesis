@@ -161,13 +161,13 @@
 ### Frontend
 
 - [ ] fix TODOs v kodu
-- [ ] moznost dat treba export do PyMOLu by se celkem hodila (jako vytvorit z toho nejaky prikaz do PyMOL na zobrazeni tech pocketu)
+- [x] moznost dat treba export do PyMOLu by se celkem hodila (jako vytvorit z toho nejaky prikaz do PyMOL na zobrazeni tech pocketu)
 - [ ] pridat templating pro head apod.
 - [x] custom upload struktury
 - [x] pridat moznost videt stare joby (asi ukladat v localStorage)
 - [x] pridat do Mol* barvy
 - [x] pridat do Mol* label, ktery bude obsahovat informaci o predikci, pripadne i o pocketu
-- [ ] u clusteringu pridat threshold (ted tam je fixni), aby se dal menit uzivatelem?? uvidim podle toho clusteringu
+- [x] NEbudeme delat - u clusteringu pridat threshold (ted tam je fixni), aby se dal menit uzivatelem?? uvidim podle toho clusteringu, misto toho udelame benchmark
 - [x] pridat do Mol* animaci (viz meeting 25/3)
 - [x] pridat query do AHoJ
 - [x] pridat AHoJ fetch results, ulozeni na backend, rozbaleni archivu apod.
