@@ -139,6 +139,7 @@
 - [ ] podivat se na testovani API - k6.io
 - [ ] GitHub zkusit se podivat na pipelines (jestli davaji smysl v mem pripade)
 - [ ] zkusit pridat React render info - https://www.youtube.com/watch?v=JpJYm3B6UwM
+- [ ] promyslet testy (user acceptance? nebo nejake integracni, Selenium etc?)
 
 ### Backend
 
@@ -153,7 +154,7 @@
 - [x] zkusit pridat nejakou lepsi hlasku na zacatek processingu (mozna na frontend), protoze ted se tam kvuli cachovani stahuje struktura a vypada to pomaly
 - [x] poresit pripad, kdy vypocet failne - momentalne se ten result neulozi, takze se to vlastne resi timhle :)
 - [x] interpolace AHoJ struktur - je potreba vyresit jak samotnou animaci, tak trimming struktur
-- [ ] zkusit se podivat, jestli nekde nejde dat common basepath "/app/data/", protoze se pouziva na dost mistech
+- [x] zkusit se podivat, jestli nekde nejde dat common basepath "/app/data/", protoze se pouziva na dost mistech
 - [ ] vylepsit dokumentaci docstrings pro metody
 - [ ] najit si strukturu s jinym poctem atomu u rezidui (potential bug pri animaci)
 
@@ -191,8 +192,11 @@
 - [x] napsat abstrakt do SIS
 - [x] vypsat zadani v SISu
 - [ ] nechat si zapsat zapocty
-- [ ] promyslet testy (user acceptance? nebo nejake integracni, Selenium etc?)
+
+### Thesis
+
 - [ ] zlepsit osnovu a zacit premyslet o textu
+- [ ] udelat benchmark na moji clustering metodu pomoci DCC/DCA
 
 ## SIS proposal
 
