@@ -184,6 +184,7 @@
 - [x] k animaci pridat moznosti `backbone + ball-and-stick (pocket)` a pak `cartoon + bns` (respektive nastavit jako default) - nakonec jsem to nechal volne
 - [x] pridat reprezentaci pro ligand
 - [x] pridat transparent reprezentaci puvodniho proteinu do te animace
+- [ ] u HOLO struktur, chceme urcite ukazovat i ligand (podivat se, jestli mi ho nesmaze backend...)
 
 ### Others
 
