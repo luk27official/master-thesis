@@ -162,7 +162,7 @@
 
 - [ ] fix TODOs v kodu
 - [x] moznost dat treba export do PyMOLu by se celkem hodila (jako vytvorit z toho nejaky prikaz do PyMOL na zobrazeni tech pocketu)
-- [ ] pridat templating pro head apod.
+- [ ] pridat templating pro head/footer apod. - pridat tam odkazy na GitHub, nejake contact info apod.
 - [x] custom upload struktury
 - [x] pridat moznost videt stare joby (asi ukladat v localStorage)
 - [x] pridat do Mol* barvy
@@ -180,13 +180,15 @@
 - [x] fixnout prepinani vizualizaci pro vice struktur (pripadne vice struktur s pockety)
 - [x] pridat moznost jit na vizualizaci primo z hashe, pripadne z id struktury?
 - [ ] pridat AF databazi na vstup
-- [ ] pridat AF do AHoJ results, pridat proklik do AFdb
+- [x] pridat AF do AHoJ results, pridat proklik do AFdb
 - [x] upravit co zobrazujeme u AHoJ predikce - chceme jak APO, tak HOLO a zobrazit zejmena SASA a umoznit proklik do databaze na tu strukturu, asi do UniProt? proste nekam, kde to dokaze vzit oboji (i AlphaFold)
 - [x] k animaci pridat moznosti `backbone + ball-and-stick (pocket)` a pak `cartoon + bns` (respektive nastavit jako default) - nakonec jsem to nechal volne
 - [x] pridat reprezentaci pro ligand
 - [x] pridat transparent reprezentaci puvodniho proteinu do te animace
-- [ ] u HOLO struktur, chceme urcite ukazovat i ligand (podivat se, jestli mi ho nesmaze backend...)
+- [x] u HOLO struktur chceme urcite ukazovat i ligand (podivat se, jestli mi ho nesmaze backend...)
 - [ ] fixnout zobrazeni pro mobily, aby to bylo responzivni
+- [ ] minor bug: u HOLO ligandu se ukazuje puvodni chain id a puvodni res id, coz muze byt confusing... muzu zkusit to prepsat treba na "Z" chain
+- [ ] pridat tam nejaky tip jak ovladat tu animaci
 
 ### Others
 
