@@ -140,6 +140,7 @@
 - [ ] GitHub zkusit se podivat na pipelines (jestli davaji smysl v mem pripade)
 - [ ] zkusit pridat React render info - https://www.youtube.com/watch?v=JpJYm3B6UwM
 - [ ] promyslet testy (user acceptance? nebo nejake integracni, Selenium etc?)
+- [ ] fix vytvareni slozek apod.
 
 ### Backend
 
