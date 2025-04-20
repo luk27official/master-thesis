@@ -220,11 +220,12 @@ Proteins are a key element in many biological interactions. Some amino acids (al
    4. Frontend in Mol*
    5. Tests??
    6. Deployment??
+   7. Monitoring??
 3. User documentation
    1. How to run
    2. Use cases - what would an user do with a custom/PDB structure
 4. Discussion
-   1. Future ideas, improvements
+   1. Future ideas, improvements, more models? etc.
 
 
 ## Architecture sketch
