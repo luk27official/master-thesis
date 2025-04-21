@@ -138,9 +138,10 @@
 - [x] pridat dalsi monitoring (Sentry)
 - [ ] podivat se na testovani API - k6.io
 - [ ] GitHub zkusit se podivat na pipelines (jestli davaji smysl v mem pripade)
-- [ ] zkusit pridat React render info - https://www.youtube.com/watch?v=JpJYm3B6UwM
+- [x] zkusit pridat React render info - https://www.youtube.com/watch?v=JpJYm3B6UwM - React Developer Tools do Chrome
 - [ ] promyslet testy (user acceptance? nebo nejake integracni, Selenium etc?)
-- [ ] fix vytvareni slozek apod.
+- [x] fix vytvareni slozek apod.
+- [ ] manualne to zkusit na par strukturach (i custom)
 
 ### Backend
 
@@ -187,9 +188,13 @@
 - [x] pridat reprezentaci pro ligand
 - [x] pridat transparent reprezentaci puvodniho proteinu do te animace
 - [x] u HOLO struktur chceme urcite ukazovat i ligand (podivat se, jestli mi ho nesmaze backend...)
-- [ ] fixnout zobrazeni pro mobily, aby to bylo responzivni
+- [x] fixnout zobrazeni pro mobily, aby to bylo responzivni
 - [ ] minor bug: u HOLO ligandu se ukazuje puvodni chain id a puvodni res id, coz muze byt confusing... muzu zkusit to prepsat treba na "Z" chain
-- [ ] pridat tam nejaky tip jak ovladat tu animaci
+- [x] pridat tam nejaky tip jak ovladat tu animaci
+- [ ] pridat favicon
+- [x] pridat zpusob jak se vratit k te puvodni reprezentaci ("remove superposition")
+- [ ] pridat failed/playing stav u AHoJ buttons
+- [ ] improve hlavni stranky - design apod.
 
 ### Others
 
