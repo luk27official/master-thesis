@@ -142,6 +142,7 @@
 - [ ] promyslet testy (user acceptance? nebo nejake integracni, Selenium etc?)
 - [x] fix vytvareni slozek apod.
 - [ ] manualne to zkusit na par strukturach (i custom)
+- [ ] koupit si custom domenu? pog
 
 ### Backend
 
@@ -159,12 +160,13 @@
 - [x] zkusit se podivat, jestli nekde nejde dat common basepath "/app/data/", protoze se pouziva na dost mistech
 - [ ] vylepsit dokumentaci docstrings pro metody
 - [ ] najit si strukturu s jinym poctem atomu u rezidui (potential bug pri animaci)
+- [ ] minor bug: u HOLO ligandu se ukazuje puvodni chain id a puvodni res id, coz muze byt confusing... muzu zkusit to prepsat treba na "Z" chain
 
 ### Frontend
 
 - [ ] fix TODOs v kodu
 - [x] moznost dat treba export do PyMOLu by se celkem hodila (jako vytvorit z toho nejaky prikaz do PyMOL na zobrazeni tech pocketu)
-- [ ] pridat templating pro head/footer apod. - pridat tam odkazy na GitHub, nejake contact info apod.
+- [x] pridat templating pro head/footer apod. - pridat tam odkazy na GitHub, nejake contact info apod.
 - [x] custom upload struktury
 - [x] pridat moznost videt stare joby (asi ukladat v localStorage)
 - [x] pridat do Mol* barvy
@@ -189,12 +191,12 @@
 - [x] pridat transparent reprezentaci puvodniho proteinu do te animace
 - [x] u HOLO struktur chceme urcite ukazovat i ligand (podivat se, jestli mi ho nesmaze backend...)
 - [x] fixnout zobrazeni pro mobily, aby to bylo responzivni
-- [ ] minor bug: u HOLO ligandu se ukazuje puvodni chain id a puvodni res id, coz muze byt confusing... muzu zkusit to prepsat treba na "Z" chain
 - [x] pridat tam nejaky tip jak ovladat tu animaci
 - [ ] pridat favicon
 - [x] pridat zpusob jak se vratit k te puvodni reprezentaci ("remove superposition")
-- [ ] pridat failed/playing stav u AHoJ buttons
+- [x] pridat failed/playing stav u AHoJ buttons (failed asi ted neni potreba, jde videt, ze tam neni loaded)
 - [ ] improve hlavni stranky - design apod.
+- [ ] vytvorit Help page kde bude nejaky popis pipeline a toho co delam, potom kontakt
 
 ### Others
 
