@@ -159,7 +159,7 @@
 - [x] interpolace AHoJ struktur - je potreba vyresit jak samotnou animaci, tak trimming struktur
 - [x] zkusit se podivat, jestli nekde nejde dat common basepath "/app/data/", protoze se pouziva na dost mistech
 - [ ] vylepsit dokumentaci docstrings pro metody
-- [ ] najit si strukturu s jinym poctem atomu u rezidui (potential bug pri animaci)
+- [ ] najit si strukturu s jinym poctem atomu u rezidui (potential bug pri animaci) - melo by to proste jen failnout interne a nic neudelat
 - [ ] minor bug: u HOLO ligandu se ukazuje puvodni chain id a puvodni res id, coz muze byt confusing... muzu zkusit to prepsat treba na "Z" chain
 
 ### Frontend
@@ -195,8 +195,8 @@
 - [ ] pridat favicon
 - [x] pridat zpusob jak se vratit k te puvodni reprezentaci ("remove superposition")
 - [x] pridat failed/playing stav u AHoJ buttons (failed asi ted neni potreba, jde videt, ze tam neni loaded)
-- [ ] improve designu vsech stranek
-- [ ] vytvorit Help page kde bude nejaky popis pipeline a toho co delam, potom kontakt
+- [ ] improve designu vsech stranek vcetne textu
+- [x] vytvorit Help page kde bude nejaky popis pipeline a toho co delam, potom kontakt
 
 ### Others
 
