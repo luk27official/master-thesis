@@ -195,7 +195,7 @@
 - [ ] pridat favicon
 - [x] pridat zpusob jak se vratit k te puvodni reprezentaci ("remove superposition")
 - [x] pridat failed/playing stav u AHoJ buttons (failed asi ted neni potreba, jde videt, ze tam neni loaded)
-- [ ] improve hlavni stranky - design apod.
+- [ ] improve designu vsech stranek
 - [ ] vytvorit Help page kde bude nejaky popis pipeline a toho co delam, potom kontakt
 
 ### Others
