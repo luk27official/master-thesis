@@ -122,13 +122,14 @@
   - jednu z tech metrik budeme muset pouzit
   - potom budeme chtit overit to, ze to porovname oproti CryptoBench pocketum
 - zeptat se na testy, jestli budou nejake potreba (akceptacni, Selenium, RobotFramework?)
+- zeptat se jestli nechat AHoJ button i pro AF struktury (nejspis to totiz nefunguje)
 
 ## TODOs checklist
 
 ### DevOps
 
 - [x] pridat auto-deployment Dockeru do GitHub repa
-- [ ] pridat auto-deployment Dockeru na Docker Hub https://docs.github.com/en/actions/use-cases-and-examples/publishing-packages/publishing-docker-images#publishing-images-to-docker-hub-and-github-packages
+- [x] (spis ne) - pridat auto-deployment Dockeru na Docker Hub https://docs.github.com/en/actions/use-cases-and-examples/publishing-packages/publishing-docker-images#publishing-images-to-docker-hub-and-github-packages
 - [ ] pridat nejaky CI blbosti do GitHubu
 - [x] pridat Docker healthcheck
 - [ ] test healthchecks
@@ -137,7 +138,7 @@
 - [ ] pridat nejaky monitoring (Grafana)
 - [x] pridat dalsi monitoring (Sentry)
 - [ ] podivat se na testovani API - k6.io
-- [ ] GitHub zkusit se podivat na pipelines (jestli davaji smysl v mem pripade)
+- [x] (spis ne) - GitHub zkusit se podivat na pipelines (jestli davaji smysl v mem pripade)
 - [x] zkusit pridat React render info - https://www.youtube.com/watch?v=JpJYm3B6UwM - React Developer Tools do Chrome
 - [ ] promyslet testy (user acceptance? nebo nejake integracni, Selenium etc?)
 - [x] fix vytvareni slozek apod.
@@ -177,13 +178,13 @@
 - [x] pridat AHoJ fetch results, ulozeni na backend, rozbaleni archivu apod.
 - [x] zlepsit tabulku s vysledky vpravo, pridat informace o AHoJ predikci
 - [ ] pridat docstrings k metodam
-- [ ] smazat `console.log` apod.
+- [x] smazat `console.log` apod.
 - [x] prepinani jednotlivych vizualizaci, chceme `surface | ball-and-stick | cartoon` pro oboji, jak pockety, tak struktury
 - [x] pridat download vysledku
 - [x] pridat download AHoJ vysledku (tam by mozna stacilo odkazat primo na AHoJ stranky - v tuhle chvili je tam proklik na stranky AHoJ jobu)
 - [x] fixnout prepinani vizualizaci pro vice struktur (pripadne vice struktur s pockety)
 - [x] pridat moznost jit na vizualizaci primo z hashe, pripadne z id struktury?
-- [ ] pridat AF databazi na vstup
+- [x] pridat AF databazi na vstup
 - [x] pridat AF do AHoJ results, pridat proklik do AFdb
 - [x] upravit co zobrazujeme u AHoJ predikce - chceme jak APO, tak HOLO a zobrazit zejmena SASA a umoznit proklik do databaze na tu strukturu, asi do UniProt? proste nekam, kde to dokaze vzit oboji (i AlphaFold)
 - [x] k animaci pridat moznosti `backbone + ball-and-stick (pocket)` a pak `cartoon + bns` (respektive nastavit jako default) - nakonec jsem to nechal volne
@@ -192,7 +193,7 @@
 - [x] u HOLO struktur chceme urcite ukazovat i ligand (podivat se, jestli mi ho nesmaze backend...)
 - [x] fixnout zobrazeni pro mobily, aby to bylo responzivni
 - [x] pridat tam nejaky tip jak ovladat tu animaci
-- [ ] pridat favicon
+- [x] pridat favicon
 - [x] pridat zpusob jak se vratit k te puvodni reprezentaci ("remove superposition")
 - [x] pridat failed/playing stav u AHoJ buttons (failed asi ted neni potreba, jde videt, ze tam neni loaded)
 - [ ] improve designu vsech stranek vcetne textu
@@ -208,6 +209,17 @@
 
 - [ ] zlepsit osnovu a zacit premyslet o textu
 - [ ] udelat benchmark na moji clustering metodu pomoci DCC/DCA
+
+### Sanity check (before submission)
+
+All of this should be checked before submitting the code.
+
+- code TODOs
+- `console.log`s, `print`s etc
+- code style, refactoring
+- comments
+- documentation, docstrings everywhere where applicable
+- try out different combinations, try out errors where possible (invalid formats, ...)
 
 ## SIS proposal
 
