@@ -198,6 +198,7 @@
 - [x] pridat failed/playing stav u AHoJ buttons (failed asi ted neni potreba, jde videt, ze tam neni loaded)
 - [ ] improve designu vsech stranek vcetne textu
 - [x] vytvorit Help page kde bude nejaky popis pipeline a toho co delam, potom kontakt
+- [ ] AHoJ button u custom/AF struktur
 
 ### Others
 
