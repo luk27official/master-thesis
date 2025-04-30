@@ -124,6 +124,16 @@
 - zeptat se na testy, jestli budou nejake potreba (akceptacni, Selenium, RobotFramework?)
 - zeptat se jestli nechat AHoJ button i pro AF struktury (nejspis to totiz nefunguje)
 
+## 30.4.2025 (meeting s Vitou)
+
+- clustering
+  - bude potreba si napocitat ESM-2 embeddings, to muzu udelat pomoci toho Vitova skriptu na gpulabu (aspon pro ten test.json v CryptoBenchi)
+  - brat v uvahu i SASA u atomu (chceme co nejvic na povrchu)
+  - Vita rikal, ze natrenuje nejaky deeplearning classifier, co by se dal taky pouzit misto toho
+  - mozna switchnout na atom-level clustering?
+  - mozna muzu zkouset spojovat clustery pokud jsou blizko u sebe na konci?
+  - precist si paper: https://jcheminf.biomedcentral.com/articles/10.1186/s13321-024-00821-4
+
 ## TODOs checklist
 
 ### DevOps
@@ -144,6 +154,7 @@
 - [x] fix vytvareni slozek apod.
 - [ ] manualne to zkusit na par strukturach (i custom)
 - [ ] koupit si custom domenu? pog
+- [x] zkusit misto `pip` pouzit `uv` package manager (melo by to byt rychlejsi)
 
 ### Backend
 
@@ -162,6 +173,8 @@
 - [x] vylepsit dokumentaci docstrings pro metody
 - [ ] najit si strukturu s jinym poctem atomu u rezidui (potential bug pri animaci) - melo by to proste jen failnout interne a nic neudelat
 - [ ] minor bug: u HOLO ligandu se ukazuje puvodni chain id a puvodni res id, coz muze byt confusing... muzu zkusit to prepsat treba na "Z" chain
+- [ ] zkusit se podivat, jestli nejde pouzit nejak chain pri te animaci... protoze ted se stava to, ze LCS vezme nejaky substring, ale ten muze byt teoreticky i v jinem chainu a pak je ta konformace hodne wild
+- [ ] podivat se, jestli nechceme AlphaFill namisto AlphaFold DB https://alphafill.eu/download
 
 ### Frontend
 
