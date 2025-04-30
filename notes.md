@@ -174,7 +174,8 @@
 - [ ] najit si strukturu s jinym poctem atomu u rezidui (potential bug pri animaci) - melo by to proste jen failnout interne a nic neudelat
 - [ ] minor bug: u HOLO ligandu se ukazuje puvodni chain id a puvodni res id, coz muze byt confusing... muzu zkusit to prepsat treba na "Z" chain
 - [ ] zkusit se podivat, jestli nejde pouzit nejak chain pri te animaci... protoze ted se stava to, ze LCS vezme nejaky substring, ale ten muze byt teoreticky i v jinem chainu a pak je ta konformace hodne wild
-- [ ] podivat se, jestli nechceme AlphaFill namisto AlphaFold DB https://alphafill.eu/download
+- [x] podivat se, jestli nechceme AlphaFill namisto AlphaFold DB https://alphafill.eu/download
+- [ ] vyzkouset novou AlphaFill DB
 
 ### Frontend
 
