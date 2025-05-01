@@ -121,8 +121,6 @@
   - dcc (distance from centre to centre)
   - jednu z tech metrik budeme muset pouzit
   - potom budeme chtit overit to, ze to porovname oproti CryptoBench pocketum
-- zeptat se na testy, jestli budou nejake potreba (akceptacni, Selenium, RobotFramework?)
-- zeptat se jestli nechat AHoJ button i pro AF struktury (nejspis to totiz nefunguje)
 
 ## 30.4.2025 (meeting s Vitou)
 
@@ -133,6 +131,9 @@
   - mozna switchnout na atom-level clustering?
   - mozna muzu zkouset spojovat clustery pokud jsou blizko u sebe na konci?
   - precist si paper: https://jcheminf.biomedcentral.com/articles/10.1186/s13321-024-00821-4
+- zeptat se na testy, jestli budou nejake potreba (akceptacni, Selenium, RobotFramework?)
+- zeptat se jestli nechat AHoJ button i pro AF struktury (nejspis to totiz nefunguje)
+- zeptat se na AF (AlphaFill x AlphaFold)
 
 ## TODOs checklist
 
@@ -155,6 +156,7 @@
 - [ ] manualne to zkusit na par strukturach (i custom)
 - [ ] koupit si custom domenu? pog
 - [x] zkusit misto `pip` pouzit `uv` package manager (melo by to byt rychlejsi)
+- [ ] NginX maintenance mode - nastavit?
 
 ### Backend
 
@@ -175,7 +177,7 @@
 - [ ] minor bug: u HOLO ligandu se ukazuje puvodni chain id a puvodni res id, coz muze byt confusing... muzu zkusit to prepsat treba na "Z" chain
 - [ ] zkusit se podivat, jestli nejde pouzit nejak chain pri te animaci... protoze ted se stava to, ze LCS vezme nejaky substring, ale ten muze byt teoreticky i v jinem chainu a pak je ta konformace hodne wild
 - [x] podivat se, jestli nechceme AlphaFill namisto AlphaFold DB https://alphafill.eu/download
-- [ ] vyzkouset novou AlphaFill DB
+- [x] vyzkouset novou AlphaFill DB
 
 ### Frontend
 
