@@ -156,7 +156,7 @@
 - [ ] manualne to zkusit na par strukturach (i custom)
 - [ ] koupit si custom domenu? pog
 - [x] zkusit misto `pip` pouzit `uv` package manager (melo by to byt rychlejsi)
-- [ ] NginX maintenance mode - nastavit?
+- [x] NginX maintenance mode - nastavit?
 
 ### Backend
 
@@ -212,7 +212,7 @@
 - [x] pridat favicon
 - [x] pridat zpusob jak se vratit k te puvodni reprezentaci ("remove superposition")
 - [x] pridat failed/playing stav u AHoJ buttons (failed asi ted neni potreba, jde videt, ze tam neni loaded)
-- [ ] improve designu vsech stranek vcetne textu
+- [x] improve designu vsech stranek vcetne textu
 - [x] vytvorit Help page kde bude nejaky popis pipeline a toho co delam, potom kontakt
 - [x] AHoJ button u custom/AF struktur
 - [x] remove superposition button kdyz neni nactena dalsi struktura
