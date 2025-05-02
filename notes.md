@@ -131,7 +131,7 @@
   - mozna switchnout na atom-level clustering?
   - mozna muzu zkouset spojovat clustery pokud jsou blizko u sebe na konci?
   - precist si paper: https://jcheminf.biomedcentral.com/articles/10.1186/s13321-024-00821-4
-- zeptat se na testy, jestli budou nejake potreba (akceptacni, Selenium, RobotFramework?)
+- zeptat se na testy, jestli budou nejake potreba (akceptacni, Selenium, RobotFramework?), pripadne na testy API atd., nejaky monitoring
 - zeptat se jestli nechat AHoJ button i pro AF struktury (nejspis to totiz nefunguje)
 - zeptat se na AF (AlphaFill x AlphaFold)
 
@@ -173,7 +173,7 @@
 - [x] interpolace AHoJ struktur - je potreba vyresit jak samotnou animaci, tak trimming struktur
 - [x] zkusit se podivat, jestli nekde nejde dat common basepath "/app/data/", protoze se pouziva na dost mistech
 - [x] vylepsit dokumentaci docstrings pro metody
-- [ ] najit si strukturu s jinym poctem atomu u rezidui (potential bug pri animaci) - melo by to proste jen failnout interne a nic neudelat
+- [x] najit si strukturu s jinym poctem atomu u rezidui (potential bug pri animaci) - melo by to proste jen failnout interne a nic neudelat
 - [ ] minor bug: u HOLO ligandu se ukazuje puvodni chain id a puvodni res id, coz muze byt confusing... muzu zkusit to prepsat treba na "Z" chain
 - [ ] zkusit se podivat, jestli nejde pouzit nejak chain pri te animaci... protoze ted se stava to, ze LCS vezme nejaky substring, ale ten muze byt teoreticky i v jinem chainu a pak je ta konformace hodne wild
 - [x] podivat se, jestli nechceme AlphaFill namisto AlphaFold DB https://alphafill.eu/download
@@ -216,6 +216,7 @@
 - [x] vytvorit Help page kde bude nejaky popis pipeline a toho co delam, potom kontakt
 - [x] AHoJ button u custom/AF struktur
 - [x] remove superposition button kdyz neni nactena dalsi struktura
+- [ ] pridat nejaky popis na hlavni stranku? pripadne pridat nejake vysvetleni k AHoJ (co to dela, jak dlouho to trva?)
 
 ### Others
 
