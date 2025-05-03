@@ -166,7 +166,7 @@
 - [x] dodelat clustering poradne, implementovat metriky pro lepsi pocket creation (nechceme jen brat podle thresholdu, chceme to udelat napriklad tak, ze vezmeme stred potencialniho pocketu a potom vezmeme vsechny rezidua, co jsou v nejake vzdalenosti od toho stredu)
 - [x] misto UUID nastavit nazvy jobu na MD5 nebo nejaky hash toho .cif/.pdb file a udelat caching
 - [x] pridat OpenAPI specifikaci, nejlepsi by bylo to delat nejak automaticky
-- [ ] improvnout OpenAPI, pridat response types, pridat errory, ...
+- [ ] improvnout OpenAPI, pridat response types, pridat errory, pridat odkaz na OpenAPI tam nahoru...
 - [x] zamyslet se nad tim, jestli nebude lepsi pridat error codes jako 400 etc.
 - [x] zkusit pridat nejakou lepsi hlasku na zacatek processingu (mozna na frontend), protoze ted se tam kvuli cachovani stahuje struktura a vypada to pomaly
 - [x] poresit pripad, kdy vypocet failne - momentalne se ten result neulozi, takze se to vlastne resi timhle :)
@@ -174,8 +174,8 @@
 - [x] zkusit se podivat, jestli nekde nejde dat common basepath "/app/data/", protoze se pouziva na dost mistech
 - [x] vylepsit dokumentaci docstrings pro metody
 - [x] najit si strukturu s jinym poctem atomu u rezidui (potential bug pri animaci) - melo by to proste jen failnout interne a nic neudelat
-- [ ] minor bug: u HOLO ligandu se ukazuje puvodni chain id a puvodni res id, coz muze byt confusing... muzu zkusit to prepsat treba na "Z" chain
-- [ ] zkusit se podivat, jestli nejde pouzit nejak chain pri te animaci... protoze ted se stava to, ze LCS vezme nejaky substring, ale ten muze byt teoreticky i v jinem chainu a pak je ta konformace hodne wild
+- [x] minor bug: u HOLO ligandu se ukazuje puvodni chain id a puvodni res id, coz muze byt confusing... muzu zkusit to prepsat treba na "Z" chain
+- [x] zkusit se podivat, jestli nejde pouzit nejak chain pri te animaci... protoze ted se stava to, ze LCS vezme nejaky substring, ale ten muze byt teoreticky i v jinem chainu a pak je ta konformace hodne wild
 - [x] podivat se, jestli nechceme AlphaFill namisto AlphaFold DB https://alphafill.eu/download
 - [x] vyzkouset novou AlphaFill DB
 
@@ -216,7 +216,7 @@
 - [x] vytvorit Help page kde bude nejaky popis pipeline a toho co delam, potom kontakt
 - [x] AHoJ button u custom/AF struktur
 - [x] remove superposition button kdyz neni nactena dalsi struktura
-- [ ] pridat nejaky popis na hlavni stranku? pripadne pridat nejake vysvetleni k AHoJ (co to dela, jak dlouho to trva?)
+- [ ] pridat nejaky popis na hlavni stranku? pripadne pridat nejake vysvetleni k AHoJ/CryptoBenchi (co to dela, jak dlouho to trva?)
 
 ### Others
 
