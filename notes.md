@@ -136,6 +136,7 @@
 - zeptat se na AF (AlphaFill x AlphaFold)
 - zeptat se na MetaCentrum - jestli se nepouziva uz nekde na UK pro hosting
 - probrat osnovu? tohle je hodne draft, ale at uz muzu zacit
+- zeptat se, jestli potrebujeme spocitane ESM embeddingy - zabiraji zbytecne moc mista a asi neni potreba si je nechavat
 
 ## TODOs checklist
 
@@ -168,7 +169,7 @@
 - [x] dodelat clustering poradne, implementovat metriky pro lepsi pocket creation (nechceme jen brat podle thresholdu, chceme to udelat napriklad tak, ze vezmeme stred potencialniho pocketu a potom vezmeme vsechny rezidua, co jsou v nejake vzdalenosti od toho stredu)
 - [x] misto UUID nastavit nazvy jobu na MD5 nebo nejaky hash toho .cif/.pdb file a udelat caching
 - [x] pridat OpenAPI specifikaci, nejlepsi by bylo to delat nejak automaticky
-- [ ] improvnout OpenAPI, pridat response types, pridat errory, pridat odkaz na OpenAPI tam nahoru...
+- [x] improvnout OpenAPI, pridat response types, pridat errory, pridat odkaz na OpenAPI tam nahoru...
 - [x] zamyslet se nad tim, jestli nebude lepsi pridat error codes jako 400 etc.
 - [x] zkusit pridat nejakou lepsi hlasku na zacatek processingu (mozna na frontend), protoze ted se tam kvuli cachovani stahuje struktura a vypada to pomaly
 - [x] poresit pripad, kdy vypocet failne - momentalne se ten result neulozi, takze se to vlastne resi timhle :)
