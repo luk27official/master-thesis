@@ -134,6 +134,8 @@
 - zeptat se na testy, jestli budou nejake potreba (akceptacni, Selenium, RobotFramework?), pripadne na testy API atd., nejaky monitoring
 - zeptat se jestli nechat AHoJ button i pro AF struktury (nejspis to totiz nefunguje)
 - zeptat se na AF (AlphaFill x AlphaFold)
+- zeptat se na MetaCentrum - jestli se nepouziva uz nekde na UK pro hosting
+- probrat osnovu? tohle je hodne draft, ale at uz muzu zacit
 
 ## TODOs checklist
 
