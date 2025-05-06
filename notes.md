@@ -190,8 +190,8 @@
 - [x] zkusit se podivat, jestli nejde pouzit nejak chain pri te animaci... protoze ted se stava to, ze LCS vezme nejaky substring, ale ten muze byt teoreticky i v jinem chainu a pak je ta konformace hodne wild
 - [x] podivat se, jestli nechceme AlphaFill namisto AlphaFold DB https://alphafill.eu/download
 - [x] vyzkouset novou AlphaFill DB
-- [ ] potrebujeme embeddingy? jeden muze mit klidne i 30 MB, coz je dost... - vysledek - muzeme je nejspis smazat, stejne nejsou potreba uchovavat
-- [ ] opravit backend, ted to z nejakeho duvodu nefunguje...
+- [x] potrebujeme embeddingy? jeden muze mit klidne i 30 MB, coz je dost... - vysledek - muzeme je nejspis smazat, stejne nejsou potreba uchovavat
+- [x] opravit backend, ted to z nejakeho duvodu nefunguje...
 
 ### Frontend
 
@@ -230,10 +230,11 @@
 - [x] vytvorit Help page kde bude nejaky popis pipeline a toho co delam, potom kontakt
 - [x] AHoJ button u custom/AF struktur
 - [x] remove superposition button kdyz neni nactena dalsi struktura
-- [ ] pridat nejaky popis na hlavni stranku? pripadne pridat nejake vysvetleni k AHoJ/CryptoBenchi (co to dela, jak dlouho to trva?)
-- [ ] pridat popis te animace, tedy ze query struktura je transparentni a co se tam vlastne deje
-- [ ] pridat logo Elixir (nevim jestli i na hlavni stranku?)
+- [x] pridat nejaky popis na hlavni stranku? pripadne pridat nejake vysvetleni k AHoJ/CryptoBenchi (co to dela, jak dlouho to trva?)
+- [x] pridat popis te animace, tedy ze query struktura je transparentni a co se tam vlastne deje
+- [x] pridat logo Elixir (nevim jestli i na hlavni stranku?)
 - [ ] zmenit pozadi na nejakou strukturu nebo neco zajimaveho
+- [ ] rozdelit kod u velkych komponent na nekolik mensich, nekde toho je opravdu hodne v jednom souboru
 
 ### Others
 

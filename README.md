@@ -1,5 +1,5 @@
 # Master's thesis
-## TODO, Lukáš Polák
+## Prediction and visualization of cryptic binding regions, Lukáš Polák
 
 The original `README` is available in `README-old.md`.
 
