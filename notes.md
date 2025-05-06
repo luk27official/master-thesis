@@ -138,6 +138,14 @@
 - probrat osnovu? tohle je hodne draft, ale at uz muzu zacit
 - zeptat se, jestli potrebujeme spocitane ESM embeddingy - zabiraji zbytecne moc mista a asi neni potreba si je nechavat
 
+## 6.5.2025 (meeting)
+
+- clustering
+  - stale zustava otazkou :) kazdopadne Vita pry natrenoval nejaky klasifikator, ktery by se dal pouzit, takze se s nim o tom jeste musim pobavit
+  - kazdopadne stale cist ty veci nahore
+- testy - asi nejsou potreba uplne nejake GUI, ale ten monitoring by se celkem hodilo mit
+- k deploymentu nakonec asi zkusime MFF, uvidi se
+
 ## TODOs checklist
 
 ### DevOps
@@ -147,8 +155,8 @@
 - [ ] pridat nejaky CI blbosti do GitHubu
 - [x] pridat Docker healthcheck
 - [ ] test healthchecks
-- [ ] poresit GPU s Klimkem/Yaghobem?? spis to metacentrum
-- [ ] vyzkouset namisto MFF hostingu MetaCentrum
+- [x] poresit GPU s Klimkem/Yaghobem?? spis to metacentrum
+- [x] vyzkouset namisto MFF hostingu MetaCentrum
 - [ ] pridat nejaky monitoring (Grafana)
 - [x] pridat dalsi monitoring (Sentry)
 - [ ] podivat se na testovani API - k6.io
@@ -160,6 +168,7 @@
 - [ ] koupit si custom domenu? pog
 - [x] zkusit misto `pip` pouzit `uv` package manager (melo by to byt rychlejsi)
 - [x] NginX maintenance mode - nastavit?
+- [ ] vyresit nasazeni na MFF UK server
 
 ### Backend
 
@@ -181,7 +190,8 @@
 - [x] zkusit se podivat, jestli nejde pouzit nejak chain pri te animaci... protoze ted se stava to, ze LCS vezme nejaky substring, ale ten muze byt teoreticky i v jinem chainu a pak je ta konformace hodne wild
 - [x] podivat se, jestli nechceme AlphaFill namisto AlphaFold DB https://alphafill.eu/download
 - [x] vyzkouset novou AlphaFill DB
-- [ ] potrebujeme embeddingy? jeden muze mit klidne i 30 MB, coz je dost...
+- [ ] potrebujeme embeddingy? jeden muze mit klidne i 30 MB, coz je dost... - vysledek - muzeme je nejspis smazat, stejne nejsou potreba uchovavat
+- [ ] opravit backend, ted to z nejakeho duvodu nefunguje...
 
 ### Frontend
 
@@ -221,12 +231,15 @@
 - [x] AHoJ button u custom/AF struktur
 - [x] remove superposition button kdyz neni nactena dalsi struktura
 - [ ] pridat nejaky popis na hlavni stranku? pripadne pridat nejake vysvetleni k AHoJ/CryptoBenchi (co to dela, jak dlouho to trva?)
+- [ ] pridat popis te animace, tedy ze query struktura je transparentni a co se tam vlastne deje
+- [ ] pridat logo Elixir (nevim jestli i na hlavni stranku?)
+- [ ] zmenit pozadi na nejakou strukturu nebo neco zajimaveho
 
 ### Others
 
 - [x] napsat abstrakt do SIS
 - [x] vypsat zadani v SISu
-- [ ] nechat si zapsat zapocty
+- [x] nechat si zapsat zapocty
 
 ### Thesis
 
@@ -256,20 +269,27 @@ Proteins are a key element in many biological interactions. Some amino acids (al
    3. Databases - RCSB, AF, custom structures, formats (pdb, CIF)
    4. Binding sites, cryptic binding sites
    5. Related tools (PrankWeb, AHoJ, PyMOL, Mol*, CryptoBench)
-2. Programming documentation (maybe we could split this into BE/FE/DevOps?)
-   1. Architecture, used technologies
+2. Methods development
+   1. Prediction using CryptoBench + ESM-2
    2. Clustering
    3. Trajectory animation
-   4. Frontend in Mol*
-   5. Tests??
-   6. Deployment??
-   7. Monitoring??
-3. User documentation
+3. Software
+   1. Architecture, used technologies
+   2. Frontend in Mol*
+   3. Tests + monitoring??
+   4. Deployment??
+4. User documentation
    1. How to run
    2. Use cases - what would an user do with a custom/PDB structure
-4. Discussion
+5. Discussion
    1. Future ideas, improvements, more models? etc.
 
+## Technical requirements
+
+- RAM: minimum 32 GB, preferred 48/64 GB
+- CPU: minimum 8 cores, preferred 8+ cores
+- OS: anything running Docker (Ubuntu should be ok)
+- disk: 1 TB
 
 ## Architecture sketch
 
