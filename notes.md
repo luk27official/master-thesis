@@ -233,8 +233,8 @@
 - [x] pridat nejaky popis na hlavni stranku? pripadne pridat nejake vysvetleni k AHoJ/CryptoBenchi (co to dela, jak dlouho to trva?)
 - [x] pridat popis te animace, tedy ze query struktura je transparentni a co se tam vlastne deje
 - [x] pridat logo Elixir (nevim jestli i na hlavni stranku?)
-- [ ] zmenit pozadi na nejakou strukturu nebo neco zajimaveho
-- [ ] rozdelit kod u velkych komponent na nekolik mensich, nekde toho je opravdu hodne v jednom souboru
+- [x] zmenit pozadi na nejakou strukturu nebo neco zajimaveho
+- [x] rozdelit kod u velkych komponent na nekolik mensich, nekde toho je opravdu hodne v jednom souboru
 
 ### Others
 
