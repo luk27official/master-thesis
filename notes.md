@@ -152,7 +152,6 @@
 
 - [x] pridat auto-deployment Dockeru do GitHub repa
 - [x] (spis ne) - pridat auto-deployment Dockeru na Docker Hub https://docs.github.com/en/actions/use-cases-and-examples/publishing-packages/publishing-docker-images#publishing-images-to-docker-hub-and-github-packages
-- [ ] pridat nejaky CI blbosti do GitHubu
 - [x] pridat Docker healthcheck
 - [ ] test healthchecks
 - [x] poresit GPU s Klimkem/Yaghobem?? spis to metacentrum
@@ -162,19 +161,20 @@
 - [ ] podivat se na testovani API - k6.io
 - [x] (spis ne) - GitHub zkusit se podivat na pipelines (jestli davaji smysl v mem pripade)
 - [x] zkusit pridat React render info - https://www.youtube.com/watch?v=JpJYm3B6UwM - React Developer Tools do Chrome
-- [ ] promyslet testy (user acceptance? nebo nejake integracni, Selenium etc?)
+- [x] promyslet testy (user acceptance? nebo nejake integracni, Selenium etc?)
 - [x] fix vytvareni slozek apod.
 - [ ] manualne to zkusit na par strukturach (i custom)
 - [ ] koupit si custom domenu? pog
 - [x] zkusit misto `pip` pouzit `uv` package manager (melo by to byt rychlejsi)
 - [x] NginX maintenance mode - nastavit?
 - [ ] vyresit nasazeni na MFF UK server
+- [ ] pridat CI deployment do GitHubu?
 
 ### Backend
 
 - [x] udelat si initial clustering
 - [x] implementovat Celery status
-- [ ] fix TODOs v kodu
+- [x] fix TODOs v kodu
 - [x] dodelat clustering poradne, implementovat metriky pro lepsi pocket creation (nechceme jen brat podle thresholdu, chceme to udelat napriklad tak, ze vezmeme stred potencialniho pocketu a potom vezmeme vsechny rezidua, co jsou v nejake vzdalenosti od toho stredu)
 - [x] misto UUID nastavit nazvy jobu na MD5 nebo nejaky hash toho .cif/.pdb file a udelat caching
 - [x] pridat OpenAPI specifikaci, nejlepsi by bylo to delat nejak automaticky
@@ -207,7 +207,7 @@
 - [x] pridat query do AHoJ
 - [x] pridat AHoJ fetch results, ulozeni na backend, rozbaleni archivu apod.
 - [x] zlepsit tabulku s vysledky vpravo, pridat informace o AHoJ predikci
-- [ ] pridat docstrings k metodam
+- [x] pridat docstrings k metodam
 - [x] smazat `console.log` apod.
 - [x] prepinani jednotlivych vizualizaci, chceme `surface | ball-and-stick | cartoon` pro oboji, jak pockety, tak struktury
 - [x] pridat download vysledku
@@ -246,6 +246,7 @@
 
 - [ ] zlepsit osnovu a zacit premyslet o textu
 - [ ] udelat benchmark na moji clustering metodu pomoci DCC/DCA
+- [ ] spocitat embeddingy pro nejaky subset CryptoBench train/test setu
 
 ### Sanity check (before submission)
 
