@@ -185,6 +185,8 @@
 - [x] NginX maintenance mode - nastavit?
 - [ ] vyresit nasazeni na MFF UK server
 - [ ] pridat CI deployment do GitHubu?
+- [ ] pridat moznost SSL (proste port 443)
+- [ ] pridat dalsi endpointy pro jednotlive porty?
 
 ### Backend
 
