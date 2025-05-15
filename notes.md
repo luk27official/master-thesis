@@ -146,6 +146,22 @@
 - testy - asi nejsou potreba uplne nejake GUI, ale ten monitoring by se celkem hodilo mit
 - k deploymentu nakonec asi zkusime MFF, uvidi se
 
+## 15.5.2025 (meeting + Vita)
+
+- clustering
+  - nakonec to vypada, ze pouzijeme ML model na pridavani rezidui - idea je takova, ze bud udelame pre- nebo post-processing
+  - nejprve se vyfiltruji rezidua, ktera budou oznacena jako pozitivni, tedy budou mit skore > threshold
+  - potom se pro kazdy pozitivni bod podivame do okoli 15 A a zjistime vsechna negativni rezidua
+  - tato negativni rezidua se maskuji a pro kazde se pak modelu ptame, jestli ho mame oznacit taky, pouzivaji se k tomu embeddingy tech jednotlivych rezidui
+  - embeddingy mame predpocitane na gpulabu
+  - na konci jeste pak chceme pridat nejaky sanity check, ze treba cluster nepokryva 50 % proteinu etc.
+- monitoring TODO
+- deployment
+  - server na MFF
+  - potrebujeme vyresit domenu
+  - potrebujeme vyresit, jak se k portu dostat
+  - potrebujeme vyresit potencialni dalsi porty - pridat do NginX? uvidime
+
 ## TODOs checklist
 
 ### DevOps
