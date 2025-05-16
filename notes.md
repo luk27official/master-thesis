@@ -183,8 +183,10 @@
 - [ ] koupit si custom domenu? pog
 - [x] zkusit misto `pip` pouzit `uv` package manager (melo by to byt rychlejsi)
 - [x] NginX maintenance mode - nastavit?
-- [ ] vyresit nasazeni na MFF UK server
-- [ ] pridat CI deployment do GitHubu?
+- [x] vyresit nasazeni na MFF UK server
+- [ ] pridat CI deployment do GitHubu? (musel by tam byt i ten maintenance mode, ale jinak si myslim, ze by to slo)
+- [ ] zkusit maintenance mod na produkci
+- [ ] nastavit na produkci cronjob na certificate renewal
 - [x] pridat moznost SSL (proste port 443)
 - [ ] pridat dalsi endpointy pro jednotlive porty?
 
