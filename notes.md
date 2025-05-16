@@ -185,7 +185,7 @@
 - [x] NginX maintenance mode - nastavit?
 - [ ] vyresit nasazeni na MFF UK server
 - [ ] pridat CI deployment do GitHubu?
-- [ ] pridat moznost SSL (proste port 443)
+- [x] pridat moznost SSL (proste port 443)
 - [ ] pridat dalsi endpointy pro jednotlive porty?
 
 ### Backend
@@ -264,7 +264,7 @@
 
 - [ ] zlepsit osnovu a zacit premyslet o textu
 - [ ] udelat benchmark na moji clustering metodu pomoci DCC/DCA
-- [ ] spocitat embeddingy pro nejaky subset CryptoBench train/test setu
+- [x] spocitat embeddingy pro nejaky subset CryptoBench train/test setu
 
 ### Sanity check (before submission)
 
