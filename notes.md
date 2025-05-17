@@ -186,9 +186,11 @@
 - [x] vyresit nasazeni na MFF UK server
 - [ ] pridat CI deployment do GitHubu? (musel by tam byt i ten maintenance mode, ale jinak si myslim, ze by to slo)
 - [ ] zkusit maintenance mod na produkci
+- [ ] pridat maintenance i do skriptu na certificate renewal
 - [ ] nastavit na produkci cronjob na certificate renewal
 - [x] pridat moznost SSL (proste port 443)
 - [ ] pridat dalsi endpointy pro jednotlive porty?
+- [ ] vyzkouset, jestli jsou ostatni porty viditelne zvenku
 
 ### Backend
 
@@ -212,6 +214,7 @@
 - [x] vyzkouset novou AlphaFill DB
 - [x] potrebujeme embeddingy? jeden muze mit klidne i 30 MB, coz je dost... - vysledek - muzeme je nejspis smazat, stejne nejsou potreba uchovavat
 - [x] opravit backend, ted to z nejakeho duvodu nefunguje...
+- [ ] upravit clustering metodu, pouzit ML model pro doplneni rezidui do clusteru
 
 ### Frontend
 
