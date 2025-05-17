@@ -184,13 +184,13 @@
 - [x] zkusit misto `pip` pouzit `uv` package manager (melo by to byt rychlejsi)
 - [x] NginX maintenance mode - nastavit?
 - [x] vyresit nasazeni na MFF UK server
-- [ ] pridat CI deployment do GitHubu? (musel by tam byt i ten maintenance mode, ale jinak si myslim, ze by to slo)
-- [ ] zkusit maintenance mod na produkci
-- [ ] pridat maintenance i do skriptu na certificate renewal
-- [ ] nastavit na produkci cronjob na certificate renewal
+- [x] pridat CI deployment do GitHubu? (musel by tam byt i ten maintenance mode, ale jinak si myslim, ze by to slo)
+- [x] zkusit maintenance mod na produkci
+- [x] pridat maintenance i do skriptu na certificate renewal
+- [ ] nastavit na produkci cronjob na certificate renewal (tohle ma nejspis smysl az ve chvili, kdy bude custom domena)
 - [x] pridat moznost SSL (proste port 443)
 - [ ] pridat dalsi endpointy pro jednotlive porty?
-- [ ] vyzkouset, jestli jsou ostatni porty viditelne zvenku
+- [ ] vyzkouset, jestli jsou ostatni porty viditelne zvenku - minimalne 5000 videt jde
 
 ### Backend
 
