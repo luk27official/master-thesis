@@ -215,6 +215,7 @@
 - [x] potrebujeme embeddingy? jeden muze mit klidne i 30 MB, coz je dost... - vysledek - muzeme je nejspis smazat, stejne nejsou potreba uchovavat
 - [x] opravit backend, ted to z nejakeho duvodu nefunguje...
 - [ ] upravit clustering metodu, pouzit ML model pro doplneni rezidui do clusteru
+- [ ] pri clusteringu i trajektorii brat jen prvni model z cif filu, protoze jinak to funguje dost divne...
 
 ### Frontend
 
