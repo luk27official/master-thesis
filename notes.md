@@ -258,6 +258,7 @@
 - [x] pridat logo Elixir (nevim jestli i na hlavni stranku?)
 - [x] zmenit pozadi na nejakou strukturu nebo neco zajimaveho
 - [x] rozdelit kod u velkych komponent na nekolik mensich, nekde toho je opravdu hodne v jednom souboru
+- [x] fixnout key u loaded struktur, aby to nevypadalo, ze jich je xy loadnutych naraz... pokud mozno, tak tam pridat i pocket na odliseni, ale lepsi to bude pres AHoJ vysledek primo
 
 ### Others
 
