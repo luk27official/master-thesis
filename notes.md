@@ -216,6 +216,7 @@
 - [x] opravit backend, ted to z nejakeho duvodu nefunguje...
 - [ ] upravit clustering metodu, pouzit ML model pro doplneni rezidui do clusteru
 - [ ] pri clusteringu i trajektorii brat jen prvni model z cif filu, protoze jinak to funguje dost divne...
+- [ ] sortnout clustery podle pravdepodobnosti? idk, jestli je to ta nejlepsi metrika
 
 ### Frontend
 
@@ -260,6 +261,7 @@
 - [x] zmenit pozadi na nejakou strukturu nebo neco zajimaveho
 - [x] rozdelit kod u velkych komponent na nekolik mensich, nekde toho je opravdu hodne v jednom souboru
 - [x] fixnout key u loaded struktur, aby to nevypadalo, ze jich je xy loadnutych naraz... pokud mozno, tak tam pridat i pocket na odliseni, ale lepsi to bude pres AHoJ vysledek primo
+- [ ] potential improvement: namisto brani prvniho modelu z cifu/pdb dat uzivateli na vyber potom, co to nahraje/nacte
 
 ### Others
 
