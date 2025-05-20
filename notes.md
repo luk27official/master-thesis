@@ -169,7 +169,7 @@
 - [x] pridat auto-deployment Dockeru do GitHub repa
 - [x] (spis ne) - pridat auto-deployment Dockeru na Docker Hub https://docs.github.com/en/actions/use-cases-and-examples/publishing-packages/publishing-docker-images#publishing-images-to-docker-hub-and-github-packages
 - [x] pridat Docker healthcheck
-- [ ] test healthchecks
+- [x] test healthchecks
 - [x] poresit GPU s Klimkem/Yaghobem?? spis to metacentrum
 - [x] vyzkouset namisto MFF hostingu MetaCentrum
 - [ ] pridat nejaky monitoring (Grafana)
@@ -180,7 +180,7 @@
 - [x] promyslet testy (user acceptance? nebo nejake integracni, Selenium etc?)
 - [x] fix vytvareni slozek apod.
 - [ ] manualne to zkusit na par strukturach (i custom)
-- [ ] koupit si custom domenu? pog
+- [x] koupit si custom domenu? pog
 - [x] zkusit misto `pip` pouzit `uv` package manager (melo by to byt rychlejsi)
 - [x] NginX maintenance mode - nastavit?
 - [x] vyresit nasazeni na MFF UK server
@@ -191,6 +191,7 @@
 - [x] pridat moznost SSL (proste port 443)
 - [ ] pridat dalsi endpointy pro jednotlive porty?
 - [ ] vyzkouset, jestli jsou ostatni porty viditelne zvenku - minimalne 5000 videt jde
+- [ ] nastavit custom domenu (DNS apod.)
 
 ### Backend
 
@@ -215,8 +216,8 @@
 - [x] potrebujeme embeddingy? jeden muze mit klidne i 30 MB, coz je dost... - vysledek - muzeme je nejspis smazat, stejne nejsou potreba uchovavat
 - [x] opravit backend, ted to z nejakeho duvodu nefunguje...
 - [ ] upravit clustering metodu, pouzit ML model pro doplneni rezidui do clusteru
-- [ ] pri clusteringu i trajektorii brat jen prvni model z cif filu, protoze jinak to funguje dost divne...
-- [ ] sortnout clustery podle pravdepodobnosti? idk, jestli je to ta nejlepsi metrika
+- [x] pri clusteringu i trajektorii brat jen prvni model z cif filu - actually, clustering tohle dela a vlastne trajectory implicitne taky, ale problem je v tom, ze vlastne zobrazujeme vsechny modely zaroven v mol* - takze bud by bylo reseni donutit mol* zobrazit jen 1 model, nebo proste upravit ten vstupni .pdb/.cif file, aby obsahoval jenom ten 1 model
+- [x] sortnout clustery podle pravdepodobnosti, precislovat od jednicky
 
 ### Frontend
 
@@ -261,7 +262,6 @@
 - [x] zmenit pozadi na nejakou strukturu nebo neco zajimaveho
 - [x] rozdelit kod u velkych komponent na nekolik mensich, nekde toho je opravdu hodne v jednom souboru
 - [x] fixnout key u loaded struktur, aby to nevypadalo, ze jich je xy loadnutych naraz... pokud mozno, tak tam pridat i pocket na odliseni, ale lepsi to bude pres AHoJ vysledek primo
-- [ ] potential improvement: namisto brani prvniho modelu z cifu/pdb dat uzivateli na vyber potom, co to nahraje/nacte
 
 ### Others
 
@@ -285,6 +285,12 @@ All of this should be checked before submitting the code.
 - comments
 - documentation, docstrings everywhere where applicable
 - try out different combinations, try out errors where possible (invalid formats, ...)
+
+### Potential improvements - won't do now, but could be useful in the future...
+
+- [ ] namisto brani prvniho modelu z cifu/pdb dat uzivateli na vyber potom, co to nahraje/nacte, ted se to navic jeste orizne, takze vlastne prichazime o nejake informace z toho PDB/CIF
+- [ ] pridat moznost dat tam nejake jine ML modely pro predikci/embeddingy a dat uzivateli moznost si to vybrat
+- [ ] popremyslet nad tou perzistenci tasku? ted to delam tak, ze ukladam result 2x, jednou pod tim Celery id a jednou pod file hashem (a tam jsou i ty dalsi soubory)... jen je otazka, jestli to jde nejak resit lip... mozna by se dalo ukladat jen treba ten task hash (misto vsech results) do te druhe slozky, pripadne to delat v nejake pod-slozce, ale jinak to je asi jedno...
 
 ## SIS proposal
 
