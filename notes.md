@@ -172,9 +172,8 @@
 - [x] test healthchecks
 - [x] poresit GPU s Klimkem/Yaghobem?? spis to metacentrum
 - [x] vyzkouset namisto MFF hostingu MetaCentrum
-- [ ] pridat nejaky monitoring (Grafana)
-- [x] pridat dalsi monitoring (Sentry)
-- [ ] podivat se na testovani API - k6.io
+- [x] pridat monitoring backendu (Grafana)
+- [x] pridat monitoring frontendu (Sentry)
 - [x] (spis ne) - GitHub zkusit se podivat na pipelines (jestli davaji smysl v mem pripade)
 - [x] zkusit pridat React render info - https://www.youtube.com/watch?v=JpJYm3B6UwM - React Developer Tools do Chrome
 - [x] promyslet testy (user acceptance? nebo nejake integracni, Selenium etc?)
@@ -189,9 +188,9 @@
 - [x] pridat maintenance i do skriptu na certificate renewal
 - [ ] nastavit na produkci cronjob na certificate renewal (tohle ma nejspis smysl az ve chvili, kdy bude custom domena)
 - [x] pridat moznost SSL (proste port 443)
-- [ ] pridat dalsi endpointy pro jednotlive porty?
-- [ ] vyzkouset, jestli jsou ostatni porty viditelne zvenku - minimalne 5000 videt jde
-- [ ] nastavit custom domenu (DNS apod.)
+- [x] pridat dalsi endpointy pro jednotlive porty?
+- [ ] vyzkouset, jestli jsou ostatni porty viditelne zvenku - ano, jdou, chceme to nejspis zablokovat ve firewallu a ponechat jen 443/80
+- [ ] nastavit custom domenu (DNS apod., A records)
 
 ### Backend
 
@@ -216,6 +215,7 @@
 - [x] potrebujeme embeddingy? jeden muze mit klidne i 30 MB, coz je dost... - vysledek - muzeme je nejspis smazat, stejne nejsou potreba uchovavat
 - [x] opravit backend, ted to z nejakeho duvodu nefunguje...
 - [ ] upravit clustering metodu, pouzit ML model pro doplneni rezidui do clusteru
+- [ ] zmenit clustering threshold na 0.5? asi podle Viti
 - [x] pri clusteringu i trajektorii brat jen prvni model z cif filu - actually, clustering tohle dela a vlastne trajectory implicitne taky, ale problem je v tom, ze vlastne zobrazujeme vsechny modely zaroven v mol* - takze bud by bylo reseni donutit mol* zobrazit jen 1 model, nebo proste upravit ten vstupni .pdb/.cif file, aby obsahoval jenom ten 1 model
 - [x] sortnout clustery podle pravdepodobnosti, precislovat od jednicky
 
@@ -262,6 +262,10 @@
 - [x] zmenit pozadi na nejakou strukturu nebo neco zajimaveho
 - [x] rozdelit kod u velkych komponent na nekolik mensich, nekde toho je opravdu hodne v jednom souboru
 - [x] fixnout key u loaded struktur, aby to nevypadalo, ze jich je xy loadnutych naraz... pokud mozno, tak tam pridat i pocket na odliseni, ale lepsi to bude pres AHoJ vysledek primo
+- [ ] pridat barveni toho puvodniho proteinu podle residue-level scores? podobne jako mame conservation v PrankWebu...
+- [ ] pridat sorting do tabulky s AHoJ vysledky...
+- [ ] udelat tabulku s AHoJ vysledky scrollable namisto rozsirovani, protoze jinak to je strasne dlouhe...
+- [ ] neukladat do seznamu recent vysledku pokud uz to v tech poslednich 5 je
 
 ### Others
 
@@ -291,6 +295,7 @@ All of this should be checked before submitting the code.
 - [ ] namisto brani prvniho modelu z cifu/pdb dat uzivateli na vyber potom, co to nahraje/nacte, ted se to navic jeste orizne, takze vlastne prichazime o nejake informace z toho PDB/CIF
 - [ ] pridat moznost dat tam nejake jine ML modely pro predikci/embeddingy a dat uzivateli moznost si to vybrat
 - [ ] popremyslet nad tou perzistenci tasku? ted to delam tak, ze ukladam result 2x, jednou pod tim Celery id a jednou pod file hashem (a tam jsou i ty dalsi soubory)... jen je otazka, jestli to jde nejak resit lip... mozna by se dalo ukladat jen treba ten task hash (misto vsech results) do te druhe slozky, pripadne to delat v nejake pod-slozce, ale jinak to je asi jedno...
+- [ ] podivat se na testovani API - k6.io
 
 ## SIS proposal
 
