@@ -162,6 +162,15 @@
   - potrebujeme vyresit, jak se k portu dostat
   - potrebujeme vyresit potencialni dalsi porty - pridat do NginX? uvidime
 
+## 22.5.2025
+
+- clustering - nasadit ML model
+- nasadit novy ESM-2 finetuned, potrebuju jeste, aby ho Vita nekam nahral na GH/jiny file storage, aby se to dalo stahovat v Dockeru
+- potom me ceka clustering benchmark
+- dodelat barveni proteinu
+- portnout domenu a tyhle DevOps veci (DNS/A, certs, firewall...)
+- pak uz bych mohl zacit psat
+
 ## TODOs checklist
 
 ### DevOps
@@ -191,8 +200,8 @@
 - [x] pridat dalsi endpointy pro jednotlive porty?
 - [ ] vyzkouset, jestli jsou ostatni porty viditelne zvenku - ano, jdou, chceme to nejspis zablokovat ve firewallu a ponechat jen 443/80
 - [ ] nastavit custom domenu (DNS apod., A records)
-- [ ] fixnout monitoring - momentalne nefunguje NginX kdyz vlastne nebezi monitoring...
-- [ ] podivat se na AF struktury na produkci - animace nefunguji?
+- [x] fixnout monitoring - momentalne nefunguje NginX kdyz vlastne nebezi monitoring...
+- [x] podivat se na AF struktury na produkci - animace nefunguji?
 
 ### Backend
 
