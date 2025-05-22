@@ -191,6 +191,8 @@
 - [x] pridat dalsi endpointy pro jednotlive porty?
 - [ ] vyzkouset, jestli jsou ostatni porty viditelne zvenku - ano, jdou, chceme to nejspis zablokovat ve firewallu a ponechat jen 443/80
 - [ ] nastavit custom domenu (DNS apod., A records)
+- [ ] fixnout monitoring - momentalne nefunguje NginX kdyz vlastne nebezi monitoring...
+- [ ] podivat se na AF struktury na produkci - animace nefunguji?
 
 ### Backend
 
@@ -218,6 +220,8 @@
 - [ ] zmenit clustering threshold na 0.5? asi podle Viti
 - [x] pri clusteringu i trajektorii brat jen prvni model z cif filu - actually, clustering tohle dela a vlastne trajectory implicitne taky, ale problem je v tom, ze vlastne zobrazujeme vsechny modely zaroven v mol* - takze bud by bylo reseni donutit mol* zobrazit jen 1 model, nebo proste upravit ten vstupni .pdb/.cif file, aby obsahoval jenom ten 1 model
 - [x] sortnout clustery podle pravdepodobnosti, precislovat od jednicky
+- [x] fixnout embeddingy - takze misto konkatenovani sekvence chceme pro kazdy chain mit separatni ESM2 embedding a potom chceme poustet CryptoBench na kazdy embedding a spojit to, jinak to ma spatny kontext
+- [ ] nasadit tam finetuned CryptoBench/ESM-2
 
 ### Frontend
 
@@ -262,10 +266,11 @@
 - [x] zmenit pozadi na nejakou strukturu nebo neco zajimaveho
 - [x] rozdelit kod u velkych komponent na nekolik mensich, nekde toho je opravdu hodne v jednom souboru
 - [x] fixnout key u loaded struktur, aby to nevypadalo, ze jich je xy loadnutych naraz... pokud mozno, tak tam pridat i pocket na odliseni, ale lepsi to bude pres AHoJ vysledek primo
-- [ ] pridat barveni toho puvodniho proteinu podle residue-level scores? podobne jako mame conservation v PrankWebu...
-- [ ] pridat sorting do tabulky s AHoJ vysledky...
-- [ ] udelat tabulku s AHoJ vysledky scrollable namisto rozsirovani, protoze jinak to je strasne dlouhe...
-- [ ] neukladat do seznamu recent vysledku pokud uz to v tech poslednich 5 je
+- [ ] pridat barveni toho puvodniho proteinu podle residue-level scores? podobne jako mame conservation v PrankWebu
+- [x] pridat moznost "None" v tabulce s pocket reprezentacemi, nekdy to chceme proste vypnout
+- [x] pridat sorting do tabulky s AHoJ vysledky
+- [x] udelat tabulku s AHoJ vysledky scrollable namisto rozsirovani, protoze jinak to je strasne dlouhe
+- [x] neukladat do seznamu recent vysledku pokud uz to v tech poslednich 5 je
 
 ### Others
 
