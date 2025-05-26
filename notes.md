@@ -230,8 +230,8 @@
 - [x] pri clusteringu i trajektorii brat jen prvni model z cif filu - actually, clustering tohle dela a vlastne trajectory implicitne taky, ale problem je v tom, ze vlastne zobrazujeme vsechny modely zaroven v mol* - takze bud by bylo reseni donutit mol* zobrazit jen 1 model, nebo proste upravit ten vstupni .pdb/.cif file, aby obsahoval jenom ten 1 model
 - [x] sortnout clustery podle pravdepodobnosti, precislovat od jednicky
 - [x] fixnout embeddingy - takze misto konkatenovani sekvence chceme pro kazdy chain mit separatni ESM2 embedding a potom chceme poustet CryptoBench na kazdy embedding a spojit to, jinak to ma spatny kontext
-- [ ] nasadit tam finetuned CryptoBench/ESM-2 - cekam na fix
-- [ ] poprosit Vitu o nahozeni toho modelu nekam a pridat to do Dockerfile/skriptu
+- [x] nasadit tam finetuned CryptoBench/ESM-2 - cekam na fix
+- [ ] poprosit Vitu o nahozeni toho modelu nekam a pridat to do Dockerfile/skriptu - upravit URL
 
 ### Frontend
 
