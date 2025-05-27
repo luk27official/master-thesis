@@ -232,6 +232,7 @@
 - [x] fixnout embeddingy - takze misto konkatenovani sekvence chceme pro kazdy chain mit separatni ESM2 embedding a potom chceme poustet CryptoBench na kazdy embedding a spojit to, jinak to ma spatny kontext
 - [x] nasadit tam finetuned CryptoBench/ESM-2 - cekam na fix
 - [x] poprosit Vitu o nahozeni toho modelu nekam a pridat to do Dockerfile/skriptu - upravit URL
+- [ ] poresit stahovani ESM modelu pri no SSL? hodi se, ale asi to neni uplne priorita
 
 ### Frontend
 
