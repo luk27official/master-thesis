@@ -171,6 +171,14 @@
 - portnout domenu a tyhle DevOps veci (DNS/A, certs, firewall...)
 - pak uz bych mohl zacit psat
 
+## 30.5.2025
+
+- pokracovani z minula
+  - clustering - nasadit ML model
+  - potom me ceka clustering benchmark
+  - portnout domenu a tyhle DevOps veci (DNS/A, certs, firewall...)
+  - zacit psat text
+
 ## TODOs checklist
 
 ### DevOps
