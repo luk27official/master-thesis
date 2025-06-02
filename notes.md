@@ -206,7 +206,7 @@
 - [ ] nastavit na produkci cronjob na certificate renewal (tohle ma nejspis smysl az ve chvili, kdy bude custom domena)
 - [x] pridat moznost SSL (proste port 443)
 - [x] pridat dalsi endpointy pro jednotlive porty?
-- [ ] vyzkouset, jestli jsou ostatni porty viditelne zvenku - ano, jdou, chceme to nejspis zablokovat ve firewallu a ponechat jen 443/80
+- [x] vyzkouset, jestli jsou ostatni porty viditelne zvenku - ano, jdou, chceme to nejspis zablokovat ve firewallu a ponechat jen 443/80
 - [ ] nastavit custom domenu (DNS apod., A records)
 - [x] fixnout monitoring - momentalne nefunguje NginX kdyz vlastne nebezi monitoring...
 - [x] podivat se na AF struktury na produkci - animace nefunguji?
@@ -233,14 +233,14 @@
 - [x] vyzkouset novou AlphaFill DB
 - [x] potrebujeme embeddingy? jeden muze mit klidne i 30 MB, coz je dost... - vysledek - muzeme je nejspis smazat, stejne nejsou potreba uchovavat
 - [x] opravit backend, ted to z nejakeho duvodu nefunguje...
-- [ ] upravit clustering metodu, pouzit ML model pro doplneni rezidui do clusteru
+- [x] upravit clustering metodu, pouzit ML model pro doplneni rezidui do clusteru
 - [x] zmenit clustering threshold na 0.7 - podle Viti
 - [x] pri clusteringu i trajektorii brat jen prvni model z cif filu - actually, clustering tohle dela a vlastne trajectory implicitne taky, ale problem je v tom, ze vlastne zobrazujeme vsechny modely zaroven v mol* - takze bud by bylo reseni donutit mol* zobrazit jen 1 model, nebo proste upravit ten vstupni .pdb/.cif file, aby obsahoval jenom ten 1 model
 - [x] sortnout clustery podle pravdepodobnosti, precislovat od jednicky
 - [x] fixnout embeddingy - takze misto konkatenovani sekvence chceme pro kazdy chain mit separatni ESM2 embedding a potom chceme poustet CryptoBench na kazdy embedding a spojit to, jinak to ma spatny kontext
 - [x] nasadit tam finetuned CryptoBench/ESM-2 - cekam na fix
 - [x] poprosit Vitu o nahozeni toho modelu nekam a pridat to do Dockerfile/skriptu - upravit URL
-- [ ] poresit stahovani ESM modelu pri no SSL? hodi se, ale asi to neni uplne priorita
+- [ ] dodelat clustering - mergnout clustery, kdyz jsou blizko u sebe?
 
 ### Frontend
 
@@ -320,6 +320,7 @@ All of this should be checked before submitting the code.
 - [ ] pridat moznost dat tam nejake jine ML modely pro predikci/embeddingy a dat uzivateli moznost si to vybrat
 - [ ] popremyslet nad tou perzistenci tasku? ted to delam tak, ze ukladam result 2x, jednou pod tim Celery id a jednou pod file hashem (a tam jsou i ty dalsi soubory)... jen je otazka, jestli to jde nejak resit lip... mozna by se dalo ukladat jen treba ten task hash (misto vsech results) do te druhe slozky, pripadne to delat v nejake pod-slozce, ale jinak to je asi jedno...
 - [ ] podivat se na testovani API - k6.io
+- [ ] poresit stahovani ESM modelu pri no SSL? hodi se, ale asi to neni uplne priorita
 
 ## SIS proposal
 
