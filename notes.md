@@ -321,6 +321,7 @@ All of this should be checked before submitting the code.
 - [ ] popremyslet nad tou perzistenci tasku? ted to delam tak, ze ukladam result 2x, jednou pod tim Celery id a jednou pod file hashem (a tam jsou i ty dalsi soubory)... jen je otazka, jestli to jde nejak resit lip... mozna by se dalo ukladat jen treba ten task hash (misto vsech results) do te druhe slozky, pripadne to delat v nejake pod-slozce, ale jinak to je asi jedno...
 - [ ] podivat se na testovani API - k6.io
 - [ ] poresit stahovani ESM modelu pri no SSL? hodi se, ale asi to neni uplne priorita
+- [ ] mozna by se dalo udelat to, ze kdyz dam neco jako `cryptoshow/viewer?id=2src`, tak se pusti vypocet, pokud to neni cached?
 
 ## SIS proposal
 
