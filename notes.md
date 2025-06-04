@@ -240,7 +240,6 @@
 - [x] fixnout embeddingy - takze misto konkatenovani sekvence chceme pro kazdy chain mit separatni ESM2 embedding a potom chceme poustet CryptoBench na kazdy embedding a spojit to, jinak to ma spatny kontext
 - [x] nasadit tam finetuned CryptoBench/ESM-2 - cekam na fix
 - [x] poprosit Vitu o nahozeni toho modelu nekam a pridat to do Dockerfile/skriptu - upravit URL
-- [ ] dodelat clustering - mergnout clustery, kdyz jsou blizko u sebe?
 
 ### Frontend
 
@@ -322,6 +321,7 @@ All of this should be checked before submitting the code.
 - [ ] podivat se na testovani API - k6.io
 - [ ] poresit stahovani ESM modelu pri no SSL? hodi se, ale asi to neni uplne priorita
 - [ ] mozna by se dalo udelat to, ze kdyz dam neco jako `cryptoshow/viewer?id=2src`, tak se pusti vypocet, pokud to neni cached?
+- [ ] dodelat clustering - mergnout clustery, kdyz jsou blizko u sebe?
 
 ## SIS proposal
 
