@@ -179,6 +179,14 @@
   - portnout domenu a tyhle DevOps veci (DNS/A, certs, firewall...)
   - zacit psat text
 
+## 5.6.2025 (meeting)
+
+- vse snad uspesne nahozeno
+- zbyva dokoncit
+  - clustering benchmark
+  - text
+  - vyzkouset to cele
+
 ## TODOs checklist
 
 ### DevOps
@@ -321,7 +329,8 @@ All of this should be checked before submitting the code.
 - [ ] podivat se na testovani API - k6.io
 - [ ] poresit stahovani ESM modelu pri no SSL? hodi se, ale asi to neni uplne priorita
 - [ ] mozna by se dalo udelat to, ze kdyz dam neco jako `cryptoshow/viewer?id=2src`, tak se pusti vypocet, pokud to neni cached?
-- [ ] dodelat clustering - mergnout clustery, kdyz jsou blizko u sebe?
+- [ ] clustering - mergnout clustery, kdyz jsou blizko u sebe? ale je tam ten tradeoff vysoky pocet pocketu x velke pockety
+- [ ] AHoJ improvement - az to bude implementovane, tak pridat moznost animace trajektorie i pro AF struktury
 
 ## SIS proposal
 
