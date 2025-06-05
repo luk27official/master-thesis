@@ -203,11 +203,11 @@
 - [x] pridat CI deployment do GitHubu? (musel by tam byt i ten maintenance mode, ale jinak si myslim, ze by to slo)
 - [x] zkusit maintenance mod na produkci
 - [x] pridat maintenance i do skriptu na certificate renewal
-- [ ] nastavit na produkci cronjob na certificate renewal (tohle ma nejspis smysl az ve chvili, kdy bude custom domena)
+- [x] nastavit na produkci cronjob na certificate renewal (tohle ma nejspis smysl az ve chvili, kdy bude custom domena)
 - [x] pridat moznost SSL (proste port 443)
 - [x] pridat dalsi endpointy pro jednotlive porty?
 - [x] vyzkouset, jestli jsou ostatni porty viditelne zvenku - ano, jdou, chceme to nejspis zablokovat ve firewallu a ponechat jen 443/80
-- [ ] nastavit custom domenu (DNS apod., A records)
+- [x] nastavit custom domenu (DNS apod., A records)
 - [x] fixnout monitoring - momentalne nefunguje NginX kdyz vlastne nebezi monitoring...
 - [x] podivat se na AF struktury na produkci - animace nefunguji?
 
