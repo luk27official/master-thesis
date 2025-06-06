@@ -331,6 +331,7 @@ All of this should be checked before submitting the code.
 - [ ] mozna by se dalo udelat to, ze kdyz dam neco jako `cryptoshow/viewer?id=2src`, tak se pusti vypocet, pokud to neni cached?
 - [ ] clustering - mergnout clustery, kdyz jsou blizko u sebe? ale je tam ten tradeoff vysoky pocet pocketu x velke pockety
 - [ ] AHoJ improvement - az to bude implementovane, tak pridat moznost animace trajektorie i pro AF struktury
+- [ ] pridat licenci do kodu
 
 ## SIS proposal
 
