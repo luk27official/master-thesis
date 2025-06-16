@@ -1,18 +1,22 @@
 \chapter{Introduction to Bioinformatics}
 \label{chap:intro}
 
-In this chapter, we will cover the introduction to bioinformatics.
+This chapter offers an overview of the bioinformatics field, focusing on key molecular biology concepts. It covers proteins, their sequences and structures, ligands, major biological databases and file formats, binding sites (including cryptic binding sites), and widely used tools for visualization, binding site prediction, and structural analysis.
 
 \section{Proteins, Ligands, Amino Acids}
 \label{sec:proteins}
 
-\xxx{TODO}
+\textbf{Proteins} are vital macromolecules involved in numerous biological functions, such as catalyzing biochemical reactions, offering structural support, and regulating cellular activities.
 
-\section{Protein Sequence and Structure}
-\label{sec:prot-seq-str}
+They consist of \textbf{amino acids} connected by \textbf{peptide bonds}, forming \textbf{polypeptide chains}. Amino acids are molecules containing an amino group (\(-NH_2\)), a carboxyl group (\(-COOH\)), and a unique side chain (\(R\) group) that determines the amino acid's properties. The sequence of these amino acids in a polypeptide chain is known as the \textbf{primary structure} of a protein. The sequence of the protein determines its function \cite{nelson2008lehninger}, \cite{voet2010biochemistry}. There are \textbf{20 standard amino acids}, each possessing distinct characteristics that affect protein folding and interactions. In this thesis, we will focus on the 20 standard amino acids, which are the building blocks of proteins, although many more non-standard amino acids are used in drug discovery and development \cite{dumas2015designing}.
 
-\xxx{TODO}
+The second level of protein structure is the \textbf{secondary structure}, which refers to local folding patterns within the polypeptide chain. The most common secondary structures are \textbf{alpha helices} and \textbf{beta sheets} \xxx{TODO: add a picture of alpha helix and beta sheet to show the difference}. These structures arise from hydrogen bonding between the backbone atoms of the amino acids, stabilizing the overall protein structure. All proteins also have a \textbf{three-dimensional (3D) structure}, also known as \textbf{tertiary structure}, which is crucial for their function \cite{nelson2008lehninger}, \cite{voet2010biochemistry}.
 
+The tertiary structure is determined by the interactions between the side chains of the amino acids, including hydrophobic interactions, hydrogen bonds, ionic bonds, and disulfide bridges. The final level of protein structure is the \textbf{quaternary structure}, which refers to the assembly of multiple polypeptide chains into a functional protein complex \cite{nelson2008lehninger}, \cite{voet2010biochemistry}.
+
+In the past, the tertiary and quaternary structures of proteins were determined through experimental methods such as X-ray crystallography and nuclear magnetic resonance (NMR) spectroscopy \cite{berman2000protein}. However, with the advent of deep learning and artificial intelligence, it is now possible to predict protein structures from their amino acid sequences. The most notable example is AlphaFold \cite{jumper2021highly}, \cite{abramson2024accurate}, a deep learning model developed by DeepMind that has achieved remarkable accuracy in predicting protein structures and has been widely adopted in the field of bioinformatics. In recognition of the profound impact of these advances, the Nobel Prize in Chemistry was awarded in 2024 for the development of methods for the prediction of protein structures using artificial intelligence \cite{abriata2024nobel}.
+
+Protein function is largely determined by interactions with other molecules, known as ligands. These may be small molecules, ions, or other proteins that bind to specific regions, often resulting in conformational or functional changes. Such interactions are crucial for processes like enzymatic catalysis, signal transduction, and immune responses. In drug discovery, identifying and characterizing these sites is important, with computational approaches aiding both new therapeutic development and drug repurposing. Additionally, de novo protein design allows for the creation of proteins with tailored functions, often guided by predictive tools such as AlphaFold before experimental testing.
 
 \section{Databases, File Formats}
 \label{sec:dbs-formats}
