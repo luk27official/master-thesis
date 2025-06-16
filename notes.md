@@ -347,7 +347,7 @@ Proteins are a key element in many biological interactions. Some amino acids (al
    5. Related tools (PrankWeb, AHoJ, PyMOL, Mol*, CryptoBench)
 2. Methods development
    1. Prediction using CryptoBench + ESM-2
-   2. Clustering
+   2. Clustering + smoothening
    3. Trajectory animation
 3. Software
    1. Architecture, used technologies
