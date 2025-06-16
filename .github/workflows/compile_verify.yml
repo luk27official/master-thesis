@@ -1,0 +1,60 @@
+# credit: https://github.com/XelfXendr/thesis-en-with-verify
+name: Compile + Verify
+
+on:
+    push:
+        branches: ["main"]
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Compile LaTeX documents
+              uses: xu-cheng/latex-action@v3
+              with:
+                  root_file: |
+                      thesis.tex
+                      abstract-cs.tex
+                      abstract-en.tex
+
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                  name: PDF
+                  path: |
+                      thesis.pdf
+                      abstract-cs.pdf
+                      abstract-en.pdf
+
+    verify:
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Download artifacts
+              uses: actions/download-artifact@v4
+              with:
+                  name: PDF
+
+            - name: Login to GHCR
+              uses: docker/login-action@v2
+              with:
+                  registry: ghcr.io
+                  username: ${{ github.actor }}
+                  password: ${{ secrets.github_token }}
+
+            - name: Pull verapdf docker image
+              run: docker pull ghcr.io/mff-cuni-cz/cuni-thesis-validator:latest
+
+            - name: Verify Thesis PDF/A
+              run: |
+                  docker run -v $PWD:/thesis ghcr.io/mff-cuni-cz/cuni-thesis-validator verify /thesis/thesis.pdf | tee /dev/stderr | grep 'isCompliant="true"'
+            - name: Verify EN Abstract PDF/A
+              run: |
+                  docker run -v $PWD:/thesis ghcr.io/mff-cuni-cz/cuni-thesis-validator verify /thesis/abstract-en.pdf | tee /dev/stderr | grep 'isCompliant="true"'
+            - name: Verify CS Abstract PDF/A
+              run: |
+                  docker run -v $PWD:/thesis ghcr.io/mff-cuni-cz/cuni-thesis-validator verify /thesis/abstract-cs.pdf | tee /dev/stderr | grep 'isCompliant="true"'
