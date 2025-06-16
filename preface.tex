@@ -1,3 +1,20 @@
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
+Proteins are essential to a wide range of biological processes. Certain amino acids (also called residues), referred to as binding, are more likely to interact with other molecules called ligands. This is a fundamental property to drug discovery and research \cite{trainor2007importance}, \cite{ballante2021protein}, \cite{mannhold2006protein}. 
+
+Detection of such residues is a challenging task, and various computational methods have been developed to predict potential binding regions \cite{krivak2018p2rank}, \cite{le2009fpocket}, \cite{aggarwal2021deeppocket}, \cite{smith2024graph}. Some of these binding residues can undergo conformational changes, becoming cryptic binding residues (CBRs), which are more difficult to identify. While current methods may detect cryptic binding sites (CBSs), their models are generally trained to identify any binding residues, rather than being specifically focused on CBSs.
+
+A dataset and methodology for detecting CBRs was previously developed at the Faculty of Mathematics and Physics, Charles University, known as CryptoBench \cite{vskrhak2025cryptobench}. This thesis has two primary objectives. The first is to extend this approach by clustering individually predicted CBRs from the CryptoBench model into structurally contiguous regions, referred to as CBSs. This methodology may also be applicable to other prediction methods.
+
+The second objective is to develop a user-friendly client-server web application, CryptoShow, which enables users to submit protein structures and obtain CBR predictions. These predictions will be clustered into distinct binding sites and visualized for the user, including animations that illustrate potential conformational changes between the protein's initial state and analogous structures identified using the AHoJ tool \cite{feidakis2022ahoj}.
+
+Chapter 1 provides an overview of the field of bioinformatics, introducing key terminology, concepts, and relevant tools that underpin the subsequent work.
+
+Chapter 2 details the methodological framework, beginning with the prediction of cryptic binding residues using the CryptoBench model and the computation of ESM-2 embeddings \cite{lin2022language}. This is followed by a description of the clustering approach for grouping CBRs into cryptic binding sites, and concludes with an explanation of the animation pipeline for visualizing conformational transitions between protein structures.
+
+Chapter 3 presents the design and implementation of the CryptoShow web application. This includes a discussion of the technology stack, architectural and design choices, and an in-depth look at the frontend, particularly the integration of Mol* for 3D structure visualization \cite{sehnal2021mol}. Deployment and maintenance considerations are also addressed.
+
+Chapter 4 serves as user documentation, outlining the main functionalities of the application and illustrating typical use cases.
+
+Finally, Chapter 5 discusses potential directions for future development and possible enhancements to the project.
