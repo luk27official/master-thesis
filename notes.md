@@ -332,6 +332,7 @@ All of this should be checked before submitting the code.
 - [ ] clustering - mergnout clustery, kdyz jsou blizko u sebe? ale je tam ten tradeoff vysoky pocet pocketu x velke pockety
 - [ ] AHoJ improvement - az to bude implementovane, tak pridat moznost animace trajektorie i pro AF struktury
 - [ ] pridat licenci do kodu
+- [ ] pridat do README requirements pro deployment
 
 ## SIS proposal
 
