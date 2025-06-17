@@ -10,25 +10,79 @@ This chapter offers an overview of the bioinformatics field, focusing on key mol
 
 They consist of \textbf{amino acids} connected by \textbf{peptide bonds}, forming \textbf{polypeptide chains}. Amino acids are molecules containing an amino group (\(-NH_2\)), a carboxyl group (\(-COOH\)), and a unique side chain (\(R\) group) that determines the amino acid's properties. The sequence of these amino acids in a polypeptide chain is known as the \textbf{primary structure} of a protein. The sequence of the protein determines its function \cite{nelson2008lehninger}, \cite{voet2010biochemistry}. There are \textbf{20 standard amino acids}, each possessing distinct characteristics that affect protein folding and interactions. In this thesis, we will focus on the 20 standard amino acids, which are the building blocks of proteins, although many more non-standard amino acids are used in drug discovery and development \cite{dumas2015designing}.
 
-The second level of protein structure is the \textbf{secondary structure}, which refers to local folding patterns within the polypeptide chain. The most common secondary structures are \textbf{alpha helices} and \textbf{beta sheets} \xxx{TODO: add a picture of alpha helix and beta sheet to show the difference}. These structures arise from hydrogen bonding between the backbone atoms of the amino acids, stabilizing the overall protein structure. All proteins also have a \textbf{three-dimensional (3D) structure}, also known as \textbf{tertiary structure}, which is crucial for their function \cite{nelson2008lehninger}, \cite{voet2010biochemistry}.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/ah_bs.png}
+    \caption{Illustration of an alpha helix and a beta sheet, the two most common types of protein secondary structure. Generated with DALL·E 3.}
+    \label{fig:alpha-beta}
+\end{figure}
+
+The second level of protein structure is the \textbf{secondary structure}, which refers to local folding patterns within the polypeptide chain. The most common secondary structures are \textbf{alpha helices} and \textbf{beta sheets}, as shown in Figure~\ref{fig:alpha-beta}. These structures arise from hydrogen bonding between the backbone atoms of the amino acids, stabilizing the overall protein structure. All proteins also have a \textbf{three-dimensional (3D) structure}, also known as \textbf{tertiary structure}, which is crucial for their function \cite{nelson2008lehninger}, \cite{voet2010biochemistry}.
 
 The tertiary structure is determined by the interactions between the side chains of the amino acids, including hydrophobic interactions, hydrogen bonds, ionic bonds, and disulfide bridges. The final level of protein structure is the \textbf{quaternary structure}, which refers to the assembly of multiple polypeptide chains into a functional protein complex \cite{nelson2008lehninger}, \cite{voet2010biochemistry}.
 
-In the past, the tertiary and quaternary structures of proteins were determined through experimental methods such as X-ray crystallography and nuclear magnetic resonance (NMR) spectroscopy \cite{berman2000protein}. However, with the advent of deep learning and artificial intelligence, it is now possible to predict protein structures from their amino acid sequences. The most notable example is AlphaFold \cite{jumper2021highly}, \cite{abramson2024accurate}, a deep learning model developed by DeepMind that has achieved remarkable accuracy in predicting protein structures and has been widely adopted in the field of bioinformatics. In recognition of the profound impact of these advances, the Nobel Prize in Chemistry was awarded in 2024 for the development of methods for the prediction of protein structures using artificial intelligence \cite{abriata2024nobel}.
+In the past, the tertiary and quaternary structures of proteins were determined through experimental methods such as X-ray crystallography and nuclear magnetic resonance (NMR) spectroscopy \cite{berman2000protein}. However, with the advent of deep learning and artificial intelligence, it is now possible to predict protein structures from their amino acid sequences. The most notable example is AlphaFold \cite{jumper2021highly}, \cite{abramson2024accurate}, a deep learning model developed by DeepMind that has achieved remarkable accuracy in predicting protein structures and has been widely adopted in the field of bioinformatics. AlphaFold provides a per-residue confidence metric called the predicted Local Distance Difference Test (plDDT) score\footnotemark[1], which indicates the reliability of the predicted atomic positions. In recognition of the profound impact of these advances, the Nobel Prize in Chemistry was awarded in 2024 for the development of methods for the prediction of protein structures using artificial intelligence \cite{abriata2024nobel}. Other notable tools used in the past months include Boltz-2 \cite{passaro2025boltz2} and Chai-1 \cite{chai2024chai}. Today, predicted structures often closely match experimental results, as illustrated in Figure~\ref{fig:alphafold-vs-exp}.
 
-Protein function is largely determined by interactions with other molecules, known as ligands. These may be small molecules, ions, or other proteins that bind to specific regions, often resulting in conformational or functional changes. Such interactions are crucial for processes like enzymatic catalysis, signal transduction, and immune responses. In drug discovery, identifying and characterizing these sites is important, with computational approaches aiding both new therapeutic development and drug repurposing. Additionally, de novo protein design allows for the creation of proteins with tailored functions, often guided by predictive tools such as AlphaFold before experimental testing.
+\footnotetext[1]{The predicted Local Distance Difference Test (plDDT) score is a per-residue confidence metric output by AlphaFold, indicating the reliability of the predicted atomic positions; higher values suggest greater confidence. In the color scheme, blue indicates the most confident regions, while orange/yellow depict less confident regions.}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/alphafold_vs_exp.png}
+    \caption{Comparison of AlphaFold predicted structure and experimental structure of the protein 2SRC (Crystal Structure of Human Tyrosine-Protein Kinase C-SRC, in Complex with AMP-PNP). The predicted structure is shown in blue to yellow colors (depicting the plDDT score), while the experimental structure is shown in red. The two structures are nearly identical after the alignment, demonstrating the accuracy of AlphaFold predictions. Image from PyMOL.}
+    \label{fig:alphafold-vs-exp}
+\end{figure}
+\par
+
+Protein function is largely determined by interactions with other molecules, known as ligands. These may be small molecules, ions, or other proteins that bind to specific regions, often resulting in conformational or functional changes. Such interactions are crucial for processes like enzymatic catalysis, signal transduction, and immune responses. In drug discovery, identifying and characterizing these sites is important, with computational approaches aiding both new therapeutic development and drug repurposing. Additionally, de novo protein design allows for the creation of proteins with tailored functions, often guided by predictive tools such as AlphaFold before experimental testing. \cite{huang2016coming}
 
 \section{Binding Sites, Cryptic Binding Sites (CBSs)}
 \label{sec:binding-sites}
 
-\xxx{TODO}
+\textbf{Binding sites} are defined regions on a protein where ligands interact and bind. These sites typically correspond to cavities or grooves on the protein surface and are frequently linked to conformational changes that influence protein function. Proteins with a ligand bound are termed \textbf{holo} proteins, while those without a ligand are known as \textbf{apo} proteins. In holo proteins, the binding site is identified by the position of the ligand, but even apo proteins may contain several potential binding sites.
+
+\textbf{Cryptic binding sites (CBSs)} are binding regions that are not apparent in the unbound (apo) protein structure but can emerge and accommodate ligands after conformational changes. Such sites often become accessible only upon ligand binding or through other molecular events. Computational tools like CryptoBench have been developed to predict cryptic binding sites in proteins.
+
+\xxx{TODO: complete this section with more details}
 
 \section{Databases, File Formats}
 \label{sec:dbs-formats}
 
-\xxx{TODO: add RCSB PDB, AlphaFold, UniProt, custom files, PDB, CIF, FASTA, maybe JSON?}
+\subsection{RCSB PDB}
+\label{sec:rcsb-pdb}
+
+\subsection{AlphaFold Database}
+\label{sec:alphafold-db}
+
+\subsection{UniProt Database}
+\label{sec:uniprot-db}
+
+\subsection{PDB File Format}
+\label{sec:pdb-format}
+
+\subsection{mmCIF File Format}
+\label{sec:mmcif-format}
+
+\subsection{FASTA File Format}
+\label{sec:fasta-format}
 
 \section{Related Tools, Projects}
 \label{sec:related-tools}
 
-\xxx{TODO: add PrankWeb, AHoJ, PyMOL, Mol*, CryptoBench}
+\subsection{PrankWeb}
+\label{sec:prankweb}
+
+\subsection{AHoJ}
+\label{sec:ahoj}
+
+\subsection{PyMOL}
+\label{sec:pymol}
+
+\subsection{Mol*}
+\label{sec:molstar}
+
+\subsection{CryptoBench}
+\label{sec:cryptobench}
+
+\subsection{CryptoSite}
+\label{sec:cryptosite}
+
