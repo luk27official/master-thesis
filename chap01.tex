@@ -21,7 +21,7 @@ The second level of protein structure is the \textbf{secondary structure}, which
 
 The tertiary structure is determined by the interactions between the side chains of the amino acids, including hydrophobic interactions, hydrogen bonds, ionic bonds, and disulfide bridges. The final level of protein structure is the \textbf{quaternary structure}, which refers to the assembly of multiple polypeptide chains into a functional protein complex \cite{nelson2008lehninger}, \cite{voet2010biochemistry}.
 
-In the past, the tertiary and quaternary structures of proteins were determined through experimental methods such as X-ray crystallography and nuclear magnetic resonance (NMR) spectroscopy \cite{berman2000protein}. However, with the advent of deep learning and artificial intelligence, it is now possible to predict protein structures from their amino acid sequences. The most notable example is AlphaFold \cite{jumper2021highly}, \cite{abramson2024accurate}, a deep learning model developed by DeepMind that has achieved remarkable accuracy in predicting protein structures and has been widely adopted in the field of bioinformatics. AlphaFold provides a per-residue confidence metric called the predicted Local Distance Difference Test (plDDT) score\footnotemark[1], which indicates the reliability of the predicted atomic positions. In recognition of the profound impact of these advances, the Nobel Prize in Chemistry was awarded in 2024 for the development of methods for the prediction of protein structures using artificial intelligence \cite{abriata2024nobel}. Other notable tools used in the past months include Boltz-2 \cite{passaro2025boltz2} and Chai-1 \cite{chai2024chai}. Today, predicted structures often closely match experimental results, as illustrated in Figure~\ref{fig:alphafold-vs-exp}.
+In the past, the tertiary and quaternary structures of proteins were determined through experimental methods such as X-ray crystallography and nuclear magnetic resonance (NMR) spectroscopy \cite{berman2000protein}. However, with the advent of deep learning and artificial intelligence, it is now possible to predict protein structures from their amino acid sequences. The most notable example is AlphaFold \cite{jumper2021highly}, \cite{abramson2024accurate}, a deep learning model developed by DeepMind that has achieved remarkable accuracy in predicting protein structures and has been widely adopted in the field of bioinformatics. AlphaFold provides a per-residue confidence metric called the predicted Local Distance Difference Test (plDDT) score\footnotemark[1], which indicates the reliability of the predicted atomic positions. In recognition of the profound impact of these advances, the Nobel Prize in Chemistry was awarded in 2024 for the development of methods for the prediction of protein structures using artificial intelligence \cite{abriata2024nobel}. Other notable tools introduced in the past months include Boltz-2 \cite{passaro2025boltz2} and Chai-1 \cite{chai2024chai}. Today, predicted structures often closely match experimental results, as illustrated in Figure~\ref{fig:alphafold-vs-exp}.
 
 \footnotetext[1]{The predicted Local Distance Difference Test (plDDT) score is a per-residue confidence metric output by AlphaFold, indicating the reliability of the predicted atomic positions; higher values suggest greater confidence. In the color scheme, blue indicates the most confident regions, while orange/yellow depict less confident regions.}
 
@@ -33,25 +33,29 @@ In the past, the tertiary and quaternary structures of proteins were determined 
 \end{figure}
 \par
 
-Protein function is largely determined by interactions with other molecules, known as ligands. These may be small molecules, ions, or other proteins that bind to specific regions, often resulting in conformational or functional changes. Such interactions are crucial for processes like enzymatic catalysis, signal transduction, and immune responses. In drug discovery, identifying and characterizing these sites is important, with computational approaches aiding both new therapeutic development and drug repurposing. Additionally, de novo protein design allows for the creation of proteins with tailored functions, often guided by predictive tools such as AlphaFold before experimental testing. \cite{huang2016coming}
+Protein function is largely determined by interactions with other molecules, known as ligands. These may be small molecules, ions, or other proteins that bind to specific regions, often resulting in conformational or functional changes. Such interactions are crucial for processes like enzymatic catalysis, signal transduction, and immune responses. In drug discovery, identifying and characterizing these sites is important, with computational approaches aiding both new therapeutic development and drug repurposing. Additionally, de novo protein design allows for the creation of proteins with tailored functions, often guided by predictive tools such as AlphaFold before experimental testing \cite{huang2016coming}.
 
 \section{Binding Sites, Cryptic Binding Sites (CBSs)}
 \label{sec:binding-sites}
 
 \textbf{Binding sites} are defined regions on a protein where ligands interact and bind. These sites typically correspond to cavities or grooves on the protein surface and are frequently linked to conformational changes that influence protein function. Proteins with a ligand bound are termed \textbf{holo} proteins, while those without a ligand are known as \textbf{apo} proteins. In holo proteins, the binding site is identified by the position of the ligand, but even apo proteins may contain several potential binding sites.
 
-\textbf{Cryptic binding sites (CBSs)} are binding regions that are not apparent in the unbound (apo) protein structure but can emerge and accommodate ligands after conformational changes. Such sites often become accessible only upon ligand binding or through other molecular events. Computational tools like CryptoBench have been developed to predict cryptic binding sites in proteins.
-
-\xxx{TODO: complete this section with more details}
+\textbf{Cryptic binding sites (CBSs)} are regions on proteins that are not visible or accessible in the unbound (apo) structure but can form and become available for ligand binding following conformational changes. These sites typically appear only after ligand interaction or other molecular events induce structural rearrangements. Computational methods such as CryptoBench \cite{vskrhak2025cryptobench} have been created to predict cryptic binding sites. A significant contribution in this area is CryptoSite \cite{cimermancic2016cryptosite}, which leverages known apo-holo protein pairs to identify CBSs, offering an alternative to time-consuming molecular dynamics simulations.
 
 \section{Databases, File Formats}
 \label{sec:dbs-formats}
 
+This section provides an overview of the key bioinformatics databases for protein structures and introduces the main file formats used in this field.
+
 \subsection{RCSB PDB}
 \label{sec:rcsb-pdb}
 
+The RCSB PDB (Research Collaboratory for Structural Bioinformatics Protein Data Bank) \cite{berman2000protein}, often referred to simply as the "PDB database", is the primary repository for experimentally determined protein, nucleic acid, and macromolecular complex structures. It serves as a foundational resource for bioinformatics, with many machine learning and deep learning models relying on its data for training and validation. The database is publicly accessible at \url{https://www.rcsb.org/} and offers a REST API for programmatic data access. As of June 2025, the PDB contains over 238,000 structures. Many organizations also maintain local, enriched copies of the PDB. The open sharing of structural data is encouraged, as it supports the development and improvement of computational models used throughout the scientific community \cite{callaway2025alphafold}.
+
 \subsection{AlphaFold Database}
 \label{sec:alphafold-db}
+
+The AlphaFold Database \cite{varadi2024alphafold} contains over 200 million protein structures predicted by the AlphaFold model. While the majority of these structures have not been experimentally validated, those with high pLDDT scores are considered reliable. It is important to note that certain protein regions, known as intrinsically disordered regions, may exhibit low pLDDT scores due to their inherent flexibility and lack of stable structure. The database is publicly available at \url{https://alphafold.ebi.ac.uk/}.
 
 \subsection{UniProt Database}
 \label{sec:uniprot-db}
