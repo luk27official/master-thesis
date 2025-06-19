@@ -21,7 +21,7 @@ The second level of protein structure is the \textbf{secondary structure}, which
 
 The tertiary structure is determined by the interactions between the side chains of the amino acids, including hydrophobic interactions, hydrogen bonds, ionic bonds, and disulfide bridges. The final level of protein structure is the \textbf{quaternary structure}, which refers to the assembly of multiple polypeptide chains into a functional protein complex \cite{nelson2008lehninger}, \cite{voet2010biochemistry}.
 
-In the past, the tertiary and quaternary structures of proteins were determined through experimental methods such as X-ray crystallography and nuclear magnetic resonance (NMR) spectroscopy \cite{berman2000protein}. However, with the advent of deep learning and artificial intelligence, it is now possible to predict protein structures from their amino acid sequences. The most notable example is AlphaFold \cite{jumper2021highly}, \cite{abramson2024accurate}, a deep learning model developed by DeepMind that has achieved remarkable accuracy in predicting protein structures and has been widely adopted in the field of bioinformatics. AlphaFold provides a per-residue confidence metric called the predicted Local Distance Difference Test (plDDT) score\footnotemark[1], which indicates the reliability of the predicted atomic positions. In recognition of the profound impact of these advances, the Nobel Prize in Chemistry was awarded in 2024 for the development of methods for the prediction of protein structures using artificial intelligence \cite{abriata2024nobel}. Other notable tools introduced in the past months include Boltz-2 \cite{passaro2025boltz2} and Chai-1 \cite{chai2024chai}. Today, predicted structures often closely match experimental results, as illustrated in Figure~\ref{fig:alphafold-vs-exp}.
+In the past, the tertiary and quaternary structures of proteins were determined through experimental methods such as X-ray crystallography and nuclear magnetic resonance (NMR) spectroscopy \cite{berman2000protein}. However, with the rise of deep learning and artificial intelligence, it is now possible to predict protein structures from their amino acid sequences. The most notable example is AlphaFold \cite{jumper2021highly}, \cite{abramson2024accurate}, a deep learning model developed by DeepMind that has achieved remarkable accuracy in predicting protein structures and has been widely adopted in the field of bioinformatics. AlphaFold provides a per-residue confidence metric called the predicted Local Distance Difference Test (plDDT) score\footnotemark[1], which indicates the reliability of the predicted atomic positions. In recognition of the profound impact of these advances, the Nobel Prize in Chemistry was awarded in 2024 for the development of methods for the prediction of protein structures using artificial intelligence \cite{abriata2024nobel}. Other notable tools introduced in the past months include Boltz-2 \cite{passaro2025boltz2} and Chai-1 \cite{chai2024chai}. Today, predicted structures often closely match experimental results, as illustrated in Figure~\ref{fig:alphafold-vs-exp}.
 
 \footnotetext[1]{The predicted Local Distance Difference Test (plDDT) score is a per-residue confidence metric output by AlphaFold, indicating the reliability of the predicted atomic positions; higher values suggest greater confidence. In the color scheme, blue indicates the most confident regions, while orange/yellow depict less confident regions.}
 
@@ -40,7 +40,7 @@ Protein function is largely determined by interactions with other molecules, kno
 
 \textbf{Binding sites} are defined regions on a protein where ligands interact and bind. These sites typically correspond to cavities or grooves on the protein surface and are frequently linked to conformational changes that influence protein function. Proteins with a ligand bound are termed \textbf{holo} proteins, while those without a ligand are known as \textbf{apo} proteins. In holo proteins, the binding site is identified by the position of the ligand, but even apo proteins may contain several potential binding sites.
 
-\textbf{Cryptic binding sites (CBSs)} are regions on proteins that are not visible or accessible in the unbound (apo) structure but can form and become available for ligand binding following conformational changes. These sites typically appear only after ligand interaction or other molecular events induce structural rearrangements. Computational methods such as CryptoBench \cite{vskrhak2025cryptobench} have been created to predict cryptic binding sites. A significant contribution in this area is CryptoSite \cite{cimermancic2016cryptosite}, which leverages known apo-holo protein pairs to identify CBSs, offering an alternative to time-consuming molecular dynamics simulations.
+\textbf{Cryptic binding sites (CBSs)} are regions on proteins that are not visible or accessible in the unbound (apo) structure but can form and become available for ligand binding following conformational changes. These sites typically appear only after ligand interaction or other molecular events that induce structural rearrangements. Computational methods such as CryptoBench \cite{vskrhak2025cryptobench} have been created to predict cryptic binding sites. A significant contribution in this area is CryptoSite \cite{cimermancic2016cryptosite}, which leverages known apo-holo protein pairs to identify CBSs, offering an alternative to time-consuming molecular dynamics simulations. Both of the methods will be covered in more detail in Section~\ref{sec:related-tools}.
 
 \section{Databases, File Formats}
 \label{sec:dbs-formats}
@@ -78,7 +78,7 @@ The PDB (Protein Data Bank) file format is a text-based format used to represent
 \subsection{mmCIF File Format}
 \label{sec:mmcif-format}
 
-The mmCIF (Macromolecular Crystallographic Information File) format is a more modern and flexible alternative to the PDB format, designed to overcome the limitations of the PDB format, especially for large structures \cite{bourne199730}. The PDB database, mentioned in Section~\ref{sec:rcsb-pdb}, has been transitioning to the mmCIF format for new entries. Although it is encouraged to use mmCIF for new structures, many existing tools and databases still rely on the PDB format thanks to its simpler format.
+The mmCIF (Macromolecular Crystallographic Information File, also called PDBx) format is a more modern and flexible alternative to the PDB format, designed to overcome the limitations of the PDB format, especially for large structures \cite{bourne199730}. The PDB database, mentioned in Section~\ref{sec:rcsb-pdb}, has been transitioning to the mmCIF format for new entries. Although it is encouraged to use mmCIF for new structures, many existing tools and databases still rely on the PDB format thanks to its simpler format.
 
 \subsection{FASTA File Format}
 \label{sec:fasta-format}
@@ -98,21 +98,55 @@ The FASTA file format is a widely used, text-based format for representing biolo
 \section{Related Tools, Projects}
 \label{sec:related-tools}
 
-\subsection{PrankWeb}
-\label{sec:prankweb}
+This section is dedicated to the most relevant tools and projects important for the work presented in this thesis.
+
+\subsection{P2Rank, PrankWeb}
+\label{sec:prankweb-p2rank}
+
+P2Rank is a Groovy/Java based standalone tool for predicting binding sites in proteins. The P2Rank algorithm is based on machine learning. The structure is covered with a grid of points on the protein's solvent accessible surface, and each point is assigned a score based on the likelihood of being a binding site based on the local environment of the point. Then, the points are clustered and ranked based on their scores. The pre-trained tool does not rely on any external databases nor templates. The method is still widely adapted due to its reliable and accurate predictions and speed \cite{krivak2018p2rank}. Source codes for P2Rank are available at \url{https://github.com/rdk/p2rank}.
+
+PrankWeb is a web-based interface for P2Rank, allowing simple access to the P2Rank method without the need to run and install the tool locally. It is available at \url{https://prankweb.cz/}. The web interface allows users to upload a PDB/mmCIF file and receive a visualization of the prediction of the binding sites with the predicted binding sites colored according to their scores. Moreover, PrankWeb allows the users to perform molecular docking using the predicted binding sites, which is a common post-processing step in drug discovery \cite{polak2025prankweb}, \cite{jakubec2022prankweb}, \cite{jendele2019prankweb}. The docking is performed using the AutoDock Vina \cite{trott2010autodock} software, which is a widely used tool for molecular docking.
+
+The PrankWeb interface was a huge inspiration for the design of the web interface presented in this thesis as the goal is to provide a similar user experience, but with a focus on cryptic binding sites and its specific challenges.
 
 \subsection{AHoJ}
 \label{sec:ahoj}
 
+AHoJ (Apo–Holo Juxtaposition) is a web application for retreiving and visualizing apo-holo pairs of proteins\footnote{A reminder - an apo-holo pair of proteins consists of an unbound (apo) and a bound (holo) form of the same protein. See Section~\ref{sec:binding-sites}.}. This functionality is useful especially for cryptic binding site predictions, as it allows the users to find relevant structures with possibly similar properties \cite{feidakis2022ahoj}. The application is available at \url{https://apoholo.cz/}. Currently, AHoJ supports searching for apo-holo pairs only in the PDB database.
+
+AHoJ is integrated within the CryptoShow interface as well, the user might search for apo-holo pairs of the given protein and visualize the potential conformational changes between the input structure and the corresponding apo-holo pair. This will be covered in more detail in Section~\ref{sec:trajectory}.
+
 \subsection{PyMOL}
 \label{sec:pymol}
+
+PyMOL is a powerful molecular visualization tool written in Python. The users might use it either as a standalone application or as a Python library. Thanks to its feature-rich API and UI, PyMOL is a common choice for researchers in structural biology and cheminformatics \cite{delano2002pymol}.
 
 \subsection{Mol*}
 \label{sec:molstar}
 
+Mol* (also MolStar) is a TypeScript library for visualizing molecular structures directly in web browsers. Thanks to its modern architecture, the usage of WebGL and rich feature set, Mol* is nowadays a very popular choice for web-based molecular visualization tools \cite{sehnal2018mol}. Mol* also provides an online version of a molecular viewer, which is available at \url{https://molstar.org/viewer/} \cite{sehnal2021mol}. A highly-customized version of the viewer is also used in the CryptoShow interface, which will be covered in more detail in Section~\ref{sec:frontend-molstar}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{img/pymol-molstar.png}
+    \caption{A comparsion of the PyMOL (left) and Mol* (right) molecular viewers showing the AlphaFold predicted structure of the protein AF\_AFQ9XWU9F1.}
+    \label{fig:pymol-molstar}
+\end{figure}
+
 \subsection{CryptoBench}
 \label{sec:cryptobench}
+
+CryptoBench is a comprehensive benchmark dataset for training and evaluating CBSs prediction methods, built from a large set of apo–holo protein pairs and grouped by UniProt ID with predefined cross-validation splits. Baseline evaluations show that a sequence-based neural network using protein language model embeddings outperforms state-of-the-art structure-based methods like PocketMiner \cite{meller2023predicting} and P2Rank \cite{krivak2018p2rank} across key metrics in terms of CBSs. The source codes for CryptoBench are available at \url{https://github.com/skrhakv/CryptoBench/} \cite{vskrhak2025cryptobench}.
+
+\xxx{TODO: here we might want to include more details? but I would do it probably in the prediction section, not here}
+
+The model used in CryptoBench is able to predict cryptic binding sites when provided with ESM-2 embeddings \cite{lin2022language} of the protein sequence. This is one of the key features of CryptoShow. More details about the integration of CryptoBench into CryptoShow will be provided in Section~\ref{sec:prediction}.
 
 \subsection{CryptoSite}
 \label{sec:cryptosite}
 
+CryptoSite is another tool designed to identify CBSs. By constructing a dataset of structurally defined apo–holo pairs, CryptoSite characterizes cryptic sites based on sequence, structure, and dynamics. Leveraging these insights, CryptoSite uses machine learning to predict cryptic sites with high accuracy, expanding the set of potentially druggable proteins. The tool has been applied to the human proteome, increasing the fraction of disease-associated proteins considered druggable. Experimental validation further demonstrates the practical use of CryptoSite. The web server is accessible at \url{https://modbase.compbio.ucsf.edu/cryptosite} \cite{cimermancic2016cryptosite}.
+
+While CryptoSite is a valuable resource for cryptic binding site analysis and its web server remains available, its computational processes often take several days to complete, limiting its suitability for interactive use. In contrast, a primary goal of CryptoShow is to provide a fast and interactive experience, allowing users to obtain results within minutes. This need is underscored by the relatively low usage of CryptoSite; as of June 2025, only 10 jobs were submitted in the last 7 days.
+
+\xxx{TODO: wait for the actual results} \url{https://modbase.compbio.ucsf.edu/cryptosite/job/job20250619_332300?passwd=xnEdi1wFNF}
