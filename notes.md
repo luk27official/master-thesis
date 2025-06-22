@@ -333,6 +333,7 @@ All of this should be checked before submitting the code.
 - [ ] AHoJ improvement - az to bude implementovane, tak pridat moznost animace trajektorie i pro AF struktury
 - [ ] pridat licenci do kodu
 - [ ] pridat do README requirements pro deployment
+- [ ] pridat moznost predikovat i ze sekvence? ale to by tam musel byt nejaky fold potom v pipeline
 
 ## SIS proposal
 

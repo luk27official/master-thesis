@@ -1,11 +1,24 @@
 \chapter{Methodology}
 \label{chap:methodology}
-In this chapter, we will cover the methodology used in this work.
+
+In this chapter, we will cover the methodology used in this work. More details on the pipeline execution will be provided in Section \ref{sec:backend}.
 
 \section{Prediction Using the CryptoBench Model, ESM-2}
 \label{sec:prediction}
 
-\xxx{TODO}
+The initial step in our methodology involves utilizing the CryptoBench \cite{vskrhak2025cryptobench} model to generate residue-level predictions for protein sequences. It is important to note that this model works solely with sequence information, without incorporating any structural (tertiary or quaternary) data. Specifically, we employ the tiny variant of CryptoBench\footnote{Available at \url{https://github.com/skrhakv/TinyCryptobench}}, which is trained on a reduced version of the fine-tuned ESM-2 embeddings \cite{lin2022language} with 650 million parameters, as opposed to the full 3 billion. This choice is motivated by the observation that prediction accuracy remains comparable, while computational requirements are significantly reduced, enabling the pipeline to run efficiently on standard personal computers without the need for a GPU.
+
+CryptoBench was created by filtering the AHoJ-DB \cite{feidakis2024ahoj} dataset, which contains a few million binding pockets. The filtering steps involved resolution filtering, removing redundant structures, geometric quality assurance, crypticity constraints, ligand filtering and sequence clustering. The final dataset consists of 1107 apo structures with 1361 cryptic binding sites. This dataset is used to train the model that has been benchmarked against PocketMiner \cite{meller2023predicting} and P2Rank \cite{krivak2018p2rank} and has shown better performance with the apo structures.
+
+\sloppy
+To begin with the prediction, the necessary dependencies for the CryptoBench model must be installed. Once the Python environment is set up, the fine-tuned ESM-2 model (\lstinline!facebook/esm2_t33_650M_UR50D!) is loaded, followed by the corresponding weight file from the Tiny-CryptoBench repository. The protein sequence is then tokenized using the ESM-2 tokenizer, segmented into chunks of 1022 tokens (1024 minus two special tokens), and processed by the CryptoBench model to obtain predictions. These predictions are subsequently concatenated to produce a single prediction vector representing the entire sequence.
+
+\sloppy
+The implementation for this procedure is provided in the \lstinline!backend/prediction/compute_score.py! file. The code is intended for use with individual protein sequences, as it requires parsing and splitting the sequence by chain to ensure accurate predictions.
+
+This code is run asynchronously using Celery workers, allowing efficient processing of multiple sequences in parallel. Moreover, the implementation supports both GPU and CPU execution.
+
+After the predictions are generated, the next step is to look for potential clusters of high-scoring residues and create the corresponding binding site candidates, as described in Section~\ref{sec:clustering}.
 
 \section{Clustering and Smoothing}
 \label{sec:clustering}

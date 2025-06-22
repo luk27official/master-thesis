@@ -138,15 +138,11 @@ Mol* (also MolStar) is a TypeScript library for visualizing molecular structures
 
 CryptoBench is a comprehensive benchmark dataset for training and evaluating CBSs prediction methods, built from a large set of apo–holo protein pairs and grouped by UniProt ID with predefined cross-validation splits. Baseline evaluations show that a sequence-based neural network using protein language model embeddings outperforms state-of-the-art structure-based methods like PocketMiner \cite{meller2023predicting} and P2Rank \cite{krivak2018p2rank} across key metrics in terms of CBSs. The source codes for CryptoBench are available at \url{https://github.com/skrhakv/CryptoBench/} \cite{vskrhak2025cryptobench}.
 
-\xxx{TODO: here we might want to include more details? but I would do it probably in the prediction section, not here}
-
-The model used in CryptoBench is able to predict cryptic binding sites when provided with ESM-2 embeddings \cite{lin2022language} of the protein sequence. This is one of the key features of CryptoShow. More details about the integration of CryptoBench into CryptoShow will be provided in Section~\ref{sec:prediction}.
+The model used in CryptoBench is able to predict cryptic binding sites when provided with ESM-2 embeddings \cite{lin2022language} of the protein sequence. This is one of the key features of CryptoShow. More details about the CryptoBench method will be provided in Section~\ref{sec:prediction}.
 
 \subsection{CryptoSite}
 \label{sec:cryptosite}
 
 CryptoSite is another tool designed to identify CBSs. By constructing a dataset of structurally defined apo–holo pairs, CryptoSite characterizes cryptic sites based on sequence, structure, and dynamics. Leveraging these insights, CryptoSite uses machine learning to predict cryptic sites with high accuracy, expanding the set of potentially druggable proteins. The tool has been applied to the human proteome, increasing the fraction of disease-associated proteins considered druggable. Experimental validation further demonstrates the practical use of CryptoSite. The web server is accessible at \url{https://modbase.compbio.ucsf.edu/cryptosite} \cite{cimermancic2016cryptosite}.
 
-While CryptoSite is a valuable resource for cryptic binding site analysis and its web server remains available, its computational processes often take several days to complete, limiting its suitability for interactive use. In contrast, a primary goal of CryptoShow is to provide a fast and interactive experience, allowing users to obtain results within minutes. This need is underscored by the relatively low usage of CryptoSite; as of June 2025, only 10 jobs were submitted in the last 7 days.
-
-\xxx{TODO: wait for the actual results} \url{https://modbase.compbio.ucsf.edu/cryptosite/job/job20250619_332300?passwd=xnEdi1wFNF}
+While CryptoSite is a valuable resource for cryptic binding site analysis and its web server remains available, its computational processes often take several days to complete, limiting its suitability for interactive use. In contrast, a primary goal of CryptoShow is to provide a fast and interactive experience, allowing users to obtain results within minutes. This need is underscored by the relatively low usage of CryptoSite; as of June 2025, only 10 jobs were submitted in the last 7 days. Also, the results of the CryptoSite jobs are available only for 7 days after the job completion.
