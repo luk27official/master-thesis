@@ -306,9 +306,12 @@
 
 ### Thesis
 
-- [ ] zlepsit osnovu a zacit premyslet o textu
-- [ ] udelat benchmark na moji clustering metodu pomoci DCC/DCA
+- [x] zlepsit osnovu a zacit premyslet o textu
+- [x] udelat benchmark na moji clustering metodu pomoci DCC/DCA
 - [x] spocitat embeddingy pro nejaky subset CryptoBench train/test setu
+- [ ] napsat text :)
+- [ ] nezapomenout pridat do final folderu i benchmarking, nejlepe asi do slozky primo se zdrojaky od CryptoShow
+- [ ] checknout xxx/TODOs v celem textu
 
 ### Sanity check (before submission)
 
