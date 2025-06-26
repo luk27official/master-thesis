@@ -2,6 +2,7 @@ aux/
 tmp/
 thesis.pdf
 abstract-*.pdf
+.DS_Store
 
 # In case you are not using latexmk with the output directory set:
 *.aux
