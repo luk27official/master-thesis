@@ -41,9 +41,10 @@ After the clustering is performed, it seems like the task is done, but there are
 \begin{itemize}
     \item The benchmarking is performed on the CryptoBench test set, not the tiny variant used in the pipeline. This might lead to slightly different results, but the overall performance should be similar.
     \item Multi-chain pockets are omitted from the benchmarking, as the process would be much more complicated and the prediction would require complex approaches.
-    \item Many cryptic binding sites in the test set are similar to each other, which can lead to heavily inflated results. To address this, we have used the \textbf{Szymkiewicz–Simpson coefficient (overlap)}, which is a measure of similarity between two sets $A, B$ defined as:
+    \item Many cryptic binding sites in the test set are similar to each other, which can lead to heavily inflated results. To address this, we have used the \textbf{Szymkiewicz–Simpson coefficient (overlap)}, which is a measure of similarity between two sets $A, B$. The coefficient is defined in Equation~\ref{eq:szymkiewicz-simpson}.
     \begin{equation}
         \text{Szymkiewicz–Simpson}(A, B) = \frac{|A \cap B|}{\min(|A|, |B|)}
+        \label{eq:szymkiewicz-simpson}
     \end{equation}
     After computing the overlap between each pair of cryptic binding sites in one structure, we keep only the CBSs with the overlaps under 0.5.
 \end{itemize}
@@ -53,9 +54,10 @@ The benchmarking follows the same procedure as the CryptoShow pipeline - first, 
 \begin{itemize}
     \item \textbf{Distance between the cluster center and the CBS center} - This metric is computed as the distance between the cluster center and the center of the cryptic binding site. Both centers are computed as the average of the 3D coordinates of the residues in the cluster and the CBS, respectively. The distance is computed in \AA.
     \item \textbf{Percentage of CBS residues covered by the cluster} - This metric is computed as the percentage of residues in the CBS that are also part of the cluster.
-    \item \textbf{Dice coefficient} - This metric is computed as the ratio of the number of residues in the intersection of the cluster and the CBS to the average number of residues in both sets $A, B$. It is defined as:
+    \item \textbf{Dice coefficient} - This metric is computed as the ratio of the number of residues in the intersection of the cluster and the CBS to the average number of residues in both sets $A, B$. It is defined in Equation~\ref{eq:dice-coefficient}.
     \begin{equation}
         \text{Dice}(A, B) = \frac{2 |A \cap B|}{|A| + |B|}
+        \label{eq:dice-coefficient}
     \end{equation}
 \end{itemize}
 
@@ -64,18 +66,48 @@ After computing the metrics for all clusters and one specific CBS, the best-matc
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{img/non-smoothened-1.png}
-    \caption{Clustering benchmark results. The left plot shows the distance between the cluster center and the CBS center, and the right plot shows percentage of residues covered by the found clusters.}
+    \caption{Clustering benchmark results before pocket smoothing. The left plot shows the distance between the cluster center and the CBS center, and the right plot shows percentage of residues covered by the found clusters.}
     \label{fig:clustering-benchmark}
 \end{figure}
 
 The results show that the method performs rather poorly, with the average distance between the cluster center and the CBS center being around 10 \AA, and the percentage of CBS residues covered by the cluster being around 25\%. This might not be a bad result as one missing residue in the binding site can lead to a significant increase in the distance, but the percentage of residues covered is rather low. This is caused by the fact that the clustering is performed only on the high-scoring residues. But, some of the CBSs have residues with low scores (supported by Figure \xxx{TODO}), which are still part of the binding site.
 
-What to do next?
+What to do next? The approach we decided to try together in cooperation with Vít Škrhák (thanks! \xxx{TODO: how to credit properly here when there is no paper, should I add an acknoweledgements section?}) was to train another machine learning model that would take the protein sequence, predicted cluster by the clustering method (together with the sequence information), ESM-2 embedding computed earlier and then information about the residue distances taken from the structure file. All together, this \textbf{smoothing} model will be trained on a modified version of the CryptoBench dataset - by this we mean that the cryptic binding sites from the CryptoBench dataset will be taken as a ground truth.
 
-\xxx{TODO: add explanation of smoothing, add the training code, some statistics, and the results, then the comparsion with the non-smoothened clustering}
-\xxx{TODO: add citations}
+First, we have to prepare the dataset for training. Before the preparation, we need to make sure we have the pre-computed embeddings from the first step saved somewhere. Then, we need to compute the distance matrix for the coordinates - this is done simply by using Equation~\ref{eq:distance-matrix},
+
+\begin{equation}
+D_{ij} = \left\| \mathbf{c}_i - \mathbf{c}_j \right\|_2 = \sqrt{ \sum_{k=1}^3 (c_{ik} - c_{jk})^2 }
+\label{eq:distance-matrix}
+\end{equation}
+
+where $D_{ij}$ is the distance between residues $i$ and $j$, and $\mathbf{c}_i, \mathbf{c}_j$ are their 3D coordinates.
+
+After computing the distance matrices, we need to create both positive and negative examples for the training. First, we get the residues that are close to the actual binding residues by checking if the distance between a residue and any binding residue is less than a chosen threshold (the positive distance threshold, chosen as 15 \AA). For each such residue, we aggregate its embedding with the mean embedding of its close binding neighbors to form a feature vector, which is labeled as a positive example.
+
+For negative examples, we select residues that are very close (within a smaller negative distance threshold of 10 \AA) to binding residues but are not themselves binding residues. These are labeled as negative examples. This approach ensures that the model learns to distinguish between true binding residues and those that are spatially close but not part of the binding site.
+
+The vectors are later converted into torch tensors. We do this for both training and test data and create the two datasets that we will use during the training.
+
+For the actual training, we first compute the class weights and load the data. Then, we train a neural network with the same architecture as in Section \ref{sec:prediction} with different thresholds. The model is then tested and several metrics such as F1 score, ROC/AUC and accuracy are computed. \xxx{TODO: add a figure of ROC with some scores, explain the metrics with formulas?} After this computation, we save the model to use it later in the pipeline.
+
+In the smoothing step, we load the model, specify the threshold (we select the best threshold of 0.7 based on F1 score of the test set results) and prepare the data for the relevant structure/sequence. After the inference, we receive the smoothened pocket, which might include other residues that should have been a part of the potential cryptic binding site, even though their score is not above the threshold for the high-scoring residues.
+
+The results seem more promising. As shown in Figure \ref{fig:clustering-benchmark-smoothened}, we achieve an average distance of the pocket centers of 5.12 \AA (compared to 9.26 \AA without the smoothing), average percentage of residues covered of 77.8 \% (opposed to 25.5 \%), and average Dice coefficient of 0.51 (opposed to 0.32). This proves that the smoothing method drastically improves the prediction. \xxx{TODO: add figures for the second results?} Although the predictions are not perfect, most of the predicted pockets have the distance of the pocket centers in the range of 0 to 5 \AA, which is a good result.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{img/smoothened-1.png}
+    \caption{Clustering benchmark results after pocket smoothing. The left plot shows the distance between the cluster center and the CBS center, and the right plot shows percentage of residues covered by the found clusters.}
+    \label{fig:clustering-benchmark-smoothened}
+\end{figure}
+
+All source codes related to the smoothing method are available in the \lstinline!cryptoshow-benchmark/smoothing! directory, including the training code, train and test sets, inference code and code for distance matrix computation.
+
+\xxx{TODO: maybe add the architecture of the neural network to 2.1? i.e. the layer description, ReLU etc.}
+\xxx{TODO: add citations for the chapter 2}
 \xxx{TODO: potential drawbacks}
-\xxx{TODO: reformat}
+\xxx{TODO: reformat/rephrase the text in 2.2}
 
 \section{Trajectory Animation}
 \label{sec:trajectory}
