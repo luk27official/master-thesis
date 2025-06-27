@@ -29,19 +29,19 @@ The clustering process is implemented in the \lstinline!backend/clustering! dire
 
 Our method relies on three parameters to control the clustering process:
 \begin{itemize}
-    \item \textbf{EPS ($\epsilon$)} - This parameter defines the maximum distance between two residues for them to be considered as part of the same cluster. In our case, we opted for a value of \textbf{5.0 \AA}, which is a reasonable distance for residues when considering their spatial proximity in a protein structure.
-    \item \textbf{Minimum cluster size} - This parameter defines the minimum number of residues required to form a cluster. We set this value to \textbf{3}, as 2 residues are not sufficient to form a binding site candidate.
-    \item \textbf{Minimum (CryptoBench) prediction score} - This parameter defines the minimum score a residue must have to be marked as a high-scoring residue. We opted for a value of \textbf{0.7}, which covers most cryptic binding sites in the CryptoBench dataset, while also not marking the entire protein as a binding site candidate.
+    \item \textbf{EPS ($\epsilon$)} - This parameter defines the maximum distance between two residues for them to be considered as part of the same cluster. In our case, we opted for a value of 5.0 \AA, which is a reasonable distance for residues when considering their spatial proximity in a protein structure.
+    \item \textbf{Minimum cluster size} - This parameter defines the minimum number of residues required to form a cluster. We set this value to 3, as 2 residues are not sufficient to form a binding site candidate.
+    \item \textbf{Minimum (CryptoBench) prediction score} - This parameter defines the minimum score a residue must have to be marked as a high-scoring residue. We opted for a value of 0.7, which covers most cryptic binding sites in the CryptoBench dataset, while also not marking the entire protein as a binding site candidate.
 \end{itemize}
 
-The values for these parameters were chosen arbitrarily based on previous experience and benchmarks (covered in this section below). However, these parameters can be adjusted to suit the specific needs. In the implementation, the \textbf{scikit-learn} \cite{kramer2016scikit} implementation of the DBSCAN algorithm is used. The clustering works with two method parameters, the 3D coordinates of the residues and the CryptoBench prediction scores.
+The values for these parameters were chosen arbitrarily based on previous experience and benchmarks (covered in this section below). However, these parameters can be adjusted to suit the specific needs. In the implementation, the scikit-learn \cite{kramer2016scikit} implementation of the DBSCAN algorithm is used. The clustering works with two method parameters, the 3D coordinates of the residues and the CryptoBench prediction scores.
 
 After the clustering is performed, it seems like the task is done, but there are still some steps to perform. The first problem is to know if the method performs well, i.e. if the clusters correspond to actual binding sites. To address this, we have created a benchmarking notebook that allows us to visualize interesting metrics. We will compare the clusters with the known binding sites from the CryptoBench test set, which contains a few hundred cryptic binding sites. The benchmarking notebooks and other source codes are available in the \lstinline!cryptoshow-benchmark! directory. Note that:
 
 \begin{itemize}
     \item The benchmarking is performed on the CryptoBench test set, not the tiny variant used in the pipeline. This might lead to slightly different results, but the overall performance should be similar.
     \item Multi-chain pockets are omitted from the benchmarking, as the process would be much more complicated and the prediction would require complex approaches.
-    \item Many cryptic binding sites in the test set are similar to each other, which can lead to heavily inflated results. To address this, we have used the \textbf{Szymkiewicz–Simpson coefficient (overlap)}, which is a measure of similarity between two sets $A, B$. The coefficient is defined in Equation~\ref{eq:szymkiewicz-simpson}.
+    \item Many cryptic binding sites in the test set are similar to each other, which can lead to heavily inflated results. To address this, we have used the Szymkiewicz–Simpson coefficient (overlap), which is a measure of similarity between two sets $A, B$. The coefficient is defined in Equation~\ref{eq:szymkiewicz-simpson}.
     \begin{equation}
         \text{Szymkiewicz–Simpson}(A, B) = \frac{|A \cap B|}{\min(|A|, |B|)}
         \label{eq:szymkiewicz-simpson}
@@ -85,7 +85,7 @@ where $D_{ij}$ denotes the Euclidean distance between residues $i$ and $j$, with
 
 After the computation of the distance matrices, the next step involves generating both positive and negative training examples. For the positive examples, residues are identified as candidates if their distance to any binding residue is less than a specified positive threshold (set to 15~\AA). For each such residue, a feature vector is constructed by combining its embedding with the mean embedding of its nearby binding neighbors. These feature vectors are then labeled as positive examples.
 
-For negative examples, we identify residues that are located within a smaller negative distance threshold of 10~\AA from binding residues but are not themselves annotated as binding residues. These residues are labeled as negative examples. This strategy helps the model learn to differentiate between actual binding residues and nearby residues that do not participate in binding.
+For negative examples, we identify residues that are located within a smaller negative distance threshold of 10~\AA{} from binding residues but are not themselves annotated as binding residues. These residues are labeled as negative examples. This strategy helps the model learn to differentiate between actual binding residues and nearby residues that do not participate in binding.
 
 The feature vectors are subsequently converted into PyTorch \cite{imambi2021pytorch} tensors. This process is performed for both the training and test sets, resulting in two datasets that are used during model training and evaluation. Both sets follow the structure of the CryptoBench dataset, as the training set consists of 80\% of the data, while the remaining 20\% is reserved for testing.
 
@@ -140,7 +140,7 @@ During the smoothing step, the trained model is loaded and a threshold is set (w
     \label{fig:smoothing-roc}
 \end{figure}
 
-The results appear significantly more encouraging. As demonstrated in Figures \ref{fig:clustering-benchmark-smoothened}, \ref{fig:clustering-benchmark-smoothened-dice}, the smoothing approach yields an average pocket center distance of 5.12 \AA (a substantial improvement from 9.26 \AA without smoothing), an average residue coverage of 77.8\% (compared to the previous 25.5\%), and an average Dice coefficient of 0.51 (versus the earlier 0.32). These findings demonstrate that the smoothing methodology enhances prediction performance. While the predictions are not flawless, the majority of predicted pockets exhibit pocket center distances within the 0 to 5 \AA range, representing a satisfactory outcome.
+The results appear significantly more encouraging. As demonstrated in Figures \ref{fig:clustering-benchmark-smoothened}, \ref{fig:clustering-benchmark-smoothened-dice}, the smoothing approach yields an average pocket center distance of 5.12~\AA{} (a substantial improvement from 9.26~\AA{} without smoothing), an average residue coverage of 77.8\% (compared to the previous 25.5\%), and an average Dice coefficient of 0.51 (versus the earlier 0.32). These findings demonstrate that the smoothing methodology enhances prediction performance. While the predictions are not flawless, the majority of predicted pockets exhibit pocket center distances within the 0 to 5~\AA{} range, representing a satisfactory outcome.
 
 \begin{figure}[htbp]
     \centering
@@ -160,9 +160,33 @@ The complete source code for the smoothing methodology can be found in the \lsti
 
 After the clustering and smoothing steps are completed, the prediction is ready to be visualized. More details on implementation and visualization will be provided in Chapter \ref{chap:software}.
 
-\xxx{TODO: add citations for the chapter 2}
-
 \section{Trajectory Animation}
 \label{sec:trajectory}
 
-\xxx{TODO}
+CryptoShow aims not only to predict and visualize cryptic binding sites, but also to demonstrate potential conformational changes through animated trajectories. To achieve this, we have developed a trajectory animation feature that illustrates structural transitions between related protein conformations.
+
+Let us begin by introducing AHoJ \cite{feidakis2022ahoj} and AHoJ-DB \cite{feidakis2024ahoj} (briefly covered in Section \ref{sec:ahoj}). Apo–Holo Juxtaposition (AHoJ) is a web-based tool designed to identify apo-holo pairs of protein structures within the PDB database (Section~\ref{sec:rcsb-pdb}); currently, querying is limited to this database only.
+
+AHoJ identifies binding residues by spatially marking user-defined ligands using PyMOL (Section~\ref{sec:pymol}). The tool compiles candidate structure chains by detecting UniProt accession numbers and retrieving all chains belonging to the same UniProt AC (Section~\ref{sec:uniprot-db}). It maps binding residues onto the UniProt sequence and examines each candidate chain to determine the presence of mapped binding residues above a minimum threshold. Successful candidates are aligned to the query chain using TM-align \cite{zhang2005tm}, and the area around the superimposed query ligand is examined for ligands. The process classifies each candidate chain as apo or holo based on ligand presence or absence in the defined binding sites, with results visualized in the browser and downloadable for PyMOL analysis. AHoJ-DB is a database of pre-computed apo-holo pairs of protein structures.
+
+For CryptoShow's trajectory animation functionality, we make use of the AHoJ public API to identify apo-holo structural pairs corresponding to the input structure. The query process requires the PDB ID of the input structure\footnote{As mentioned above, AlphaFold structures and custom structures are not supported by AHoJ. Additionally, the input structure may be in holo form. This is not validated in any way. Apo structures are generally more appropriate for this analysis, we leave this decision on the user as it does not affect the functionality of CryptoShow.}, the target chain containing the predicted cryptic binding site, and the central residue of the identified CBS. Listing \ref{lst:ahoj-query} demonstrates the query format. The API response contains all available paired structures, from which users can select any structure to visualize potential conformational transitions. Upon selection, the CryptoShow API initiates the trajectory computation.
+
+\begin{lstlisting}[caption={Sample query format for the AHoJ tool, specifying PDB ID 2src, chain A, aspartic acid residue at position 404}, label={lst:ahoj-query}]
+    2src A ASP 404
+\end{lstlisting}
+
+First, the target structure for animation is downloaded from AHoJ. Both structure files are then converted to PDB format to ensure each contains only a single model and to allow easier manipulation compared to the mmCIF format (see Section~\ref{sec:pdb-format} and Section~\ref{sec:mmcif-format}). Subsequently, the PDB file is processed using the MDAnalysis library \cite{gowers2019mdanalysis}, from which the sequence and corresponding residues are extracted. At this point, we have obtained the necessary structural information.
+
+Next, we need to determine which residues should be included in the animation. To achieve this, we employ a straightforward approach by computing the longest common subsequence of both protein sequences \xxx{TODO: should I add pseudocode here? it's not really that hard...}. This ensures that only residues present in both structures are animated. The subsequence length must be greater than zero due to the inherent logic of AHoJ. Once the common subsequence is identified, we extract the corresponding residues from both structures. We utilize the MDAnalysis library to perform this operation at the atomic level, as PDB files store coordinates for individual atoms rather than residues. Additionally, we extract all ligands from both structures to include them in the final animation.
+
+In the end, we generate the trajectory using cubic spline interpolation \cite{mckinley1998cubic} implemented in the SciPy library \cite{virtanen2020scipy}. We create a trimmed PDB file containing only the relevant residues and ligands, along with a trajectory file featuring interpolated coordinates across a predetermined number of frames (set arbitrarily to 50). The final visualization presents the original structure at 50\% opacity and the target holo structure at full opacity, as illustrated in Figure \ref{fig:trajectory-animation}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{img/trajectory_animation.png}
+    \caption{Example of trajectory animation demonstrating conformational changes between the input structure 1PTY (Crystal Structure of Protein Tyrosine Phosphatase 1B Complexed with Two Phosphotyrosine Molecules) and 2CNE (Structural Insights into the Design of Nonpeptidic Isothiazolidinone - Containing Inhibitors of Protein Tyrosine Phosphatase 1B). The input structure is displayed with 50\% transparency, while the target holo structure is rendered at full opacity. The ligand is represented in ball-and-stick format. Visualized using Mol* in CryptoShow.}
+    \label{fig:trajectory-animation}
+\end{figure}
+Although this process generates a trajectory, it is important to note that this represents only a simple interpolation of residue coordinates. The trajectory does not depict actual conformational changes, but rather provides a smooth transition between the two structures. To capture genuine conformational dynamics, one would need to perform molecular dynamics simulations, which are computationally intensive and require significant time investment \cite{schlitter1993targeted}.
+
+The source code for the trajectory animation functionality can be found in the \lstinline!backend/trajectory_generator! directory. As with the prediction and clustering components, the implementation details in the actual pipeline will be covered in Chapter \ref{chap:software}.
