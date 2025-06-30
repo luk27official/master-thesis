@@ -312,9 +312,11 @@
 - [ ] napsat text :)
 - [ ] nezapomenout pridat do final folderu i benchmarking, nejlepe asi do slozky primo se zdrojaky od CryptoShow
 - [ ] checknout xxx/TODOs v celem textu
-- [ ] zkontrolovat struktury z DC a opravit pripadne chyby...
+- [ ] zkontrolovat struktury z DC a opravit pripadne chyby v kodu...
 - [ ] pridat licenci do kodu
 - [ ] pridat do README requirements pro deployment
+- [ ] udelat PDB IDs konzistentni - vsude velkymi pismeny
+- [ ] pridat zkratky (seznam)
 
 ### Sanity check (before submission)
 

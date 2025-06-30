@@ -1,11 +1,25 @@
 \chapter{Software}
 \label{chap:software}
 
-\xxx{TODO}
-
+The third chapter of this thesis describes the web application, CryptoShow, which is developed to provide a user-friendly interface for the methodology described in Chapter~\ref{chap:methodology}. This chapter covers the architecture, technologies used, backend and frontend development, testing, monitoring, and deployment of the application.
 
 \section{Architecture and Used Technologies}
 \label{sec:architecture-technologies}
+
+This section outlines the architecture of the CryptoShow application and the technologies employed in its development. The application is designed to be modular and scalable, allowing for easy integration of new features and improvements. For this purpose, we have chosen a service-oritented architecture (SOA) that separates the components, enabling independent development and deployment. The architecture is defined by several Docker containers, each responsible for a specific part of the application. The services are orchestrated using Docker Compose, defined in the \texttt{docker-compose.yml} file, which specifies the services, networks, and volumes required for the application to run. The service architecture is as follows:
+
+\begin{itemize}
+    \item \textbf{backend} - TODO
+    \item \textbf{worker-cpu / worker-gpu} - TODO
+    \item \textbf{frontend} - TODO
+    \item \textbf{redis} - TODO
+    \item \textbf{monitoring-flag} - TODO
+    \item \textbf{remove-monitoring-flag} - TODO
+    \item \textbf{flower} - TODO
+    \item \textbf{celery-exporter} - TODO
+    \item \textbf{prometheus} - TODO
+    \item \textbf{grafana} - TODO
+\end{itemize}
 
 \xxx{TODO}
 
