@@ -312,6 +312,9 @@
 - [ ] napsat text :)
 - [ ] nezapomenout pridat do final folderu i benchmarking, nejlepe asi do slozky primo se zdrojaky od CryptoShow
 - [ ] checknout xxx/TODOs v celem textu
+- [ ] zkontrolovat struktury z DC a opravit pripadne chyby...
+- [ ] pridat licenci do kodu
+- [ ] pridat do README requirements pro deployment
 
 ### Sanity check (before submission)
 
@@ -334,8 +337,6 @@ All of this should be checked before submitting the code.
 - [ ] mozna by se dalo udelat to, ze kdyz dam neco jako `cryptoshow/viewer?id=2src`, tak se pusti vypocet, pokud to neni cached?
 - [ ] clustering - mergnout clustery, kdyz jsou blizko u sebe? ale je tam ten tradeoff vysoky pocet pocketu x velke pockety
 - [ ] AHoJ improvement - az to bude implementovane, tak pridat moznost animace trajektorie i pro AF struktury
-- [ ] pridat licenci do kodu
-- [ ] pridat do README requirements pro deployment
 - [ ] pridat moznost predikovat i ze sekvence? ale to by tam musel byt nejaky fold potom v pipeline
 
 ## SIS proposal
