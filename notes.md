@@ -317,6 +317,7 @@
 - [ ] pridat do README requirements pro deployment
 - [ ] udelat PDB IDs konzistentni - vsude velkymi pismeny
 - [ ] pridat zkratky (seznam)
+- [ ] podivat se, jestli jde nejak ty grafy exportovat jako PDF - potom by to asi bylo lepsi nez PNG
 
 ### Sanity check (before submission)
 

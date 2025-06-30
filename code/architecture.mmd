@@ -1,0 +1,48 @@
+graph LR
+    subgraph "Web Layer (Gateway)"
+        FE["frontend (NginX)"]
+    end
+
+    subgraph API
+        BE["backend (FastAPI + Celery master)"]
+    end
+
+    subgraph Workers
+        CPU["worker-cpu (Celery worker)"]
+        GPU["worker-gpu (Celery worker)"]
+    end
+
+    subgraph Queue
+        REDIS[redis]
+    end
+
+    subgraph Monitoring
+        FLOWER[flower]
+        CELX[celery-exporter]
+        PROM[prometheus]
+        GRAFANA[grafana]
+    end
+
+    subgraph "Init Scripts for Monitoring"
+        RMF[remove-monitoring-flag]
+        MONF[monitoring-flag]
+    end
+
+    FE --> BE
+    FE --> RMF
+    BE --> REDIS
+    CPU --> REDIS
+    CPU --> BE
+    GPU --> REDIS
+    GPU --> BE
+    FLOWER --> REDIS
+    FLOWER --> BE
+
+    CELX --> PROM
+    CELX --> BE
+    PROM --> GRAFANA
+
+    MONF --> RMF
+
+    classDef optional fill:#99ff00,stroke:#333,stroke-width:1px,color:#333;
+    class FLOWER,CELX,PROM,GRAFANA,MONF optional
