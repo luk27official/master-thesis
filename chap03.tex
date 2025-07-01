@@ -28,14 +28,22 @@ This section outlines the architecture of the CryptoShow application and the tec
     \label{fig:architecture}
 \end{figure}
 
-An overview of the service architecture can be seen in Figure~\ref{fig:architecture}. 
+An overview of the service architecture can be seen in Figure~\ref{fig:architecture}. This type of architecture offers a scalable solution that has the potential of easy deployment and development.
 
-\xxx{TODO: complete this, add used technology stack for each of the services?}
+Let's also focus on the technology stack for some of the services:
+
+\begin{itemize}
+    \item \textbf{backend, worker-cpu / worker-gpu} - Python, notable libraries and tools: Celery (asynchronous tasks in Python), FastAPI, Flower, PyTorch, BioPython, Biotite, Scikit-Learn, MDAnalysis, Gemmi, Redis, uv
+    \item \textbf{frontend} - TypeScript, notable libraries, tools and frameworks: React, NginX, Mol*, Bun, Vite
+\end{itemize}
+
+The remaining services utilize standard technology stacks commonly associated with their respective functionalities.
 
 \section{Backend}
 \label{sec:backend}
 
 \xxx{TODO: add the integration of the developed methodology into the backend}
+\xxx{TODO: do we include all API endpoints?}
 
 \section{Frontend}
 \label{sec:frontend}
