@@ -187,6 +187,19 @@
   - text
   - vyzkouset to cele
 
+## 1.7.2025 (meeting)
+
+- na zacatek 2. kapitoly pridat nejaky diagram, ktery obsahuje celou tu pipeline, co vede k predikci CBS, mam oznacit ty casti, ktere jsem delal ja a ktere uz byly hotove
+- vysvetlit 5 A threshold pomoci vzdalenosti C-Alpha atomu
+- vysvetlil proc 2 rezidua netvori cavity
+- ve 2. kapitole celkove oddelit evaluaci, predstavit dataset vcetne velikosti a rozdeleni na train/test set, predstavit, ze se tam nedeje data leakage, predstavit, ze hlavnim cilem je evaluovat efektivitu smoothingu, explicitne rict, co na cem trenujeme
+- mozna misto top 1 pocketu ve statistikach brat top n + 2 ?? nevim
+- podivat se, co to tedy je DCC a pripadne prejmenovat v tom nazvu grafu
+- veci ohledne trajektorie prehodit jako podsekci backendu
+- popsat detailne jak trajektorie funguje v Mol*
+- vymyslet use case a napsat ho
+- prepsat intro a zkontrolovat obecne reference mezi kapitolami/sekcemi
+
 ## TODOs checklist
 
 ### DevOps
