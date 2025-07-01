@@ -189,16 +189,7 @@
 
 ## 1.7.2025 (meeting)
 
-- na zacatek 2. kapitoly pridat nejaky diagram, ktery obsahuje celou tu pipeline, co vede k predikci CBS, mam oznacit ty casti, ktere jsem delal ja a ktere uz byly hotove
-- vysvetlit 5 A threshold pomoci vzdalenosti C-Alpha atomu
-- vysvetlil proc 2 rezidua netvori cavity
-- ve 2. kapitole celkove oddelit evaluaci, predstavit dataset vcetne velikosti a rozdeleni na train/test set, predstavit, ze se tam nedeje data leakage, predstavit, ze hlavnim cilem je evaluovat efektivitu smoothingu, explicitne rict, co na cem trenujeme
-- mozna misto top 1 pocketu ve statistikach brat top n + 2 ?? nevim
-- podivat se, co to tedy je DCC a pripadne prejmenovat v tom nazvu grafu
-- veci ohledne trajektorie prehodit jako podsekci backendu
-- popsat detailne jak trajektorie funguje v Mol*
-- vymyslet use case a napsat ho
-- prepsat intro a zkontrolovat obecne reference mezi kapitolami/sekcemi
+- viz thesis goals
 
 ## TODOs checklist
 
@@ -325,12 +316,24 @@
 - [ ] napsat text :)
 - [ ] nezapomenout pridat do final folderu i benchmarking, nejlepe asi do slozky primo se zdrojaky od CryptoShow
 - [ ] checknout xxx/TODOs v celem textu
-- [ ] zkontrolovat struktury z DC a opravit pripadne chyby v kodu...
+- [ ] checknout, ze existuji vsechny reference na obrazky, sekce atd.
+- [ ] checknout, ze nikde nemam overflow textu pres okraj stranky, pripadne potom opravit
+- [x] zkontrolovat struktury z DC a opravit pripadne chyby v kodu...
 - [ ] pridat licenci do kodu
 - [ ] pridat do README requirements pro deployment
 - [ ] udelat PDB IDs konzistentni - vsude velkymi pismeny
 - [ ] pridat zkratky (seznam)
 - [ ] podivat se, jestli jde nejak ty grafy exportovat jako PDF - potom by to asi bylo lepsi nez PNG
+- [x] na zacatek 2. kapitoly pridat nejaky diagram, ktery obsahuje celou tu pipeline, co vede k predikci CBS, mam oznacit ty casti, ktere jsem delal ja a ktere uz byly hotove
+- [x] vysvetlit 5 A threshold pomoci vzdalenosti C-Alpha atomu
+- [x] vysvetlil proc 2 rezidua netvori cavity
+- [x] ve 2. kapitole celkove oddelit evaluaci, predstavit dataset vcetne velikosti a rozdeleni na train/test set, predstavit, ze se tam nedeje data leakage, predstavit, ze hlavnim cilem je evaluovat efektivitu smoothingu, explicitne rict, co na cem trenujeme
+- [ ] mozna misto top 1 pocketu ve statistikach brat top n + 2 ?? nevim
+- [ ] podivat se, co to tedy je DCC a pripadne prejmenovat v tom nazvu grafu
+- [x] veci ohledne trajektorie prehodit jako podsekci backendu
+- [ ] popsat detailne jak trajektorie funguje v Mol*
+- [ ] vymyslet use case a napsat ho
+- [x] prepsat intro a zkontrolovat obecne reference mezi kapitolami/sekcemi
 
 ### Sanity check (before submission)
 
