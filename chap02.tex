@@ -34,7 +34,7 @@ The first step in the pipeline is to provide a protein structure in either PDB o
 
 The initial step in our methodology involves utilizing the CryptoBench \cite{vskrhak2025cryptobench} model to generate residue-level predictions for protein sequences. It is important to note that this model works solely with sequence information, without incorporating any structural (tertiary or quaternary) data. Specifically, we employ the tiny variant of CryptoBench\footnote{Available at \url{https://github.com/skrhakv/TinyCryptobench}}, which is trained on a reduced version of the fine-tuned ESM-2 embeddings \cite{lin2022language} with 650 million parameters, as opposed to the full 3 billion. This choice is motivated by the observation that prediction accuracy remains comparable\footnote{\xxx{TODO: add explanation...}}, while computational requirements are significantly reduced, enabling the pipeline to run efficiently on standard personal computers without the need for a GPU.
 
-CryptoBench was created by filtering the AHoJ-DB \cite{feidakis2024ahoj} dataset, which contains 57.8 million binding pockets (both apo and holo) \cite{apoholo-stats}. The filtering steps involved resolution filtering, removing redundant structures, geometric quality assurance, crypticity constraints, ligand filtering and sequence clustering. The final dataset consists of 1107 proteins with 1361 cryptic binding sites. This dataset is used to train the model that has been benchmarked against PocketMiner \cite{meller2023predicting} and P2Rank \cite{krivak2018p2rank} and has shown better performance in terms of cryptic binding site prediction.
+CryptoBench was created by filtering the AHoJ-DB \cite{feidakis2024ahoj} dataset, which contains 57.8 million binding pockets (both apo and holo) \cite{apoholo-stats}. The filtering steps involved resolution filtering, removing redundant structures, geometric quality assurance, crypticity constraints, ligand filtering and sequence clustering. The final dataset consists of 1107 apo-holo pairs with 5493 cryptic binding sites. This dataset is used to train the model that has been benchmarked against PocketMiner \cite{meller2023predicting} and P2Rank \cite{krivak2018p2rank} and has shown better performance in terms of cryptic binding site prediction.
 
 After the predictions are generated using the CB-Model, the next step is to look for potential clusters of high-scoring residues and create the corresponding binding site candidates.
 
@@ -54,7 +54,7 @@ Our method relies on three parameters to control the clustering process:
 
 After the clustering is performed, we need to smoothen the clusters to enhance the predictions. This is caused by the fact that the clustering is performed only on the high-scoring residues, which can lead to missing residues in the binding site (as shown in Section~\ref{sec:pipeline-evaluation}). To address this, we collaborated with Vít Škrhák (thanks!) to develop an additional machine learning model. This model incorporates the protein sequence, the predicted clusters from the clustering step (along with sequence information), precomputed ESM-2 embeddings, and residue distance matrix derived from the structure file. Altogether, this \textbf{smoothing model} is then trained on a modified version of the CryptoBench dataset, using the annotated cryptic binding sites as the train and test set.
 
-The initial step involves preparing the dataset for training of the smoothing model. The train and test sets \xxx{TODO: add dataset size} are derived from the CryptoBench dataset filtered by the following criteria:
+The initial step involves preparing the dataset for training of the smoothing model. The train and test sets, consisting of 5493 cryptic binding sites, are split into training and testing sets using an 80:20 ratio. The sets follow the same structure as the CryptoBench dataset to prevent data leakage, i.e. the train set from CryptoBench is used as the train set for the smoothing model, and the test set from CryptoBench is used as the test set for the smoothing model. The sets are derived from the CryptoBench dataset filtered by the following criteria:
 
 \begin{itemize}
     \item Pockets spanning multiple structure chains are omitted from the evaluation, as the process would be much more complicated and the prediction would require complex approaches.
@@ -66,7 +66,7 @@ The initial step involves preparing the dataset for training of the smoothing mo
     After computing the overlap between each pair of cryptic binding sites in one structure, we keep only the CBSs with the overlaps under 0.5.
 \end{itemize}
 
-The sets follow the same structure as the CryptoBench dataset to prevent data leakage, i.e. the train set from CryptoBench is used as the train set for the smoothing model, and the test set from CryptoBench is used as the test set for the smoothing model.
+After the filtering, we have a dataset of \xxx{TODO: add dataset size after filtering here}.
 
 Prior to training, it is essential to ensure that the precomputed embeddings from the previous step are available. Subsequently, the distance matrix for the residue coordinates must be calculated, which is accomplished using Equation~\ref{eq:distance-matrix}.
 
@@ -88,7 +88,7 @@ The complete source code for the smoothing methodology can be found in the \lsti
 \section{Pipeline Evaluation}
 \label{sec:pipeline-evaluation}
 
-After setting up the pipeline, we need to know if the clustering and smoothing steps perform well, i.e. if the final clusters correspond to actual binding sites. To address this, we will compare the clusters with the known binding sites from the CryptoBench test set, which contains a few hundred cryptic binding sites. \xxx{TODO: add dataset size} The evaluation is performed in two steps: first, we benchmark the clustering method without the smoothing model, and then we evaluate clustering including the smoothing model.
+After setting up the pipeline, we need to know if the clustering and smoothing steps perform well, i.e. if the final clusters correspond to actual binding sites. To address this, we will compare the clusters with the known binding sites from the CryptoBench test set, which contains a few hundred cryptic binding sites. \xxx{TODO: add dataset size after the filtering} The evaluation is performed in two steps: first, we benchmark the clustering method without the smoothing model, and then we evaluate clustering including the smoothing model.
 
 The evaluation follows the same procedure as the CryptoShow pipeline - first, the predictions are generated for each of the test set structures, then the clustering is performed with the same parameters as in the pipeline. After creating the clusters, we compute the following metrics for each cluster and compare them with the known binding sites:
 
