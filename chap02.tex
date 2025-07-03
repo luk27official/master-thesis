@@ -53,7 +53,7 @@ Our method relies on three parameters to control the clustering process:
 
 After the clustering is performed, we need to smoothen the clusters to enhance the predictions. This is caused by the fact that the clustering is performed only on the high-scoring residues, which can lead to missing residues in the binding site (as shown in Section~\ref{sec:pipeline-evaluation}). To address this, we collaborated with Vít Škrhák (thanks!) to develop an additional machine learning model. This model incorporates the protein sequence, the predicted clusters from the clustering step (along with sequence information), precomputed ESM-2 embeddings, and residue distance matrix derived from the structure file. Altogether, this \textbf{smoothing model} is then trained on a modified version of the CryptoBench dataset, using the annotated cryptic binding sites as the train and test set.
 
-The initial step involves preparing the dataset for training of the smoothing model. The train and test sets, consisting of 5493 cryptic binding sites, are split into training and testing sets using an 80:20 ratio. The sets follow the same structure as the CryptoBench dataset to prevent data leakage, i.e. the train set from CryptoBench is used as the train set for the smoothing model, and the test set from CryptoBench is used as the test set for the smoothing model. The sets are derived from the CryptoBench dataset filtered by the following criteria:
+The initial step involves preparing the dataset for training of the smoothing model. The train and test sets, consisting of 5493 cryptic binding sites, are split into training and testing sets using an 80:20 ratio. The sets follow the same structure as the CryptoBench dataset to prevent data leakage, i.e. the train set from CryptoBench is used as the train set for the smoothing model, and the test set from CryptoBench is used as the test set for the smoothing model. The test set is derived from the CryptoBench dataset filtered by the following criteria:
 
 \begin{itemize}
     \item Pockets spanning multiple structure chains are omitted from the evaluation, as the process would be much more complicated and the prediction would require complex approaches.
@@ -65,7 +65,7 @@ The initial step involves preparing the dataset for training of the smoothing mo
     After computing the overlap between each pair of cryptic binding sites in one structure, we keep only the CBSs with the overlaps under 0.5.
 \end{itemize}
 
-After the filtering, we have a dataset of \xxx{TODO: add dataset size after filtering here}.
+After the filtering, we have a test set of 193 apo conformations and 230 cryptic binding sites (out of the original 570 before the filtering).
 
 Prior to training, it is essential to ensure that the precomputed embeddings from the previous step are available. Subsequently, the distance matrix for the residue coordinates must be calculated, which is accomplished using Equation~\ref{eq:distance-matrix}.
 
@@ -80,19 +80,19 @@ After the computation of the distance matrices, the next step involves generatin
 
 For negative examples, we identify residues that are located within a smaller threshold of 10~\AA{} from binding residues but are not themselves annotated as binding residues. These residues are labeled as negative examples. This strategy helps the model learn to differentiate between actual binding residues and nearby residues that do not participate in binding.
 
-For training, we begin by calculating the class weights and loading the dataset. The neural network, which uses the same architecture described in Section \ref{sec:prediction}, is then trained. Evaluation of the model performance is described in Section~\ref{sec:pipeline-evaluation}.
+For training, we begin by calculating the class weights and loading the dataset. The neural network, which uses the same architecture described in Section \ref{sec:prediction}, is then trained. Due to the large size of the CryptoBench dataset, which includes the majority of available PDB structures, cross-validation was not employed during training. Instead, a standard train-test split was used, following the original CryptoBench partitioning to avoid data leakage as mentioned before. Evaluation of the model performance is described in Section~\ref{sec:pipeline-evaluation}.
 
 The complete source code for the smoothing methodology can be found in the \lstinline!cryptoshow-benchmark/smoothing! directory. This includes scripts for model training, prepared training and testing datasets, inference, and an utility script for distance matrix computation.
 
 \section{Pipeline Evaluation}
 \label{sec:pipeline-evaluation}
 
-After setting up the pipeline, we need to know if the clustering and smoothing steps perform well, i.e. if the final clusters correspond to actual binding sites. To address this, we will compare the clusters with the known binding sites from the CryptoBench test set, which contains a few hundred cryptic binding sites. \xxx{TODO: add dataset size after the filtering} The evaluation is performed in two steps: first, we benchmark the clustering method without the smoothing model, and then we evaluate clustering including the smoothing model.
+After setting up the pipeline, we need to know if the clustering and smoothing steps perform well, i.e. if the final clusters correspond to actual binding sites. To address this, we will compare the clusters with the known binding sites from the CryptoBench test set, which contains 193 apo conformations and 230 cryptic binding sites (after filtering). The evaluation is performed in two steps: first, we benchmark the clustering method without the smoothing model, and then we evaluate clustering including the smoothing model.
 
 The evaluation follows the same procedure as the CryptoShow pipeline - first, the predictions are generated for each of the test set structures, then the clustering is performed with the same parameters as in the pipeline. After creating the clusters, we compute the following metrics for each cluster and compare them with the known binding sites:
 
 \begin{itemize}
-    \item \textbf{Distance between the cluster center and the CBS center} - This metric is computed as the distance between the cluster center and the center of the cryptic binding site. Both centers are computed as the average of the 3D coordinates of the residues in the cluster and the CBS, respectively. The distance is computed in \AA.
+    \item \textbf{Distance between the cluster center and the CBS center (DCC)} - This metric is computed as the distance between the cluster center and the center of the cryptic binding site. Both centers are computed as the average of the 3D coordinates of the residues in the cluster and the CBS, respectively. The distance is computed in \AA. This is a standard metric used in evaluations of pocket prediction methods \cite{kandel2021puresnet}.
     \item \textbf{Percentage of CBS residues covered by the cluster} - This metric is computed as the percentage of residues in the CBS that are also part of the cluster.
     \item \textbf{Dice coefficient} - This metric is computed as the ratio of the number of residues in the intersection of the cluster and the CBS to the average number of residues in both sets $A, B$. It is defined in Equation~\ref{eq:dice-coefficient}.
     \begin{equation}
@@ -105,14 +105,21 @@ After computing the metrics for all clusters and one specific CBS, the best-matc
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{img/non-smoothened-1.png}
-    \caption{Clustering benchmark results before pocket smoothing. The left plot shows the distance between the cluster center and the CBS center, and the right plot shows percentage of residues covered by the found clusters.}
+    \includegraphics[width=\textwidth]{img/non-smoothened-1.pdf}
+    \caption{Clustering benchmark results before pocket smoothing. The left plot shows the distance between the cluster center and the CBS center (DCC), and the right plot shows percentage of residues covered by the found clusters.}
     \label{fig:clustering-benchmark}
 \end{figure}
 
-The results show that the clustering method without smoothing performs rather poorly, with the average distance between the cluster center and the CBS center being around 10 \AA, and the percentage of CBS residues covered by the cluster being around 25\%. This might not be a bad result as one missing residue in the binding site can lead to a significant increase in the distance, but the percentage of residues covered is rather low. This is caused by the fact that the clustering is performed only on the high-scoring residues. But, some of the CBSs have residues with low scores (shown later in the section in Figure \ref{fig:clustering-benchmark-smoothened-dice}), which are still part of the binding site.
+The results show that the clustering method without smoothing performs rather poorly, with the average DCC being around 10 \AA, and the percentage of CBS residues covered by the cluster being around 25\%. This might not be a bad result as one missing residue in the binding site can lead to a significant increase in the distance, but the percentage of residues covered is rather low. This is caused by the fact that the clustering is performed only on the high-scoring residues. But, some of the CBSs have residues with low scores (shown later in the section in Figure \ref{fig:clustering-benchmark-smoothened-dice}), which are still part of the binding site.
 
 Now, we will evaluate the clustering method with the smoothing model included. The smoothing model is trained and tested on filtered version of the CryptoBench dataset, as described in Section~\ref{sec:clustering}. The smoothing model is evaluated on the test set, and metrics such as F1 score, AUC, and accuracy (described in Equations \ref{eq:f1-score}, \ref{eq:auc}, and \ref{eq:accuracy}) are computed for each threshold. Table~\ref{tab:smoothing-thresholds} and Figure~\ref{fig:smoothing-roc} illustrate the model's performance across various thresholds.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.65\textwidth]{img/smoothing-roc.pdf}
+    \caption{Receiver Operating Characteristic (ROC) curve for the smoothing model. The AUC (Area Under Curve) is 0.88, which is a good result for the model.}
+    \label{fig:smoothing-roc}
+\end{figure}
 
 \begin{equation}
 \text{F1 score} = \frac{2 \cdot \text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}}, \quad
@@ -154,29 +161,20 @@ where $\text{TP}$, $\text{TN}$, $\text{FP}$, and $\text{FN}$ denote true positiv
     \end{tabular}
 \end{table}
 
-\xxx{TODO: cross-validation?}
+During the smoothing step in the full pipeline, the trained model is loaded and a threshold is set (with 0.7 chosen as optimal based on the F1 score from the smoothing model evaluation, see Table~\ref{tab:smoothing-thresholds}). The relevant structure or sequence data is then prepared for inference. After running the model, the resulting smoothed pocket includes additional residues that are likely part of the cryptic binding site, even if their individual scores did not exceed the original high-scoring threshold.
 
-During the smoothing step in the full pipeline, the trained model is loaded and a threshold is set (with 0.7 chosen as optimal based on the F1 score from the smoothing model evaluation). The relevant structure or sequence data is then prepared for inference. After running the model, the resulting smoothed pocket includes additional residues that are likely part of the cryptic binding site, even if their individual scores did not exceed the original high-scoring threshold.
-
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=0.65\textwidth]{img/smoothing-roc.png}
-    \caption{Receiver Operating Characteristic (ROC) curve for the smoothing model. The AUC (Area Under Curve) is 0.88, which is a good result for the model.}
-    \label{fig:smoothing-roc}
-\end{figure}
-
-The results demonstrate improved performance. As shown in Figures \ref{fig:clustering-benchmark-smoothened}, \ref{fig:clustering-benchmark-smoothened-dice}, the smoothing approach yields an average pocket center distance of 5.12~\AA{} (a substantial improvement from 9.26~\AA{} without smoothing), an average residue coverage of 77.8\% (compared to the previous 25.5\%), and an average Dice coefficient of 0.51 (versus the earlier 0.32). These findings demonstrate that the smoothing methodology enhances prediction performance. While the predictions are not flawless, the majority of predicted pockets exhibit pocket center distances within the 0 to 5~\AA{} range, representing a satisfactory outcome.
+The results demonstrate improved performance. As shown in Figures \ref{fig:clustering-benchmark-smoothened}, \ref{fig:clustering-benchmark-smoothened-dice}, the smoothing approach yields an average DCC of 5.12~\AA{} (a substantial improvement from 9.26~\AA{} without smoothing), an average residue coverage of 77.8\% (compared to the previous 25.5\%), and an average Dice coefficient of 0.51 (versus the earlier 0.32). These findings demonstrate that the smoothing methodology enhances prediction performance. While the predictions are not flawless, the majority of predicted pockets exhibit DCC within the 0 to 5~\AA{} range, representing a satisfactory outcome.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{img/smoothened-1.png}
-    \caption{Clustering benchmark results after pocket smoothing. The left plot shows the distance between the cluster center and the CBS center, and the right plot shows percentage of residues covered by the found clusters.}
+    \includegraphics[width=\textwidth]{img/smoothened-1.pdf}
+    \caption{Clustering benchmark results after pocket smoothing. The left plot shows the distance between the cluster center and the CBS center (DCC), and the right plot shows percentage of residues covered by the found clusters.}
     \label{fig:clustering-benchmark-smoothened}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{img/smoothened-2.png}
+    \includegraphics[width=\textwidth]{img/smoothened-2.pdf}
     \caption{Clustering benchmark results after pocket smoothing. The left plot shows the Dice coefficient between the cluster and CBS. The right plot shows the distribution of prediction scores for all residues in the CBSs.}
     \label{fig:clustering-benchmark-smoothened-dice}
 \end{figure}

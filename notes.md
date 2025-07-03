@@ -323,17 +323,18 @@
 - [ ] pridat do README requirements pro deployment
 - [ ] udelat PDB IDs konzistentni - vsude velkymi pismeny
 - [ ] pridat zkratky (seznam)
-- [ ] podivat se, jestli jde nejak ty grafy exportovat jako PDF - potom by to asi bylo lepsi nez PNG
+- [x] podivat se, jestli jde nejak ty grafy exportovat jako PDF - potom by to asi bylo lepsi nez PNG
 - [x] na zacatek 2. kapitoly pridat nejaky diagram, ktery obsahuje celou tu pipeline, co vede k predikci CBS, mam oznacit ty casti, ktere jsem delal ja a ktere uz byly hotove
 - [x] vysvetlit 5 A threshold pomoci vzdalenosti C-Alpha atomu
 - [x] vysvetlil proc 2 rezidua netvori cavity
 - [x] ve 2. kapitole celkove oddelit evaluaci, predstavit dataset vcetne velikosti a rozdeleni na train/test set, predstavit, ze se tam nedeje data leakage, predstavit, ze hlavnim cilem je evaluovat efektivitu smoothingu, explicitne rict, co na cem trenujeme
-- [ ] mozna misto top 1 pocketu ve statistikach brat top n + 2 ?? nevim
-- [ ] podivat se, co to tedy je DCC a pripadne prejmenovat v tom nazvu grafu
+- [x] mozna misto top 1 pocketu ve statistikach brat top n + 2 ?? asi ne, protoze to by slo rict ve chvili, kdybych vzal skore tech jednotlivych pocketu a pak bral nejlepsi z tech nejlepe oskorovanych, jenze na druhou stranu to nic moc nerika...
+- [x] podivat se, co to tedy je DCC a pripadne prejmenovat v tom nazvu grafu
 - [x] veci ohledne trajektorie prehodit jako podsekci backendu
 - [ ] popsat detailne jak trajektorie funguje v Mol*
 - [ ] vymyslet use case a napsat ho
 - [x] prepsat intro a zkontrolovat obecne reference mezi kapitolami/sekcemi
+- [ ] zeptat se kam psat o AI (GPT etc)?
 
 ### Sanity check (before submission)
 
