@@ -320,7 +320,7 @@
 - [ ] checknout, ze nikde nemam overflow textu pres okraj stranky, pripadne potom opravit
 - [x] zkontrolovat struktury z DC a opravit pripadne chyby v kodu...
 - [ ] pridat licenci do kodu
-- [ ] pridat do README requirements pro deployment
+- [x] pridat do README requirements pro deployment
 - [ ] udelat PDB IDs konzistentni - vsude velkymi pismeny
 - [ ] pridat zkratky (seznam)
 - [x] podivat se, jestli jde nejak ty grafy exportovat jako PDF - potom by to asi bylo lepsi nez PNG
