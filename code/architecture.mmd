@@ -1,48 +1,52 @@
-graph LR
-    subgraph "Web Layer (Gateway)"
+---
+config:
+    look: neo
+    layout: elk
+    theme: mc
+---
+flowchart TD
+    subgraph gateway["Web Layer (Gateway)"]
         FE["frontend (NginX)"]
     end
 
-    subgraph API
+    subgraph API["API"]
         BE["backend (FastAPI + Celery master)"]
     end
 
-    subgraph Workers
+    subgraph Workers["Workers"]
         CPU["worker-cpu (Celery worker)"]
         GPU["worker-gpu (Celery worker)"]
     end
 
-    subgraph Queue
-        REDIS[redis]
+    subgraph Queue["Queue"]
+        REDIS["redis"]
     end
 
-    subgraph Monitoring
-        FLOWER[flower]
-        CELX[celery-exporter]
-        PROM[prometheus]
-        GRAFANA[grafana]
+    subgraph Monitoring["Monitoring"]
+        FLOWER["flower"]
+        CELX["celery-exporter"]
+        PROM["prometheus"]
+        GRAFANA["grafana"]
     end
 
-    subgraph "Init Scripts for Monitoring"
-        RMF[remove-monitoring-flag]
-        MONF[monitoring-flag]
+    subgraph initscripts["Init Scripts for Monitoring"]
+        RMF["remove-monitoring-flag"]
+        MONF["monitoring-flag"]
     end
 
-    FE --> BE
-    FE --> RMF
+    FE --> BE & RMF & GRAFANA & FLOWER
     BE --> REDIS
-    CPU --> REDIS
-    CPU --> BE
-    GPU --> REDIS
-    GPU --> BE
-    FLOWER --> REDIS
-    FLOWER --> BE
-
-    CELX --> PROM
-    CELX --> BE
+    CPU --> REDIS & BE
+    GPU --> REDIS & BE
+    FLOWER --> REDIS & BE
+    CELX --> PROM & BE
     PROM --> GRAFANA
-
     MONF --> RMF
 
-    classDef optional fill:#99ff00,stroke:#333,stroke-width:1px,color:#333;
-    class FLOWER,CELX,PROM,GRAFANA,MONF optional
+    FLOWER:::optional
+    CELX:::optional
+    PROM:::optional
+    GRAFANA:::optional
+    MONF:::optional
+
+    classDef optional fill:#95e6ff,stroke:#333,stroke-width:1px,color:#333

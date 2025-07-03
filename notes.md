@@ -331,10 +331,12 @@
 - [x] mozna misto top 1 pocketu ve statistikach brat top n + 2 ?? asi ne, protoze to by slo rict ve chvili, kdybych vzal skore tech jednotlivych pocketu a pak bral nejlepsi z tech nejlepe oskorovanych, jenze na druhou stranu to nic moc nerika...
 - [x] podivat se, co to tedy je DCC a pripadne prejmenovat v tom nazvu grafu
 - [x] veci ohledne trajektorie prehodit jako podsekci backendu
+- [x] zmenit diagram architektury v kapitole 3
 - [ ] popsat detailne jak trajektorie funguje v Mol*
 - [ ] vymyslet use case a napsat ho
 - [x] prepsat intro a zkontrolovat obecne reference mezi kapitolami/sekcemi
 - [ ] zeptat se kam psat o AI (GPT etc)?
+- [ ] checknout gramatiku pres Grammarly
 
 ### Sanity check (before submission)
 
