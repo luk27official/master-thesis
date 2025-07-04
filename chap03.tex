@@ -42,25 +42,40 @@ The remaining services utilize standard technology stacks commonly associated wi
 \section{Backend}
 \label{sec:backend}
 
-\xxx{TODO: add the integration of the developed methodology into the backend}
-\xxx{TODO: do we include all API endpoints?}
+The backend of the CryptoShow application is responsible for the core functionalities, such as calculating the predictions, clustering and smoothing the results, generating trajectory animations for AHoJ results, and serving the API endpoints for the frontend. This chapter provides an overview of the backend architecture.
 
-\subsection{Prediction}
+This section covers the \textbf{backend, worker-cpu, worker-gpu} and \textbf{redis} services. All source codes can be found in the \lstinline!backend! directory.
+
+All backend services utilize the same initial Dockerfile with one Python environment. This ensures consistency and speeds up the build process. For the installation of the Python environment, we use the \lstinline!pyproject.toml! file, which contains all necessary dependencies for the backend services, and is installed using the \lstinline|uv| tool\footnote{Available at \url{https://github.com/astral-sh/uv}.}. After installing the Python environment, the entrypoint for the backend service is run, which first checks for the presence of the machine learning models and downloads them if they are not available. Subsequently, the FastAPI server is started running on port 5000.
+
+\subsection{FastAPI}
+\label{sec:fastapi}
+
+The backend service is built using FastAPI, a modern web framework for building APIs with Python\footnote{Available at \url{https://github.com/fastapi/fastapi}.}. It serves as the main entry point for the application, handling API requests and delegating tasks to Celery workers\footnote{Available at \url{https://github.com/celery/celery}.}.
+
+FastAPI is chosen for its performance and ease of use, including the option to automatically generate OpenAPI documentation. The server includes configuration for CORS (Cross-Origin Resource Sharing), logging and error handling. The API contains several endpoints, including endpoints for health check, prediction for a given PDB ID, prediction for a custom protein structure, Celery task status check, and trajectory animation generation. To improve performance, WebSockets are used to check the status of the tasks, allowing the frontend to receive updates without polling the server.
+
+\xxx{TODO: do we include all API endpoints? we can list them but I think it's not necessary to do so}
+
+To support asynchronous task execution without blocking the main event loop, the backend service uses Celery workers. These workers are responsible for executing resource-intensive tasks, such as running the CB-Model, smoothing model and generating trajectory animations. The workers can run on either CPU or GPU, depending on the availability of resources (covered in detail in \ref{sec:deployment}). The backend service communicates with Redis, which acts as a message broker for Celery, allowing efficient task distribution and management.
+
+The logic for the API endpoints is implemented in the \lstinline!backend/main.py! file.
+
+\subsection{Prediction and Clustering}
 \label{sec:prediction-backend}
 
-\xxx{TODO: reformat this, add more details}
-\sloppy
-To begin with the prediction, the necessary dependencies for the CryptoBench model must be installed. Once the Python environment is set up, the fine-tuned ESM-2 model (\lstinline!facebook/esm2_t33_650M_UR50D!) is loaded, followed by the corresponding weight file from the Tiny-CryptoBench repository. The protein sequence is then tokenized using the ESM-2 tokenizer, segmented into chunks of 1022 tokens (1024 minus two special tokens), and processed by the CryptoBench model to obtain predictions. These predictions are subsequently concatenated to produce a single prediction vector representing the entire sequence. The model consists of three linear layers, two dropout layers, and a ReLU activation function.
+To begin with the prediction, the necessary dependencies for the CryptoBench model must be installed. Once the Python environment is set up (this is done in Docker automatically), the Celery task is added to the queue. The task is defined in the \lstinline!backend/tasks.py! file, which is responsible for executing the prediction logic.
 
-\sloppy
-The implementation for this procedure is provided in the \lstinline!backend/prediction/compute_score.py! file. The code is intended for use with individual protein sequences, as it requires parsing and splitting the sequence by chain to ensure accurate predictions.
+First, the structure provided by the user (either in the form of an ID or a custom structure) is processed and parsed using specialized parsers for the PDB/mmCIF formats (see Section~\ref{sec:pdb-format} and Section~\ref{sec:mmcif-format}). Only the first model of the structure is considered, as the CryptoBench model is designed to work with single-model structures. After parsing, the structure is then converted to a protein sequence, saved to FASTA files (see Section~\ref{sec:fasta-format}) for each chain, which is required for the prediction.
 
-This code is run asynchronously using Celery workers, allowing efficient processing of multiple sequences in parallel. Moreover, the implementation supports both GPU and CPU execution.
+Afterwards, the fine-tuned ESM-2 model (\lstinline!facebook/esm2_t33_650M_UR50D!) is loaded, followed by the corresponding weight file from the Tiny-CryptoBench repository. The protein sequence is then tokenized using the ESM-2 tokenizer, segmented into chunks of 1022 tokens (1024 minus two special tokens), and processed by the CryptoBench model to obtain predictions. These predictions are subsequently concatenated to produce a single prediction vector representing the entire sequence. The model consists of three linear layers, two dropout layers, and a ReLU activation function. Then, the predictions are generated by applying the sigmoid activation function to the output of the final linear layer, resulting in a vector of probabilities for each residue in the sequence. The implementation for this procedure is provided in the \lstinline!backend/prediction/compute_score.py! file. The code is intended for use with individual protein sequences, as it requires parsing and splitting the sequence by chain to ensure accurate predictions.
+
+After receiving the predictions for individual chains, 3D coordinates of all residues are extracted from the input structure. This step is required for the clustering and smoothing processes. The predictions are first clustered using the methodology described in Section~\ref{sec:clustering}. After clustering, the clusters are further smoothed. All source codes for the clustering and smoothing processes can be found in the \lstinline!backend/clustering! directory and follow the described methodology.
+
+Following this refinement process, all collected data is collected into a single JSON object, which is subsequently stored, returned, and used by the frontend for result visualization.
 
 \subsection{Trajectory Animation}
 \label{sec:trajectory}
-
-\xxx{TODO: reformat this, add more details}
 
 CryptoShow aims not only to predict and visualize cryptic binding sites, but also to demonstrate potential conformational changes through animated trajectories. To achieve this, we have developed a trajectory animation feature that illustrates structural transitions between related protein conformations.
 
@@ -86,6 +101,7 @@ In the end, we generate the trajectory using cubic spline interpolation \cite{mc
     \caption{Example of trajectory animation demonstrating conformational changes between the input structure 1PTY (Crystal Structure of Protein Tyrosine Phosphatase 1B Complexed with Two Phosphotyrosine Molecules) and 2CNE (Structural Insights into the Design of Nonpeptidic Isothiazolidinone - Containing Inhibitors of Protein Tyrosine Phosphatase 1B). The input structure is displayed with 50\% transparency, while the target holo structure is rendered at full opacity. The ligand is represented in ball-and-stick format. Visualized using Mol* in CryptoShow.}
     \label{fig:trajectory-animation}
 \end{figure}
+
 Although this process generates a trajectory, it is important to note that this represents only a simple interpolation of residue coordinates. The trajectory does not depict actual conformational changes, but rather provides a smooth transition between the two structures. To capture genuine conformational dynamics, one would need to perform molecular dynamics simulations, which are computationally intensive and require significant time investment \cite{schlitter1993targeted}.
 
 The source code for the trajectory animation functionality can be found in the \lstinline!backend/trajectory_generator! directory. As with the prediction and clustering components, the implementation details in the actual pipeline will be covered in Chapter \ref{chap:software}.
@@ -94,16 +110,56 @@ The source code for the trajectory animation functionality can be found in the \
 \section{Frontend}
 \label{sec:frontend}
 
-\xxx{TODO: describe both frontend overall and the Mol* specifics, including information about the trajectory animation}
+The frontend of the CryptoShow application is designed to provide an intuitive and user-friendly interface for the pipeline described in Chapter~\ref{chap:methodology}. The main technologies used for the frontend development include TypeScript, React, and Mol* (see Section~\ref{sec:molstar}), which is a powerful molecular visualization library. 
 
+\subsection{NginX}
+\label{sec:nginx}
+
+The main component is NginX \cite{reese2008nginx}, which serves as a reverse proxy to many services and serves as one endpoint for the frontend. There are multiple configurations for NginX, which are defined in the \lstinline!frontend/nginx! files. We want to serve the frontend application in all cases, which is described by the default configuration. However, to improve user experience, we also provide configurations for TLS/SSL encryption, which is recommended for production environments. Moreover, we provide a configuration for the monitoring proxy endpoint, which is used to monitor the Celery tasks and queues (more details in Section~\ref{sec:tests-monitoring}). The NginX server listens on port 80 for HTTP requests and port 443 for HTTPS requests. The configuration files specify the root directory for static files, the location of the API endpoints, and the proxy settings for the backend service.
+
+NginX does not support different behaviors for different environment variable values, so the final configuration file is generated on the fly using a simple Bash script. This script is executed during the Docker container startup, allowing for dynamic configuration based on the environment variables.
+
+\subsection{React and TypeScript}
+\label{sec:react-typescript}
+
+The application is built using React\footnote{Available at \url{https://react.dev/}}, a popular TypeScript library for creating web applications. This decision was made as React still remains state-of-the-art, and TypeScript provides strong typing and better developer experience compared to JavaScript. The frontend libraries are installed using the Bun\footnote{Available at \url{https://bun.sh/}} package manager, which is known for its speed and efficiency (compared to Node.js). The source codes are transpiled and bundled using Vite\footnote{Available at \url{https://vitejs.dev/}}, a modern build tool for TypeScript. The bundled files are then served by NginX, which is configured to serve static files from the \lstinline!frontend/dist! directory.
+
+The component structure follows a modular approach, with each component defined in its own file and CSS style. The main entry point for the React application is the \lstinline!frontend/src/main.tsx! file, which renders the main \lstinline!App! component. The application is organized into several \lstinline|src| subdirectories:
+
+\begin{itemize}
+    \item \textbf{components} - Contains reusable components, such as tables, forms, and other UI elements.
+    \item \textbf{pages} - Defines the page layouts, such as the home page, results page, about page, and error page.
+    \item \textbf{hooks} - Includes custom React hooks for managing state and side effects.
+    \item \textbf{contexts} - Provides React contexts for managing global state - variables that need to be accessed by multiple components.
+    \item \textbf{providers} - Contains React providers for managing global state.
+\end{itemize}
+
+At the same level as the \lstinline|src| directory, there is a \lstinline!public! directory, which contains static files, such as images, icons, and HTML files. The \lstinline!index.html! file serves as the main entry point for the application, where the React application is mounted.
+
+The React architecture follows the standard practices, beginning with \lstinline|HomePage|. This page serves as the landing page of the application, providing the user with an input table to enter the PDB ID or upload a custom protein structure. This logic is implemented in the aforementioned file and the \lstinline|InputTable| component. After computing the prediction, the user is presented with the \lstinline|Visualization| page. This page is split into several main components, such as the \lstinline|ResultTable|, \lstinline|MolstarControls| and Mol* visualization component (handled in the \lstinline|MolstarComponent| file), which is covered in Section~\ref{sec:molstar-frontend}.
+
+Some of the component state is managed directly by the components themselves, while state that needs to be shared across multiple components is managed using React contexts. This approach allows better code organization and avoids prop drilling.
+
+\xxx{TODO: maybe add some code snippets?}
+
+\subsection{Mol*}
+\label{sec:molstar-frontend}
+
+Opposedly to other frontend components, the Mol* library requires a more detailed explanation, as it is a complex library with many features, but limited documentation. As described in Section~\ref{sec:molstar}, Mol* is a powerful molecular visualization library that provides advanced features for visualizing and interacting with molecular structures. It is used in the CryptoShow application to visualize the predicted cryptic binding sites and the trajectory animations.
+
+Mol* does not work as a standard React component, but rather is rendered in a separate div element within the React component tree. This requires a different approach to the state management. The div element is defined in the \lstinline|Visualization| component, and the Mol* viewer is initialized in the \lstinline|MolstarComponent| component. 
+
+\xxx{TODO: describe both frontend overall and the Mol* specifics, how the structures are loaded/changed, also include information about the trajectory animation}
+
+\xxx{TODO: also include some screenshots}
 
 \section{Tests and Monitoring}
 \label{sec:tests-monitoring}
 
-\xxx{TODO: add information about Docker healthchecks, monitoring options, Grafana, Prometheus, Flower}
+\xxx{TODO: add information about Docker healthchecks, monitoring options, Grafana, Prometheus, Flower, include screenshots of the interfaces}
 
 
 \section{Deployment}
 \label{sec:deployment}
 
-\xxx{TODO: describe options for Docker, mention open ports, instructions, maybe requirements for the server}
+\xxx{TODO: describe options for Docker, Docker Bake, Docker-compose, mention open ports, instructions, maybe requirements for the server}
