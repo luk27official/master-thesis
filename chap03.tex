@@ -147,16 +147,22 @@ Some of the component state is managed directly by the components themselves, wh
 
 Opposedly to other frontend components, the Mol* library requires a more detailed explanation, as it is a complex library with many features, but limited documentation. As described in Section~\ref{sec:molstar}, Mol* is a powerful molecular visualization library that provides advanced features for visualizing and interacting with molecular structures. It is used in the CryptoShow application to visualize the predicted cryptic binding sites and the trajectory animations.
 
-Mol* does not work as a standard React component, but rather is rendered in a separate div element within the React component tree. This requires a different approach to the state management. The div element is defined in the \lstinline|Visualization| component, and the Mol* viewer is initialized in the \lstinline|MolstarComponent| component. 
+Mol* does not work as a standard React component, but rather is rendered in a separate div element within the React component tree. This requires a different approach to the state management. The div element is defined in the \lstinline|Visualization| component, and the Mol* viewer is initialized in the \lstinline|MolstarComponent| component via the \lstinline|initializePlugin| method.
 
-\xxx{TODO: describe both frontend overall and the Mol* specifics, how the structures are loaded/changed, also include information about the trajectory animation}
+Once the viewer has been initialized, the structure data is loaded into the viewer. At this stage, several protein representations are created, allowing users to switch between them via dedicated methods. The loading functionality is implemented in the \lstinline|loadStructure| method. Optionally, a trajectory file can also be loaded alongside the structure to enable the trajectory animation described in Section~\ref{sec:trajectory}.
+
+After the structure is loaded into the viewer, the visualization of the predicted binding sites can be performed. For each pocket found in the JSON object returned by the backend (see Section~\ref{sec:prediction-backend}), new, colored representations are generated for the corresponding predicted cryptic binding sites. This approach allows users to easily distinguish the CBSs and select their preferred representation type alongside the main structure.
+
+The file also provides additional methods essential for the visualization process, including adjusting structure transparency, retrieving residue selections, obtaining detailed residue information with coordinates, and overpainting the structure.
+
+For the trajectory animation, the original structure is displayed with an opacity of 0.5, making it visually distinct from the apo-holo pair returned by AHoJ. The aligned structure and the generated trajectory file from the backend are both loaded into the Mol* viewer. The trajectory file contains the intermediate states of the aligned structure. Mol* then animates these states, visually illustrating the conformational transition of the protein.
 
 \xxx{TODO: also include some screenshots}
 
 \section{Tests and Monitoring}
 \label{sec:tests-monitoring}
 
-\xxx{TODO: add information about Docker healthchecks, monitoring options, Grafana, Prometheus, Flower, include screenshots of the interfaces}
+\xxx{TODO: add information about Docker healthchecks, monitoring options, Grafana, Prometheus, Flower, Sentry, include screenshots of the interfaces}
 
 
 \section{Deployment}
