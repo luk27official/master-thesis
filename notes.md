@@ -337,6 +337,7 @@
 - [x] prepsat intro a zkontrolovat obecne reference mezi kapitolami/sekcemi
 - [ ] zeptat se kam psat o AI (GPT etc)?
 - [ ] checknout gramatiku pres Grammarly
+- [ ] opravit \lstinline, sjednotit format, dat si pozor na keywords - jako je template, public etc.
 
 ### Sanity check (before submission)
 

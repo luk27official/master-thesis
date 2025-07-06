@@ -53,7 +53,7 @@ All backend services utilize the same initial Dockerfile with one Python environ
 
 The backend service is built using FastAPI, a modern web framework for building APIs with Python\footnote{Available at \url{https://github.com/fastapi/fastapi}.}. It serves as the main entry point for the application, handling API requests and delegating tasks to Celery workers\footnote{Available at \url{https://github.com/celery/celery}.}.
 
-FastAPI is chosen for its performance and ease of use, including the option to automatically generate OpenAPI documentation. The server includes configuration for CORS (Cross-Origin Resource Sharing), logging and error handling. The API contains several endpoints, including endpoints for health check, prediction for a given PDB ID, prediction for a custom protein structure, Celery task status check, and trajectory animation generation. To improve performance, WebSockets are used to check the status of the tasks, allowing the frontend to receive updates without polling the server.
+FastAPI is chosen for its performance and ease of use, including the option to automatically generate OpenAPI documentation (available via the \lstinline|/api/docs| endpoint). The server includes configuration for CORS (Cross-Origin Resource Sharing), logging and error handling. The API contains several endpoints, including endpoints for health check, prediction for a given PDB ID, prediction for a custom protein structure, Celery task status check, and trajectory animation generation. To improve performance, WebSockets are used to check the status of the tasks, allowing the frontend to receive updates without polling the server.
 
 \xxx{TODO: do we include all API endpoints? we can list them but I think it's not necessary to do so}
 
@@ -168,14 +168,18 @@ First of all, basic health checks are implemented in the Docker Compose file. Do
 
 To enhance the monitoring capabilities, Flower\footnote{Available at \url{https://flower.readthedocs.io/en/latest/}.} is used to monitor the Celery tasks and queues. Flower provides a web-based interface that allows users to view the status of the Celery workers, the tasks in the queue, and the task execution times. It is configured to run on port 5555 and can be accessed via the \lstinline!/flower! endpoint thanks to NginX. The Flower service communicates with the Redis service to retrieve task information.
 
-Moreover, Grafana\footnote{Available at \url{https://grafana.com/}.}, Prometheus\footnote{Available at \url{https://prometheus.io/}.} and Celery Exporter\footnote{Available at \url{https://github.com/danihodovic/celery-exporter}.} work together to provide a comprehensive monitoring solution with a user-friendly dashboard. Prometheus serves as a data source for Grafana, receiving metrics from the Celery workers via the Celery Exporter. The Celery Exporter is a lightweight service that exposes Celery metrics to Prometheus, allowing it to scrape and store these metrics. Grafana then visualizes the metrics in a dashboard. The Grafana service is configured to run on port 3001 and can be accessed via the \lstinline!/grafana! endpoint. Prometheus itself is configured to run on port 9090 and can be accessed via the \lstinline!/prometheus! endpoint. The configuration files for Prometheus and Grafana are located in the \lstinline!monitoring! directory.
+Moreover, Grafana\footnote{Available at \url{https://grafana.com/}.}, Prometheus\footnote{Available at \url{https://prometheus.io/}.} and Celery Exporter\footnote{Available at \url{https://github.com/danihodovic/celery-exporter}.} work together to provide a comprehensive monitoring solution with a user-friendly dashboard. Prometheus serves as a data source for Grafana, receiving metrics from the Celery workers via the Celery Exporter. The Celery Exporter is a lightweight service that exposes Celery metrics to Prometheus, allowing it to scrape and store these metrics. Grafana then visualizes the metrics in a dashboard. The Grafana service is configured to run on port 3001 and can be accessed via the \lstinline!/grafana! endpoint. Prometheus itself is configured to run on port 9090 and can be accessed via the \lstinline!/prometheus! endpoint. The configuration files for Prometheus and Grafana are located in the \lstinline!monitoring! directory. Figure~\ref{fig:grafana} shows an example of the Grafana dashboard.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=\textwidth]{img/grafana.png}
+    \caption{Screenshot of the Grafana dashboard displaying Prometheus statistics.}
+    \label{fig:grafana}
+\end{figure}
 
 Although the monitoring services are useful, they are not always necessary for the application to function. This is the reason why a monitoring flag mechanism has been introduced. The \lstinline!monitoring-flag! service creates a flag file that enables the monitoring services, while the \lstinline!remove-monitoring-flag! service removes the flag file, disabling the monitoring services. The container to remove the flag file is run every time the application is started, so the monitoring services are disabled by default. If the developer wants to enable the monitoring services, they do so by running the Docker Compose command with the \lstinline|--profile monitoring| option, which turns on the monitoring profile. This activates the \lstinline!monitoring-flag! service, creating the flag file and enabling the monitoring services. The monitoring services are then accessible via the respective endpoints thanks to the flexible configuration of NginX. Otherwise, the endpoints are not available, and the containers are not started to save RAM and CPU resources.
 
 As most of the functionality of the frontend is visual, the frontend is tested manually. Still, some bugs can be caught using Sentry\footnote{Available at \url{https://sentry.io/}}, which is a tool for error tracking and monitoring. Sentry is configured to capture errors in the frontend, providing detailed information about the errors, including stack traces. This allows quicker identification of the bugs in the application. The Sentry service is integrated using the environment variables in the \lstinline|frontend| directory (see the example environment file \lstinline!frontend/.env.template!).
-
-\xxx{TODO: include screenshots of the interfaces}
-
 
 \section{Deployment}
 \label{sec:deployment}
