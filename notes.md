@@ -332,7 +332,7 @@
 - [x] podivat se, co to tedy je DCC a pripadne prejmenovat v tom nazvu grafu
 - [x] veci ohledne trajektorie prehodit jako podsekci backendu
 - [x] zmenit diagram architektury v kapitole 3
-- [ ] popsat detailne jak trajektorie funguje v Mol*
+- [x] popsat detailne jak trajektorie funguje v Mol*
 - [ ] vymyslet use case a napsat ho
 - [x] prepsat intro a zkontrolovat obecne reference mezi kapitolami/sekcemi
 - [ ] zeptat se kam psat o AI (GPT etc)?
