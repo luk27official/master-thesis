@@ -338,6 +338,8 @@
 - [ ] zeptat se kam psat o AI (GPT etc)?
 - [ ] checknout gramatiku pres Grammarly
 - [ ] opravit \lstinline, sjednotit format, dat si pozor na keywords - jako je template, public etc.
+- [ ] precist si intro a zaver, jestli to dava smysl a odpovida to tem napsanym kapitolam
+- [ ] napsat abstrakt
 
 ### Sanity check (before submission)
 
