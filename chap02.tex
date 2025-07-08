@@ -27,7 +27,7 @@ The CryptoShow pipeline consists of several steps that work together to predict 
 \section{Protein Structure Input and Sequence Extraction}
 \label{sec:structure-input}
 
-The first step in the pipeline is to provide a protein structure in either PDB or mmCIF format. The structure can be obtained from the RCSB PDB database \cite{berman2000protein} or the AlphaFold database \cite{jumper2021highly}, or it can be a custom structure file. The structure is then parsed to extract the protein sequence for the CB-Model prediction.
+The first step in the pipeline is to provide a protein structure in either PDB or mmCIF format. The structure can be obtained from the PDB database \cite{berman2000protein} or the AlphaFold database \cite{jumper2021highly}, or it can be a custom structure file. The structure is then parsed to extract the protein sequence for the CB-Model prediction.
 
 \section{Prediction Using the CB-Model}
 \label{sec:prediction}
@@ -51,7 +51,14 @@ Our method relies on three parameters to control the clustering process:
     \item \textbf{Minimum (CB-Model) prediction score} - This parameter defines the minimum score a residue must have to be marked as a high-scoring residue. We opted for a value of 0.7 (inspired by the CryptoBench publication \cite{vskrhak2025cryptobench}), as this covers most of the dataset's binding residues, while also not marking the entire protein as a binding site candidate.
 \end{itemize}
 
-After the clustering is performed, we need to smoothen the clusters to enhance the predictions. This is caused by the fact that the clustering is performed only on the high-scoring residues, which can lead to missing residues in the binding site (as shown in Section~\ref{sec:pipeline-evaluation} \xxx{TODO: add a picture of the difference between non-smoothed and smoothed pocket}). To address this, we collaborated with Vít Škrhák to develop an additional machine learning model. This model incorporates the protein sequence, the predicted clusters from the clustering step (along with sequence information), precomputed ESM-2 embeddings, and residue distance matrix derived from the structure file. Altogether, this \textbf{smoothing model} is then trained on a modified version of the CryptoBench dataset, using the annotated cryptic binding sites as the train and test set.
+After the clustering is performed, we need to smoothen the clusters to enhance the predictions. This is caused by the fact that the clustering is performed only on the high-scoring residues, which can lead to missing residues in the binding site (as shown in Section~\ref{sec:pipeline-evaluation}, and in Figure~\ref{fig:smoothing-difference}). To address this, we collaborated with Vít Škrhák to develop an additional machine learning model. This model incorporates the protein sequence, the predicted clusters from the clustering step (along with sequence information), precomputed ESM-2 embeddings, and residue distance matrix derived from the structure file. Altogether, this \textbf{smoothing model} is then trained on a modified version of the CryptoBench dataset, using the annotated cryptic binding sites as the train and test set.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/smoothing-difference.png}
+    \caption{Difference between the predicted cryptic binding site before and after the smoothing step in the 1LYZ protein structure (Real-space refinement of the structure of hen egg-white lysozyme). The residues colored in blue depict the residues predicted as binding by the CB-Model, while the residues colored in red are the residues added by the smoothing model. Visualized using Mol*.}
+    \label{fig:smoothing-difference}
+\end{figure}
 
 The initial step involves preparing the dataset for training of the smoothing model. The dataset, consisting of 5493 cryptic binding sites, is split into training and testing sets using an 80:20 ratio. The sets follow the same structure as the CryptoBench dataset to prevent data leakage, i.e. the train set from CryptoBench is used as the train set for the smoothing model, and the test set from CryptoBench is used as the test set for the smoothing model. The test set is further filtered by the following criteria:
 
@@ -80,7 +87,7 @@ After the computation of the distance matrices, the next step involves generatin
 
 For negative examples, we identify residues that are located within a smaller threshold of 10~\AA{} from binding residues but are not themselves annotated as binding residues. These residues are labeled as negative examples. This strategy helps the model learn to differentiate between actual binding residues and nearby residues that do not participate in binding.
 
-For training, we begin by calculating the class weights and loading the dataset. The neural network, which uses the same architecture described in Section \ref{sec:prediction}, is then trained. Due to the large size of the CryptoBench dataset, which includes the majority of available PDB structures, cross-validation was not employed during training \xxx{TODO: explain the cross-validation more}. Instead, a train-test split was used, following the original CryptoBench partitioning to avoid data leakage as mentioned before. Evaluation of the model performance is described in Section~\ref{sec:pipeline-evaluation}.
+For training, we begin by calculating the class weights and loading the dataset. The neural network, which uses the same architecture described in Section \ref{sec:prediction}, is then trained. Cross-validation was not performed here primarily because the CryptoBench dataset is already partitioned into well-defined train and test sets, minimizing the risk of data leakage. Additionally, cross-validation would not provide significant additional benefit given the dataset's size and the existing split. Therefore, a straightforward train-test split was used, following the original CryptoBench partitioning. Evaluation of the model performance is described in Section~\ref{sec:pipeline-evaluation}.
 
 The complete source code for the smoothing methodology can be found in the \lstinline!cryptoshow-benchmark/smoothing! directory. This includes scripts for model training, prepared training and testing datasets, inference, and an utility script for distance matrix computation.
 

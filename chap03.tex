@@ -91,7 +91,7 @@ First, the target structure for animation is downloaded from AHoJ. Then, combine
 
 Next, we need to determine which residues should be included in the animation. To achieve this, we employ a straightforward approach by computing the longest common subsequence of both protein sequences. This ensures that only residues present in both structures are animated. The subsequence length must be greater than zero due to the inherent logic of AHoJ. Once the common subsequence is identified, the corresponding residues from both structures are extracted. The MDAnalysis library is utilized to perform this operation at the atomic level, as PDB files store coordinates for individual atoms rather than residues. Additionally, all ligands are extracted from both structures to include them in the final animation.
 
-In the end, the trajectory is generated using cubic spline interpolation \cite{mckinley1998cubic} implemented in the SciPy library \cite{virtanen2020scipy}. A trimmed PDB file containing only the relevant residues and ligands is created, along with a trajectory file \xxx{TODO: add trajectory file format} featuring interpolated coordinates across a predetermined number of frames (set arbitrarily to 50). The final visualization presents the original structure at 50\% opacity and the target holo structure at full opacity, as illustrated in Figure \ref{fig:trajectory-animation}.
+In the end, the trajectory is generated using cubic spline interpolation \cite{mckinley1998cubic} implemented in the SciPy library \cite{virtanen2020scipy}. A trimmed PDB file containing only the relevant residues and ligands is created, along with a trajectory file in the XTC format (see Section~\ref{sec:xtc-format}) featuring interpolated coordinates across a predetermined number of frames (set arbitrarily to 50). The final visualization presents the original structure at 50\% opacity and the target holo structure at full opacity, as illustrated in Figure \ref{fig:trajectory-animation}.
 
 \begin{figure}[htbp]
     \centering
@@ -155,7 +155,7 @@ The file also provides additional methods essential for the visualization proces
 
 For the trajectory animation, the original structure is displayed with an opacity of 0.5, making it visually distinct from the apo-holo pair returned by AHoJ. The aligned structure and the generated trajectory file from the backend are both loaded into the Mol* viewer. The trajectory file contains the intermediate states of the aligned structure. Mol* then animates these states, visually illustrating the conformational transition of the protein.
 
-\xxx{TODO: screenshots - maybe refer to the 4th chapter instead}
+Screenshots demonstrating the Mol* viewer in use are presented in Chapter~\ref{chap:user-documentation}.
 
 \section{Tests and Monitoring}
 \label{sec:tests-monitoring}
