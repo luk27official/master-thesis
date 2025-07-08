@@ -3,7 +3,7 @@
 
 This chapter offers an overview of the bioinformatics field, focusing on key molecular biology concepts needed in the context of this thesis. It covers proteins, their sequences and structures, ligands, binding sites (including cryptic binding sites), major biological databases and file formats, and widely used tools for visualization, binding site prediction, and structural analysis.
 
-\section{Proteins, Ligands, Amino Acids}
+\section{Proteins, Ligands, and Amino Acids}
 \label{sec:proteins}
 
 \textbf{Proteins} are vital macromolecules involved in numerous biological functions, such as catalyzing biochemical reactions, offering structural support, and regulating cellular activities \cite{cooper2022cell}. They consist of \textbf{amino acids} connected by \textbf{peptide bonds}, forming \textbf{polypeptide chains}. Amino acids are molecules containing an amino group (\(-NH_2\)), a carboxyl group (\(-COOH\)), and a unique side chain (\(R\) group) that determines the amino acid's properties. The individual amino acid units within the polypeptide chain are referred to as \textbf{residues}, a term that may be used interchangeably with amino acids throughout this thesis. The sequence of these amino acids in a polypeptide chain is known as the \textbf{primary structure} of a protein. The sequence of the protein determines its function \cite{nelson2008lehninger}, \cite{voet2010biochemistry}. There are \textbf{20 standard amino acids}, each possessing distinct characteristics that affect protein folding and interactions with other molecules. While many non-standard amino acids are used in drug discovery and development \cite{dumas2015designing}, this thesis will primarily consider the 20 standard amino acids that form the basic building blocks of proteins.
@@ -38,7 +38,11 @@ Protein function is largely determined by interactions with other molecules, kno
 
 \textbf{Binding sites} are distinct regions on a protein where ligands can bind and interact. These sites typically manifest as cavities or grooves on the protein surface and are frequently linked to conformational changes that influence protein function. Proteins with a ligand bound are termed \textbf{holo} conformations, while those lacking a ligand are called \textbf{apo} conformations. In holo conformations, the binding site is defined by the ligand’s position, whereas apo conformations may contain several potential binding sites, also commonly known as \textbf{pockets}.
 
-\textbf{Cryptic binding sites (CBSs)} are regions on proteins that are not visible or accessible in the unbound (apo) structure but can form and become available for ligand binding following conformational changes. These sites typically appear only after ligand interaction or other molecular events that induce structural rearrangements. Computational methods such as CryptoBench \cite{vskrhak2025cryptobench} have been created to predict cryptic binding sites. A significant contribution in this area is CryptoSite \cite{cimermancic2016cryptosite}, which leverages known apo-holo protein pairs to identify CBSs, offering an alternative to time-consuming molecular dynamics simulations. Both of the methods will be covered in more detail in Section~\ref{sec:related-tools}.
+\textbf{Cryptic binding sites (CBSs)} are regions on proteins that are not visible or accessible in the unbound (apo) structure but can form and become available for ligand binding following conformational changes. These sites typically appear only after ligand interaction or other molecular events that induce structural rearrangements.
+
+A key concept in the study of CBSs is the use of \textbf{apo–holo protein pairs}. An \textbf{apo structure} refers to a protein in its unbound state (without a ligand), while a \textbf{holo structure} is the same protein bound to a ligand. Comparing these paired structures allows researchers to identify binding sites that are only present or accessible in the holo form, thus revealing cryptic sites.
+
+Computational methods such as CryptoBench \cite{vskrhak2025cryptobench} have been created to predict cryptic binding sites. A significant contribution in this area is CryptoSite \cite{cimermancic2016cryptosite}, which leverages known apo–holo protein pairs to identify CBSs, offering an alternative to time-consuming molecular dynamics simulations. Both of the methods will be covered in more detail in Section~\ref{sec:related-tools}.
 
 \section{Databases and File Formats}
 \label{sec:dbs-formats}
@@ -97,12 +101,12 @@ The FASTA file format is a widely used, text-based format for representing biolo
     ]{code/fasta_example.fasta}
 \end{figure}
 
-\section{Related Tools, Projects}
+\section{Related Tools and Projects}
 \label{sec:related-tools}
 
 This section is dedicated to the most relevant tools and projects important for the work presented in this thesis.
 
-\subsection{P2Rank, PrankWeb}
+\subsection{P2Rank and PrankWeb}
 \label{sec:prankweb-p2rank}
 
 P2Rank is a Groovy/Java based standalone tool for predicting binding sites in protein structures. The P2Rank algorithm is based on machine learning. The structure is covered with a grid of points on the protein's solvent accessible surface, and each point is assigned a score based on the likelihood of being a binding site based on the local environment of the point. Then, the points are clustered and ranked based on their scores. The pre-trained tool does not rely on any external databases nor templates. The method is widely adapted due to its reliable and accurate predictions and speed \cite{krivak2018p2rank}. Source codes for P2Rank are available at \url{https://github.com/rdk/p2rank}.
