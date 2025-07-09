@@ -317,16 +317,8 @@
 - [x] zlepsit osnovu a zacit premyslet o textu
 - [x] udelat benchmark na moji clustering metodu pomoci DCC/DCA
 - [x] spocitat embeddingy pro nejaky subset CryptoBench train/test setu
-- [ ] napsat text :)
-- [ ] nezapomenout pridat do final folderu i benchmarking, nejlepe asi do slozky primo se zdrojaky od CryptoShow
-- [ ] checknout xxx/TODOs v celem textu
-- [ ] checknout, ze existuji vsechny reference na obrazky, sekce atd.
-- [ ] checknout, ze nikde nemam overflow textu pres okraj stranky, pripadne potom opravit
 - [x] zkontrolovat struktury z DC a opravit pripadne chyby v kodu...
-- [ ] pridat licenci do kodu
 - [x] pridat do README requirements pro deployment
-- [ ] udelat PDB IDs konzistentni - vsude velkymi pismeny a zkontrolovat, jak formatujeme ty nazvy
-- [ ] pridat zkratky (seznam)
 - [x] podivat se, jestli jde nejak ty grafy exportovat jako PDF - potom by to asi bylo lepsi nez PNG
 - [x] na zacatek 2. kapitoly pridat nejaky diagram, ktery obsahuje celou tu pipeline, co vede k predikci CBS, mam oznacit ty casti, ktere jsem delal ja a ktere uz byly hotove
 - [x] vysvetlit 5 A threshold pomoci vzdalenosti C-Alpha atomu
@@ -337,13 +329,23 @@
 - [x] veci ohledne trajektorie prehodit jako podsekci backendu
 - [x] zmenit diagram architektury v kapitole 3
 - [x] popsat detailne jak trajektorie funguje v Mol*
-- [ ] vymyslet use case a napsat ho
 - [x] prepsat intro a zkontrolovat obecne reference mezi kapitolami/sekcemi
+- [ ] udelat PDB IDs konzistentni - vsude velkymi pismeny a zkontrolovat, jak formatujeme ty nazvy
+- [ ] pridat zkratky (seznam)
+- [ ] vymyslet use case a napsat ho
+- [ ] pridat licenci do kodu
 - [ ] zeptat se kam psat o AI (GPT etc)?
 - [ ] checknout gramatiku pres Grammarly
-- [ ] opravit \lstinline, sjednotit format, dat si pozor na keywords - jako je template, public etc.
+- [ ] opravit \lstinline, sjednotit format (vykricniky nebo vertical bars)
+- [ ] dat si pozor na keywords - jako je template, public etc., udelat, aby to nebylo modre
 - [ ] precist si intro a zaver, jestli to dava smysl a odpovida to tem napsanym kapitolam
 - [ ] napsat abstrakt
+- [ ] napsat text :)
+- [ ] nezapomenout pridat do final folderu i benchmarking, nejlepe asi do slozky primo se zdrojaky od CryptoShow
+- [ ] pred uploadnutim do SISu oznacit verzi na GH nejakym tagem a napsat to do toho appendixu
+- [ ] checknout xxx/TODOs v celem textu
+- [ ] checknout, ze existuji vsechny reference na obrazky, sekce atd.
+- [ ] checknout, ze nikde nemam overflow textu pres okraj stranky, pripadne potom opravit
 
 ### Sanity check (before submission)
 
