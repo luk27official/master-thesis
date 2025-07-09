@@ -191,6 +191,10 @@
 
 - viz thesis goals
 
+## 9.7.2025
+
+- dopsat posledni kapitoly, pristi tyden jeste 1 meeting
+
 ## TODOs checklist
 
 ### DevOps
@@ -207,7 +211,7 @@
 - [x] zkusit pridat React render info - https://www.youtube.com/watch?v=JpJYm3B6UwM - React Developer Tools do Chrome
 - [x] promyslet testy (user acceptance? nebo nejake integracni, Selenium etc?)
 - [x] fix vytvareni slozek apod.
-- [ ] manualne to zkusit na par strukturach (i custom)
+- [x] manualne to zkusit na par strukturach (i custom)
 - [x] koupit si custom domenu? pog
 - [x] zkusit misto `pip` pouzit `uv` package manager (melo by to byt rychlejsi)
 - [x] NginX maintenance mode - nastavit?
@@ -321,7 +325,7 @@
 - [x] zkontrolovat struktury z DC a opravit pripadne chyby v kodu...
 - [ ] pridat licenci do kodu
 - [x] pridat do README requirements pro deployment
-- [ ] udelat PDB IDs konzistentni - vsude velkymi pismeny
+- [ ] udelat PDB IDs konzistentni - vsude velkymi pismeny a zkontrolovat, jak formatujeme ty nazvy
 - [ ] pridat zkratky (seznam)
 - [x] podivat se, jestli jde nejak ty grafy exportovat jako PDF - potom by to asi bylo lepsi nez PNG
 - [x] na zacatek 2. kapitoly pridat nejaky diagram, ktery obsahuje celou tu pipeline, co vede k predikci CBS, mam oznacit ty casti, ktere jsem delal ja a ktere uz byly hotove
