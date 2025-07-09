@@ -60,8 +60,6 @@ After the clustering is performed, we need to smoothen the clusters to enhance t
     \label{fig:smoothing-difference}
 \end{figure}
 
-\xxx{TODO: fix the picture here - I want a white background...}
-
 The initial step involves preparing the dataset for training of the smoothing model. The dataset, consisting of 5493 cryptic binding sites, is split into training and testing sets using an 80:20 ratio. The sets follow the same structure as the CryptoBench dataset to prevent data leakage, i.e. the train set from CryptoBench is used as the train set for the smoothing model, and the test set from CryptoBench is used as the test set for the smoothing model. The test set is further filtered by the following criteria:
 
 \begin{itemize}
