@@ -12,7 +12,7 @@ interface PocketHeaderProps {
 const PocketHeader = ({ pocket, isExpanded, toggleExpand }: PocketHeaderProps) => (
     <div className="pocket-header" onClick={toggleExpand}>
         <div className="pocket-header-left">
-            <span className="toggle-icon">{isExpanded ? "▼" : ">"}</span>
+            <span className="toggle-icon">{isExpanded ? "v" : ">"}</span>
             <span className="pocket-id" style={{ color: getColorString(pocket.pocket_id) }}>
                 Pocket {pocket.pocket_id}
             </span>
