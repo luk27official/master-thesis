@@ -18,15 +18,20 @@ Once the computation is finished, the user is presented with a link to results o
     \item A table listing the identified cryptic binding sites with expandable rows. Each entry includes details about the involved residues, their scores, and a PyMOL selection string for visualizing the site in PyMOL. For each pocket (in PDB structures), users can initiate an AHoJ query to obtain apo-holo pairs and visualize possible conformational changes. Results can also be downloaded as a ZIP archive.
 \end{itemize}
 
-The user interface is shown in Figure~\ref{fig:ui}.
-
-\xxx{TODO: maybe split the UI screenshot into two parts, one for the 3D visualization and one for the table of cryptic binding sites.}
+The 3D visualization in Mol* with the tool box is shown in Figure~\ref{fig:ui-molstar}. The results table with expandable rows is shown in Figure~\ref{fig:ui-table}.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{img/ui.png}
-    \caption{User interface of the CryptoShow application. The left side shows the 3D visualization of the protein structure of Calcium-free Calmodulin (1CFD), along with the Crystal Structure of Myosin-1c tail in complex with Calmodulin (4R8G), with the visualization tool box underneath, while the right side displays the table of found cryptic binding sites.}
-    \label{fig:ui}
+    \includegraphics[width=\textwidth]{img/ui-molstar.png}
+    \caption{Mol* 3D visualization of the protein structure of Calcium-free Calmodulin (1CFD), along with the Crystal Structure of Myosin-1c tail in complex with Calmodulin (4R8G) with the visualization tool box underneath.}
+    \label{fig:ui-molstar}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{img/ui-table.png}
+    \caption{Table of cryptic binding sites for the Calcium-free Calmodulin (1CFD) protein structure with expandable rows, showing details about the involved residues, their scores, and a PyMOL selection string for visualizing the site in PyMOL.}
+    \label{fig:ui-table}
 \end{figure}
 
 \section{Use Case: Predicting Cryptic Binding Sites in DHFR}
@@ -37,9 +42,16 @@ To illustrate the intended use of the CryptoShow application, we examine a real-
 \subsection{Case Study: Dihydrofolate Reductase (DHFR)}
 \label{subsec:dhfr-example}
 
-As a case study, we use the protein dihydrofolate reductase (DHFR) from \textit{Escherichia coli}, an important target in antimicrobial drug development. We begin with the apo structure, PDB ID \textbf{2W9T}, which shows DHFR in its unbound state with no visible deep binding pockets beyond the known active site.
+As a case study, we use the protein dihydrofolate reductase (DHFR) from \textit{Escherichia coli}, an important target in antimicrobial drug development \cite{heaslet2009structural}. We begin with the apo structure, PDB ID \textbf{2W9T}, which shows DHFR in its unbound state with no visible deep binding pockets beyond the known active site.
 
-Using the CryptoShow application, we predict potential cryptic pockets based solely on the apo structure. One binding site is identified near the so-called Met20 loop, a flexible region of the protein known to undergo conformational changes. This prediction is made without prior knowledge of any ligand-bound structures. \xxx{TODO: add a screenshot}
+Using the CryptoShow application, we predict potential cryptic pockets based solely on the apo structure. One binding site is identified near the so-called Met20 loop\footnote{The Met20 loop is a flexible segment of DHFR, named after the methionine amino acid at position 20 (residue ID 42 in this structure), and is known for its role in modulating access to the active site through conformational changes.}, a flexible region of the protein known to undergo conformational changes. The prediction is shown in Figure~\ref{fig:ui-cryptic-pocket}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{img/2w9t_prediction.png}
+    \caption{Predicted cryptic binding sites in the apo structure of DHFR (PDB ID 2W9T) using the CryptoShow application. The pockets are highlighted in different colors, with the Met20 binding site shown in light yellow. Visualized using Mol*.}
+    \label{fig:ui-cryptic-pocket}
+\end{figure}
 
 \subsection{Validation Using Holo Structure}
 \label{subsec:holo-validation}

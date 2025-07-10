@@ -332,8 +332,8 @@
 - [x] prepsat intro a zkontrolovat obecne reference mezi kapitolami/sekcemi
 - [ ] udelat PDB IDs konzistentni - vsude velkymi pismeny a zkontrolovat, jak formatujeme ty nazvy
 - [ ] pridat zkratky (seznam) podle toho, co vsude mam v praci, pak tam pripadne pridat moznost prokliku z textu anebo obracene
-- [ ] vymyslet use case a napsat ho
-- [ ] pridat licenci do kodu
+- [x] vymyslet use case a napsat ho
+- [ ] pridat licenci do kodu, napsat to i do tech zdrojaku
 - [ ] zeptat se kam psat o AI (GPT etc)?
 - [ ] checknout gramatiku pres Grammarly
 - [ ] opravit \lstinline, sjednotit format (vykricniky nebo vertical bars)
