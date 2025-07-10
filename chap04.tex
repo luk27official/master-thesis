@@ -20,6 +20,8 @@ Once the computation is finished, the user is presented with a link to results o
 
 The user interface is shown in Figure~\ref{fig:ui}.
 
+\xxx{TODO: maybe split the UI screenshot into two parts, one for the 3D visualization and one for the table of cryptic binding sites.}
+
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{img/ui.png}
@@ -27,7 +29,33 @@ The user interface is shown in Figure~\ref{fig:ui}.
     \label{fig:ui}
 \end{figure}
 
-\section{Use Cases}
-\label{sec:use-cases}
+\section{Use Case: Predicting Cryptic Binding Sites in DHFR}
+\label{sec:use-case}
 
-\xxx{TODO}
+To illustrate the intended use of the CryptoShow application, we examine a real-world example from computational drug discovery. This scenario demonstrates how structural analysis and simulation tools can uncover cryptic binding sites in proteins—sites that are not evident in ligand-free structures but emerge in ligand-bound forms or during dynamic conformational changes. This example is inspired by the work of \citet{meller2023predicting}.
+
+\subsection{Case Study: Dihydrofolate Reductase (DHFR)}
+\label{subsec:dhfr-example}
+
+As a case study, we use the protein dihydrofolate reductase (DHFR) from \textit{Escherichia coli}, an important target in antimicrobial drug development. We begin with the apo structure, PDB ID \textbf{2W9T}, which shows DHFR in its unbound state with no visible deep binding pockets beyond the known active site.
+
+Using the CryptoShow application, we predict potential cryptic pockets based solely on the apo structure. One binding site is identified near the so-called Met20 loop, a flexible region of the protein known to undergo conformational changes. This prediction is made without prior knowledge of any ligand-bound structures. \xxx{TODO: add a screenshot}
+
+\subsection{Validation Using Holo Structure}
+\label{subsec:holo-validation}
+
+To evaluate the accuracy of the prediction, we consult the AHoJ database to identify known holo structures of DHFR. Indeed, a holo form is available: PDB ID \textbf{2W9S}, in which the protein is bound to the antimicrobial drug Trimethoprim. In this structure, the Met20 loop shifts position, exposing a pocket that matches the one predicted by the CryptoShow application from the apo form. The conformational change of the Met20 loop can be visualized in the application.
+
+This comparison between 2W9T (apo) and 2W9S (holo) provides a validation of the cryptic pocket prediction. The application was able to identify a site that is not visible in the apo structure but becomes occupied by a ligand in the holo structure.
+
+\subsection{Further Exploration via Molecular Dynamics}
+\label{subsec:md-exploration}
+
+To further investigate the dynamic opening of the predicted pocket, one can perform molecular dynamics (MD) simulations using tools such as GROMACS~\cite{van2005gromacs}, starting from the 2W9T structure. While CryptoShow provides only a brief, illustrative visualization of the conformational change, MD simulations offer a detailed and realistic exploration of the protein's dynamics. During the simulation, the Met20 loop displays conformational flexibility, and the predicted pocket transiently appears. Pocket detection tools such as Fpocket~\cite{le2009fpocket} and TRAPP~\cite{kokh2013trapp} can be used to monitor the pocket's volume and accessibility throughout the simulation.
+
+The results support the idea that the site is not an artifact of ligand binding, but a real conformational feature that may be exploited for inhibitor design and further studies.
+
+\subsection{Use Case Conclusion}
+\label{subsec:use-case-conclusion}
+
+This use case demonstrates how the CryptoShow application can be used to predict cryptic binding sites from an apo structure, and how known holo structures, such as 2W9S, can be used to validate the accuracy of those predictions. It highlights the practical application of structural bioinformatics and simulation tools in supporting early-stage drug discovery efforts, demonstrating the real-world utility of the developed application in computational structural biology research.
