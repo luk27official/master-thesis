@@ -193,14 +193,14 @@ CryptoShow is distributed as a fully dockerized application, enabling simple dep
 Before starting, the \lstinline|.env| file must be created in the root folder to specify required environment variables. The variables are listed in the \lstinline|.env.template| file, and include the following:
 
 \begin{itemize}
-    \item \textbf{ENABLE\_SSL}: \lstinline|<true|false>| - Enable or disable SSL. Recommended for production.
-        \item \textbf{SSL\_PATH}: \lstinline|<path to ssl certificate and key folder>| - Path to SSL certificate and key (not required if SSL is disabled).
-        \item \textbf{DOMAIN}: \lstinline|<domain name>| - Domain name for the deployment.
-        \item \textbf{UID}: \lstinline|<user id (default: 2727)>| - Linux user ID for running containers. Make sure that the user has sufficient permissions to the filesystem.
-        \item \textbf{GID}: \lstinline|<group id (default: 2727)>| - Linux group ID for running containers.
-        \item \textbf{HTPASSWD\_PATH}: \lstinline|<path to htpasswd file>| - Path to HTTP basic auth password file for monitoring access.
-        \item \textbf{HTTP\_PROXY}: \lstinline|<http proxy URL>| - HTTP proxy URL for development behind a proxy (optional).
-        \item \textbf{HTTPS\_PROXY}: \lstinline|<https proxy URL>| - HTTPS proxy URL (optional).
+    \item \textbf{ENABLE\_SSL}: \lstinline|<true/false>| - Enable or disable SSL. Recommended for production.
+    \item \textbf{SSL\_PATH}: \lstinline|<path to ssl certificate and key folder>| - Path to SSL certificate and key (not required if SSL is disabled).
+    \item \textbf{DOMAIN}: \lstinline|<domain name>| - Domain name for the deployment.
+    \item \textbf{UID}: \lstinline|<user id (default: 2727)>| - Linux user ID for running containers. Make sure that the user has sufficient permissions to the filesystem.
+    \item \textbf{GID}: \lstinline|<group id (default: 2727)>| - Linux group ID for running containers.
+    \item \textbf{HTPASSWD\_PATH}: \lstinline|<path to htpasswd file>| - Path to HTTP basic auth password file for monitoring access.
+    \item \textbf{HTTP\_PROXY}: \lstinline|<http proxy URL>| - HTTP proxy URL for development behind a proxy (optional).
+    \item \textbf{HTTPS\_PROXY}: \lstinline|<https proxy URL>| - HTTPS proxy URL (optional).
 \end{itemize}
 
 Once the \lstinline|.env| file has been created, the next step is to build the Docker images for all services specified in the \lstinline!docker-compose.yml! file. This can be accomplished using the standard \lstinline|docker compose build| command. Alternatively, Docker Bake\footnote{Available at \url{https://docs.docker.com/build/bake/}.}, a tool that enables parallel building of multiple Docker images, may be used. To use Docker Bake, run \lstinline|docker buildx bake|.
