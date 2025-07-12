@@ -89,7 +89,7 @@ For negative examples, we identify residues that are located within a smaller th
 
 For training, we begin by calculating the class weights and loading the dataset. The neural network, which uses the same architecture described in Section \ref{sec:prediction}, is then trained. Cross-validation was not performed here primarily because the CryptoBench dataset is already partitioned into well-defined train and test sets, minimizing the risk of data leakage. Additionally, cross-validation would not provide significant additional benefit given the dataset's size and the existing split. Therefore, a straightforward train-test split was used, following the original CryptoBench partitioning. Evaluation of the model performance is described in Section~\ref{sec:pipeline-evaluation}.
 
-The complete source code for the smoothing methodology can be found in the \lstinline!cryptoshow-benchmark/smoothing! directory. This includes scripts for model training, prepared training and testing datasets, inference, and an utility script for distance matrix computation.
+The complete source code for the smoothing methodology can be found in the \lstinline|cryptoshow-benchmark/smoothing| directory. This includes scripts for model training, prepared training and testing datasets, inference, and an utility script for distance matrix computation.
 
 \section{Pipeline Evaluation}
 \label{sec:pipeline-evaluation}
@@ -186,4 +186,4 @@ The results demonstrate improved performance. As shown in Figures \ref{fig:clust
     \label{fig:clustering-benchmark-smoothened-dice}
 \end{figure}
 
-The evaluation notebooks including the full pipeline and other source codes are available in the \lstinline!cryptoshow-benchmark/benchmark_experiments! directory.
+The evaluation notebooks including the full pipeline and other source codes are available in the \lstinline|cryptoshow-benchmark/benchmark_experiments| directory.

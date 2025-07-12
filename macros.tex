@@ -113,6 +113,10 @@
   columns=fixed,
   basewidth=0.5em,
   fontadjust=true}
+
+% Override \lstinline to use only black color
+\let\oldlstinline\lstinline
+\renewcommand{\lstinline}[2][]{\oldlstinline[basicstyle=\ttfamily\color{black},identifierstyle=\color{black},commentstyle=\color{black},stringstyle=\color{black},keywordstyle=\color{black},numberstyle=\color{black},#1]{#2}}
 \fi
 
 % Floating listings, used in the same way as the figure environment
