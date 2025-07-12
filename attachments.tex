@@ -24,7 +24,7 @@ The following list summarizes the API endpoints exposed by the FastAPI server.
     \item \textbf{POST /calculate-custom} - Calculates the prediction for an uploaded PDB/mmCIF file.
     \item \textbf{GET /task-status/\{task\_id\}} - Checks the status of a Celery task. Returns status and result if available.
     \item \textbf{GET /file/\{task\_hash\}/\{filename\}} - Downloads a file (e.g., results) for a given task.
-    \item \textbf{GET /animate/\{task\_hash\}/\{aligned\_structure\_filename\}/\{target\_chains\}} - Creates an animated trajectory file for selected chains and a given structure file.
+    \item \textbf{GET /animate/\{task\_hash\}/\{aligned\_structure\_filename\}\-/\{target\_chains\}} - Creates an animated trajectory file for selected chains and a given structure file.
     \item \textbf{WS /ws/task-status/\{task\_id\}} - WebSocket endpoint for real-time Celery task status updates.
     \item \textbf{POST /proxy/ahoj/job} - Proxies a POST request to \lstinline|apoholo.cz| for job submission.
     \item \textbf{GET /proxy/ahoj/\{task\_hash\}/\{path\}} - Proxies a GET request to \lstinline|apoholo.cz| for file retrieval.
