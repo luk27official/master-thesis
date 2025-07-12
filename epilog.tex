@@ -1,4 +1,10 @@
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
 
-\xxx{TODO: add a summary of the work done in this thesis, the main findings, and potential future work.}
+Cryptic binding sites are important for understanding protein function and drug design. This thesis presented a methodology for clustering individual residue-level predictions into grouped cryptic binding sites, including a novel approach of smoothing the final clustering results using a separate machine learning model. The methodology was evaluated on the CryptoBench dataset, which contains a set of protein structures with known cryptic binding sites. The evaluation demonstrates that combining the clustering method with the smoothing model improves the original results.
+
+The second goal was to create the CryptoShow web application, which provides a user-friendly interface for detecting and visualizing cryptic binding sites in protein structures utilizing the CryptoBench model and the clustering methodology. The web application allows users to easily visualize the prediction results and explore the cryptic binding sites. Also, an integration with the AHoJ tool was implemented, allowing users to perform additional searches for similar protein structures and vizualize the potential conformational changes in the protein structure.
+
+During the development of the CryptoShow application, we focused on a modular, service-oriented architecture, which allows for easy integration of new features and models in the future.
+
+Further improvements include the option to select other structure model of the uploaded structure (instead of the first one), integration of more models, and the option to predict cryptic binding sites just from the protein sequence. Also, the clustering could be improved further, as the current methodology prefers creating more smaller pockets, instead of forming bigger ones.
