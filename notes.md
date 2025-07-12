@@ -339,8 +339,8 @@
 - [ ] opravit \lstinline, sjednotit format (vykricniky nebo vertical bars)
 - [ ] u listingu se podivat obecne na barvy a udelat to nejak sjednocene
 - [ ] dat si pozor na keywords - jako je template, public etc., udelat, aby to nebylo modre
-- [ ] precist si intro a zaver, jestli to dava smysl a odpovida to tem napsanym kapitolam
-- [ ] napsat abstrakt
+- [x] precist si intro a zaver, jestli to dava smysl a odpovida to tem napsanym kapitolam
+- [x] napsat abstrakt
 - [ ] napsat text :)
 - [ ] nezapomenout pridat do final folderu i benchmarking, nejlepe asi do slozky primo se zdrojaky od CryptoShow (takze to pridat mezi ty 3 zakladni slozky BE, FE, monitoring)
 - [ ] pred uploadnutim do SISu oznacit verzi na GH nejakym tagem a napsat to do toho appendixu
