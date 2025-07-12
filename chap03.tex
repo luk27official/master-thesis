@@ -6,11 +6,11 @@ The third chapter of this thesis describes the web application, CryptoShow, whic
 \section{Architecture and Used Technologies}
 \label{sec:architecture-technologies}
 
-This section outlines the architecture of the CryptoShow application and the technologies employed in its development. The application is designed to be modular and scalable, allowing for easy integration of new features and improvements. For this purpose, we have chosen a service-oritented architecture (SOA) that separates the components, enabling independent development and deployment. The architecture is defined by several Docker containers\footnote{Available at \url{https://www.docker.com/}.}, each responsible for a specific part of the application. The services are orchestrated using Docker Compose, defined in the \lstinline|docker-compose.yml| file, which specifies the services, networks, and volumes required for the application to run. The service architecture is as follows:
+This section outlines the architecture of the CryptoShow application and the technologies employed in its development. The application is designed to be modular and scalable, allowing for easy integration of new features and improvements. For this purpose, we have chosen a service-oritented architecture (SOA) that separates the components, enabling independent development and deployment. The architecture is defined by several Docker containers\footnote{Available at \url{https://www.docker.com/}.}, each responsible for a specific part of the application. The services are orchestrated using Docker Compose, defined in the \inline|docker-compose.yml| file, which specifies the services, networks, and volumes required for the application to run. The service architecture is as follows:
 
 \begin{itemize}
     \item \textbf{backend} - Acts as the central API service, facilitating communication between most components. It communicates with Redis\footnote{Available at \url{https://redis.io/}.}, manages API requests from the frontend, and delegates asynchronous tasks to Celery workers\footnote{Available at \url{https://github.com/celery/celery}.}. The FastAPI server\footnote{Available at \url{https://github.com/fastapi/fastapi}.} serves as its entry point. Further details are provided in Section~\ref{sec:backend}.
-    \item \textbf{worker-cpu / worker-gpu} - These two services execute asynchronous, resource-intensive computational tasks (i.e. the prediction, smoothing, and trajectory animation) without blocking the main FastAPI event loop. \lstinline|worker-cpu| runs on the CPU, while \lstinline|worker-gpu| leverages GPU acceleration via CUDA when available. More details are provided in Section~\ref{sec:backend}.
+    \item \textbf{worker-cpu / worker-gpu} - These two services execute asynchronous, resource-intensive computational tasks (i.e. the prediction, smoothing, and trajectory animation) without blocking the main FastAPI event loop. \inline|worker-cpu| runs on the CPU, while \inline|worker-gpu| leverages GPU acceleration via CUDA when available. More details are provided in Section~\ref{sec:backend}.
     \item \textbf{frontend} - Delivers the user interface. NginX\footnote{Available at \url{https://nginx.org/}.} acts as the gateway to the defined services in Docker Compose and serves static content from a specified directory. Additional information is available in Section~\ref{sec:frontend}.
     \item \textbf{redis} - Functions as the message broker for Celery workers, enabling efficient task distribution.
     \item \textbf{monitoring-flag} - A minimal service that generates a flag file to activate the monitoring proxy endpoint. Additional information about this service and those that follow is available in Section~\ref{sec:tests-monitoring}.
@@ -42,33 +42,33 @@ The remaining services utilize standard technology stacks commonly associated wi
 \section{Backend}
 \label{sec:backend}
 
-The backend of the CryptoShow application is responsible for the core functionalities, such as calculating the predictions, clustering and smoothing the results, generating trajectory animations for AHoJ results, and serving the API endpoints for the frontend. This section covers the \textbf{backend, worker-cpu, worker-gpu} and \textbf{redis} services. All source codes can be found in the \lstinline|backend| directory.
+The backend of the CryptoShow application is responsible for the core functionalities, such as calculating the predictions, clustering and smoothing the results, generating trajectory animations for AHoJ results, and serving the API endpoints for the frontend. This section covers the \textbf{backend, worker-cpu, worker-gpu} and \textbf{redis} services. All source codes can be found in the \inline|backend| directory.
 
-All backend services utilize the same initial Dockerfile with one Python environment. This ensures consistency and speeds up the build process. For the installation of the Python environment, we use the \lstinline|pyproject.toml| file, which contains all necessary dependencies for the backend services, and is installed using the \lstinline|uv| tool\footnote{Available at \url{https://github.com/astral-sh/uv}.}. After installing the Python environment, the entrypoint for the backend service is run, which first checks for the presence of the machine learning models and downloads them if they are not available. Subsequently, the FastAPI server is started running on port 5000.
+All backend services utilize the same initial Dockerfile with one Python environment. This ensures consistency and speeds up the build process. For the installation of the Python environment, we use the \inline|pyproject.toml| file, which contains all necessary dependencies for the backend services, and is installed using the \inline|uv| tool\footnote{Available at \url{https://github.com/astral-sh/uv}.}. After installing the Python environment, the entrypoint for the backend service is run, which first checks for the presence of the machine learning models and downloads them if they are not available. Subsequently, the FastAPI server is started running on port 5000.
 
 \subsection{FastAPI}
 \label{sec:fastapi}
 
 The backend service is built using FastAPI, a modern web framework for building APIs with Python. It serves as the main entry point for the application, handling API requests and delegating tasks to Celery workers.
 
-FastAPI is chosen for its performance and ease of use, including the option to automatically generate OpenAPI documentation (available via the \lstinline|/api/docs| endpoint). The server includes configuration for CORS (Cross-Origin Resource Sharing), logging and error handling. The API contains several endpoints, including endpoints for health check, prediction for a given PDB ID, prediction for a custom protein structure, Celery task status check, and trajectory animation generation. To improve performance, WebSockets are used to check the status of the tasks, allowing the frontend to receive updates without polling the server. The API endpoints are described in the Appendix~\ref{sec:api-endpoints}.
+FastAPI is chosen for its performance and ease of use, including the option to automatically generate OpenAPI documentation (available via the \inline|/api/docs| endpoint). The server includes configuration for CORS (Cross-Origin Resource Sharing), logging and error handling. The API contains several endpoints, including endpoints for health check, prediction for a given PDB ID, prediction for a custom protein structure, Celery task status check, and trajectory animation generation. To improve performance, WebSockets are used to check the status of the tasks, allowing the frontend to receive updates without polling the server. The API endpoints are described in the Appendix~\ref{sec:api-endpoints}.
 
 To support asynchronous task execution without blocking the main event loop, the backend service uses Celery workers. These workers are responsible for executing resource-intensive tasks, such as running the CB-Model, smoothing model and generating trajectory animations. The workers can run on either CPU or GPU, depending on the availability of resources (covered in detail in \ref{sec:deployment}). The backend service communicates with Redis, which acts as a message broker for Celery, allowing efficient task distribution and management.
 
-The logic for the API endpoints is implemented in the \lstinline|backend/main.py| file.
+The logic for the API endpoints is implemented in the \inline|backend/main.py| file.
 
 \subsection{Prediction and Clustering}
 \label{sec:prediction-backend}
 
-To begin with the prediction, the necessary dependencies for the CryptoBench model must be installed. Once the Python environment is set up (this is done in Docker automatically), the Celery task is added to the queue. The task is defined in the \lstinline|backend/tasks.py| file, which is responsible for executing the prediction logic.
+To begin with the prediction, the necessary dependencies for the CryptoBench model must be installed. Once the Python environment is set up (this is done in Docker automatically), the Celery task is added to the queue. The task is defined in the \inline|backend/tasks.py| file, which is responsible for executing the prediction logic.
 
 First, the structure provided by the user (either in the form of an ID or a custom structure) is processed and parsed using specialized parsers for the PDB/mmCIF formats (see Section~\ref{sec:pdb-format} and Section~\ref{sec:mmcif-format}). Only the first model of the structure is considered, as the CryptoBench model is designed to work with single-model structures. After parsing, the structure is then converted to a protein sequence, saved to FASTA files (see Section~\ref{sec:fasta-format}) for each chain, which is required for the prediction.
 
-Afterwards, the fine-tuned ESM-2 model (\lstinline|facebook/esm2_t33_650M_UR50D|\footnote{More information available at \url{https://github.com/facebookresearch/esm}.}) is loaded, followed by the corresponding weight file from the Tiny-CryptoBench repository. The protein sequence is then tokenized using the ESM-2 tokenizer, segmented into chunks of 1022 tokens (1024 minus two special tokens), and processed by the CryptoBench model to obtain predictions. These predictions are subsequently concatenated to produce a single prediction vector representing the entire sequence. The model consists of three linear layers, two dropout layers, and a ReLU activation function. Then, the predictions are generated by applying the sigmoid activation function to the output of the final linear layer, resulting in a vector of probabilities for each residue in the sequence. The implementation for this procedure is provided in the \lstinline|backend/prediction/compute_score.py| file. The code is intended for use with individual protein sequences, as it requires parsing and splitting the sequence by chain to ensure accurate predictions. Concatenating all chains into a single sequence would provide incorrect context to the model and result in inaccurate predictions.
+Afterwards, the fine-tuned ESM-2 model (\inline|facebook/esm2_t33_650M_UR50D|\footnote{More information available at \url{https://github.com/facebookresearch/esm}.}) is loaded, followed by the corresponding weight file from the Tiny-CryptoBench repository. The protein sequence is then tokenized using the ESM-2 tokenizer, segmented into chunks of 1022 tokens (1024 minus two special tokens), and processed by the CryptoBench model to obtain predictions. These predictions are subsequently concatenated to produce a single prediction vector representing the entire sequence. The model consists of three linear layers, two dropout layers, and a ReLU activation function. Then, the predictions are generated by applying the sigmoid activation function to the output of the final linear layer, resulting in a vector of probabilities for each residue in the sequence. The implementation for this procedure is provided in the \inline|backend/prediction/compute_score.py| file. The code is intended for use with individual protein sequences, as it requires parsing and splitting the sequence by chain to ensure accurate predictions. Concatenating all chains into a single sequence would provide incorrect context to the model and result in inaccurate predictions.
 
-After receiving the predictions for individual chains, 3D coordinates of all residues are extracted from the input structure. This step is required for the clustering and smoothing processes. The predictions are first clustered using the methodology described in Section~\ref{sec:clustering}. An example code snippet of the clustering process is available in Listing~\ref{lst:clustering-import}. After clustering, the clusters are further smoothed. All source codes for the clustering and smoothing processes can be found in the \lstinline|backend/clustering| directory and follow the described methodology.
+After receiving the predictions for individual chains, 3D coordinates of all residues are extracted from the input structure. This step is required for the clustering and smoothing processes. The predictions are first clustered using the methodology described in Section~\ref{sec:clustering}. An example code snippet of the clustering process is available in Listing~\ref{lst:clustering-import}. After clustering, the clusters are further smoothed. All source codes for the clustering and smoothing processes can be found in the \inline|backend/clustering| directory and follow the described methodology.
 
-\lstinputlisting[language=Python, caption={Clustering function from \lstinline|code/clustering.py| (modified).}, label={lst:clustering-import}]{code/clustering.py}
+\lstinputlisting[language=Python, caption={Clustering function from \inline|code/clustering.py| (modified).}, label={lst:clustering-import}]{code/clustering.py}
 
 Following this refinement process, all collected data is collected into a single JSON object, which is subsequently stored, returned, and used by the frontend for result visualization.
 
@@ -102,7 +102,7 @@ In the end, the trajectory is generated using cubic spline interpolation \cite{m
 
 Although this process generates a trajectory, it is important to note that this represents only a simple interpolation of residue coordinates. The trajectory does not depict actual conformational changes, but rather provides a smooth transition between the two structures. To capture genuine conformational dynamics, one would need to perform molecular dynamics simulations, which are computationally intensive and require significant time investment \cite{schlitter1993targeted}.
 
-The source code for the trajectory animation functionality can be found in the \lstinline|backend/trajectory_generator| directory. As with the prediction and clustering components, the implementation details in the actual pipeline will be covered in Chapter \ref{chap:software}.
+The source code for the trajectory animation functionality can be found in the \inline|backend/trajectory_generator| directory. As with the prediction and clustering components, the implementation details in the actual pipeline will be covered in Chapter \ref{chap:software}.
 
 
 \section{Frontend}
@@ -113,16 +113,16 @@ The frontend of the CryptoShow application is designed to provide an intuitive a
 \subsection{NginX}
 \label{sec:nginx}
 
-The main component is NginX \cite{reese2008nginx}, which serves as a reverse proxy to many services and serves as one endpoint for the frontend. There are multiple configurations for NginX, which are defined in the \lstinline|frontend/nginx| files. We want to serve the frontend application in all cases, which is described by the default configuration. However, to improve user experience, we also provide configurations for TLS/SSL encryption, which is recommended for production environments. Moreover, we provide a configuration for the monitoring proxy endpoint, which is used to monitor the Celery tasks and queues (more details in Section~\ref{sec:tests-monitoring}). The NginX server listens on port 80 for HTTP requests and port 443 for HTTPS requests. The configuration files specify the root directory for static files, the location of the API endpoints, and the proxy settings for the backend service.
+The main component is NginX \cite{reese2008nginx}, which serves as a reverse proxy to many services and serves as one endpoint for the frontend. There are multiple configurations for NginX, which are defined in the \inline|frontend/nginx| files. We want to serve the frontend application in all cases, which is described by the default configuration. However, to improve user experience, we also provide configurations for TLS/SSL encryption, which is recommended for production environments. Moreover, we provide a configuration for the monitoring proxy endpoint, which is used to monitor the Celery tasks and queues (more details in Section~\ref{sec:tests-monitoring}). The NginX server listens on port 80 for HTTP requests and port 443 for HTTPS requests. The configuration files specify the root directory for static files, the location of the API endpoints, and the proxy settings for the backend service.
 
 NginX does not support different behaviors for different environment variable values, so the final configuration file is generated on the fly using a simple Bash script. This script is executed during the Docker container startup, allowing for dynamic configuration based on the environment variables.
 
 \subsection{React and TypeScript}
 \label{sec:react-typescript}
 
-The application is built using React\footnote{Available at \url{https://react.dev/}.}, a popular TypeScript library for creating web applications. This decision was made as React still remains state-of-the-art, and TypeScript provides strong typing and better developer experience compared to JavaScript. The frontend libraries are installed using the Bun\footnote{Available at \url{https://bun.sh/}.} package manager, which is known for its speed and efficiency (compared to Node.js). The source codes are transpiled and bundled using Vite\footnote{Available at \url{https://vitejs.dev/}.}, a modern build tool for TypeScript. The bundled files are then served by NginX, which is configured to serve static files from the \lstinline|frontend/dist| directory.
+The application is built using React\footnote{Available at \url{https://react.dev/}.}, a popular TypeScript library for creating web applications. This decision was made as React still remains state-of-the-art, and TypeScript provides strong typing and better developer experience compared to JavaScript. The frontend libraries are installed using the Bun\footnote{Available at \url{https://bun.sh/}.} package manager, which is known for its speed and efficiency (compared to Node.js). The source codes are transpiled and bundled using Vite\footnote{Available at \url{https://vitejs.dev/}.}, a modern build tool for TypeScript. The bundled files are then served by NginX, which is configured to serve static files from the \inline|frontend/dist| directory.
 
-The component structure follows a modular approach, with each component defined in its own file and CSS style. The main entry point for the React application is the \lstinline|frontend/src/main.tsx| file, which renders the main \lstinline|App| component. The application is organized into several \lstinline|src| subdirectories:
+The component structure follows a modular approach, with each component defined in its own file and CSS style. The main entry point for the React application is the \inline|frontend/src/main.tsx| file, which renders the main \inline|App| component. The application is organized into several \inline|src| subdirectories:
 
 \begin{itemize}
     \item \textbf{components} - Contains reusable components, such as tables, forms, and other UI elements.
@@ -132,24 +132,24 @@ The component structure follows a modular approach, with each component defined 
     \item \textbf{providers} - Contains React providers for managing global state.
 \end{itemize}
 
-At the same level as the \lstinline|src| directory, there is a \lstinline|public| directory, which contains static files, such as images, icons, and HTML files. The \lstinline|index.html| file serves as the main entry point for the application, where the React application is mounted.
+At the same level as the \inline|src| directory, there is a \inline|public| directory, which contains static files, such as images, icons, and HTML files. The \inline|index.html| file serves as the main entry point for the application, where the React application is mounted.
 
-The React architecture follows the standard practices, beginning with \lstinline|HomePage|. This page serves as the landing page of the application, providing the user with an input table to enter the PDB ID or upload a custom protein structure. This logic is implemented in the aforementioned file and the \lstinline|InputTable| component. After computing the prediction, the user is presented with the \lstinline|Visualization| page. This page is split into several main components, such as the \lstinline|ResultTable|, \lstinline|MolstarControls| and Mol* visualization component (handled in the \lstinline|MolstarComponent| file), which is covered in Section~\ref{sec:molstar-frontend}.
+The React architecture follows the standard practices, beginning with \inline|HomePage|. This page serves as the landing page of the application, providing the user with an input table to enter the PDB ID or upload a custom protein structure. This logic is implemented in the aforementioned file and the \inline|InputTable| component. After computing the prediction, the user is presented with the \inline|Visualization| page. This page is split into several main components, such as the \inline|ResultTable|, \inline|MolstarControls| and Mol* visualization component (handled in the \inline|MolstarComponent| file), which is covered in Section~\ref{sec:molstar-frontend}.
 
 Some of the component state is managed directly by the components themselves, while state that needs to be shared across multiple components is managed using React contexts. This approach allows better code organization and avoids prop drilling.
 
 An example of a React component is shown in Listing~\ref{lst:react-example}.
 
-\lstinputlisting[language=JavaScript, caption={Example of the PocketHeader React component from \lstinline|frontend/src/components/PocketHeader.tsx|.}, label={lst:react-example}]{code/react-example.tsx}
+\lstinputlisting[language=JavaScript, caption={Example of the PocketHeader React component from \inline|frontend/src/components/PocketHeader.tsx|.}, label={lst:react-example}]{code/react-example.tsx}
 
 \subsection{Mol*}
 \label{sec:molstar-frontend}
 
 Opposedly to other frontend components, the Mol* library requires a more detailed explanation, as it is a complex library with many features, but limited documentation. As described in Section~\ref{sec:molstar}, Mol* is a powerful molecular visualization library that provides advanced features for visualizing and interacting with molecular structures. It is used in the CryptoShow application to visualize the predicted cryptic binding sites and the trajectory animations.
 
-Mol* does not work as a standard React component, but rather is rendered in a separate div element within the React component tree. This requires a different approach to the state management. The div element is defined in the \lstinline|Visualization| component, and the Mol* viewer is initialized in the \lstinline|MolstarComponent| component via the \lstinline|initializePlugin| method.
+Mol* does not work as a standard React component, but rather is rendered in a separate div element within the React component tree. This requires a different approach to the state management. The div element is defined in the \inline|Visualization| component, and the Mol* viewer is initialized in the \inline|MolstarComponent| component via the \inline|initializePlugin| method.
 
-Once the viewer has been initialized, the structure data is loaded into the viewer. At this stage, several protein representations are created, allowing users to switch between them via dedicated methods. The loading functionality is implemented in the \lstinline|loadStructure| method. Optionally, a trajectory file can also be loaded alongside the structure to enable the trajectory animation described in Section~\ref{sec:trajectory}.
+Once the viewer has been initialized, the structure data is loaded into the viewer. At this stage, several protein representations are created, allowing users to switch between them via dedicated methods. The loading functionality is implemented in the \inline|loadStructure| method. Optionally, a trajectory file can also be loaded alongside the structure to enable the trajectory animation described in Section~\ref{sec:trajectory}.
 
 After the structure is loaded into the viewer, the visualization of the predicted binding sites can be performed. For each pocket found in the JSON object returned by the backend (see Section~\ref{sec:prediction-backend}), new, colored representations are generated for the corresponding predicted cryptic binding sites. This approach allows users to easily distinguish the CBSs and select their preferred representation type alongside the main structure.
 
@@ -161,18 +161,18 @@ Screenshots demonstrating the Mol* viewer in use are presented in Chapter~\ref{c
 
 An example of the Mol* code snippet is shown in Listing~\ref{lst:molstar-code}. The code changes the transparency of a given structure.
 
-\lstinputlisting[language=JavaScript, caption={Example of Mol* code snippet from \lstinline|frontend/src/components/| \lstinline|MolstarComponent.ts| (modified).}, label={lst:molstar-code}]{code/molstar-example.tsx}
+\lstinputlisting[language=JavaScript, caption={Example of Mol* code snippet from \inline|frontend/src/components/| \inline|MolstarComponent.ts| (modified).}, label={lst:molstar-code}]{code/molstar-example.tsx}
 
 \section{Tests and Monitoring}
 \label{sec:tests-monitoring}
 
 To improve the reliability and stability of the CryptoShow application, multiple monitoring and testing tools have been set up. These tools help to ensure that the application is running, and that the Celery tasks are executed correctly. The monitoring tools also provide insights into the performance of the application and the Celery workers.
 
-First of all, basic health checks are implemented in the Docker Compose file. Docker periodically checks the health of the services and restarts them if they are not healthy. The health checks are defined in the \lstinline|docker-compose.yml| file, where each service has a \lstinline|healthcheck| section that specifies the command to run to check the health of the service. For example, the backend service checks if the FastAPI server is running by sending a request to the \lstinline|/health| endpoint. These health checks are being run in every case, regardless of the environment variable values. If a Docker healthcheck fails, Docker marks the container as unhealthy. This information can be used to restart the container.
+First of all, basic health checks are implemented in the Docker Compose file. Docker periodically checks the health of the services and restarts them if they are not healthy. The health checks are defined in the \inline|docker-compose.yml| file, where each service has a \inline|healthcheck| section that specifies the command to run to check the health of the service. For example, the backend service checks if the FastAPI server is running by sending a request to the \inline|/health| endpoint. These health checks are being run in every case, regardless of the environment variable values. If a Docker healthcheck fails, Docker marks the container as unhealthy. This information can be used to restart the container.
 
-To enhance the monitoring capabilities, Flower is used to monitor the Celery tasks and queues. Flower provides a web-based interface that allows users to view the status of the Celery workers, the tasks in the queue, and the task execution times. It is configured to run on port 5555 and can be accessed via the \lstinline|/flower| endpoint thanks to NginX. The Flower service communicates with the Redis service to retrieve task information.
+To enhance the monitoring capabilities, Flower is used to monitor the Celery tasks and queues. Flower provides a web-based interface that allows users to view the status of the Celery workers, the tasks in the queue, and the task execution times. It is configured to run on port 5555 and can be accessed via the \inline|/flower| endpoint thanks to NginX. The Flower service communicates with the Redis service to retrieve task information.
 
-Moreover, Grafana, Prometheus and Celery Exporter work together to provide a comprehensive monitoring solution with a user-friendly dashboard. Prometheus serves as a data source for Grafana, receiving metrics from the Celery workers via the Celery Exporter. The Celery Exporter is a lightweight service that exposes Celery metrics to Prometheus, allowing it to scrape and store these metrics. Grafana then visualizes the metrics in a dashboard. The Grafana service is configured to run on port 3001 and can be accessed via the \lstinline|/grafana| endpoint. Prometheus itself is configured to run on port 9090 and can be accessed via the \lstinline|/prometheus| endpoint. The configuration files for Prometheus and Grafana are located in the \lstinline|monitoring| directory. Figure~\ref{fig:grafana} shows an example of the Grafana dashboard.
+Moreover, Grafana, Prometheus and Celery Exporter work together to provide a comprehensive monitoring solution with a user-friendly dashboard. Prometheus serves as a data source for Grafana, receiving metrics from the Celery workers via the Celery Exporter. The Celery Exporter is a lightweight service that exposes Celery metrics to Prometheus, allowing it to scrape and store these metrics. Grafana then visualizes the metrics in a dashboard. The Grafana service is configured to run on port 3001 and can be accessed via the \inline|/grafana| endpoint. Prometheus itself is configured to run on port 9090 and can be accessed via the \inline|/prometheus| endpoint. The configuration files for Prometheus and Grafana are located in the \inline|monitoring| directory. Figure~\ref{fig:grafana} shows an example of the Grafana dashboard.
 
 \begin{figure}[htpb]
     \centering
@@ -181,33 +181,33 @@ Moreover, Grafana, Prometheus and Celery Exporter work together to provide a com
     \label{fig:grafana}
 \end{figure}
 
-Although the monitoring services are useful, they are not always necessary for the application to function. This is the reason why a monitoring flag mechanism has been introduced. The \lstinline|monitoring-flag| service creates a flag file that enables the monitoring services, while the \lstinline|remove-monitoring-flag| service removes the flag file, disabling the monitoring services. The container to remove the flag file is run every time the application is started, so the monitoring services are disabled by default. If the developer wants to enable the monitoring services, they do so by running the Docker Compose command with the \lstinline|--profile monitoring| option, which turns on the monitoring profile. This activates the \lstinline|monitoring-flag| service, creating the flag file and enabling the monitoring services. The monitoring services are then accessible via the respective endpoints thanks to the flexible configuration of NginX. Otherwise, the endpoints are not available, and the containers are not started to save RAM and CPU resources.
+Although the monitoring services are useful, they are not always necessary for the application to function. This is the reason why a monitoring flag mechanism has been introduced. The \inline|monitoring-flag| service creates a flag file that enables the monitoring services, while the \inline|remove-monitoring-flag| service removes the flag file, disabling the monitoring services. The container to remove the flag file is run every time the application is started, so the monitoring services are disabled by default. If the developer wants to enable the monitoring services, they do so by running the Docker Compose command with the \inline|--profile monitoring| option, which turns on the monitoring profile. This activates the \inline|monitoring-flag| service, creating the flag file and enabling the monitoring services. The monitoring services are then accessible via the respective endpoints thanks to the flexible configuration of NginX. Otherwise, the endpoints are not available, and the containers are not started to save RAM and CPU resources.
 
-As most of the functionality of the frontend is visual, the frontend is tested manually. Still, some bugs can be caught using Sentry\footnote{Available at \url{https://sentry.io/}}, which is a tool for error tracking and monitoring. Sentry is configured to capture errors in the frontend, providing detailed information about the errors, including stack traces. This allows quicker identification of the bugs in the application. The Sentry service is integrated using the environment variables in the \lstinline|frontend| directory (see the example environment file \lstinline|frontend/.env.template|).
+As most of the functionality of the frontend is visual, the frontend is tested manually. Still, some bugs can be caught using Sentry\footnote{Available at \url{https://sentry.io/}}, which is a tool for error tracking and monitoring. Sentry is configured to capture errors in the frontend, providing detailed information about the errors, including stack traces. This allows quicker identification of the bugs in the application. The Sentry service is integrated using the environment variables in the \inline|frontend| directory (see the example environment file \inline|frontend/.env.template|).
 
 \section{Deployment}
 \label{sec:deployment}
 
 CryptoShow is distributed as a fully dockerized application, enabling simple deployment and scalability. It can be deployed on any server with Docker Compose support, requiring at least 32 GB of RAM and 8 CPU cores.
 
-Before starting, the \lstinline|.env| file must be created in the root folder to specify required environment variables. The variables are listed in the \lstinline|.env.template| file, and include the following:
+Before starting, the \inline|.env| file must be created in the root folder to specify required environment variables. The variables are listed in the \inline|.env.template| file, and include the following:
 
 \begin{itemize}
-    \item \textbf{ENABLE\_SSL}: \lstinline|<true/false>| - Enable or disable SSL. Recommended for production.
-    \item \textbf{SSL\_PATH}: \lstinline|<path to ssl certificate and key folder>| - Path to SSL certificate and key (not required if SSL is disabled).
-    \item \textbf{DOMAIN}: \lstinline|<domain name>| - Domain name for the deployment.
-    \item \textbf{UID}: \lstinline|<user id (default: 2727)>| - Linux user ID for running containers. Make sure that the user has sufficient permissions to the filesystem.
-    \item \textbf{GID}: \lstinline|<group id (default: 2727)>| - Linux group ID for running containers.
-    \item \textbf{HTPASSWD\_PATH}: \lstinline|<path to htpasswd file>| - Path to HTTP basic auth password file for monitoring access.
-    \item \textbf{HTTP\_PROXY}: \lstinline|<http proxy URL>| - HTTP proxy URL for development behind a proxy (optional).
-    \item \textbf{HTTPS\_PROXY}: \lstinline|<https proxy URL>| - HTTPS proxy URL (optional).
+    \item \textbf{ENABLE\_SSL}: \inline|<true/false>| - Enable or disable SSL. Recommended for production.
+    \item \textbf{SSL\_PATH}: \inline|<path to ssl certificate and key folder>| - Path to SSL certificate and key (not required if SSL is disabled).
+    \item \textbf{DOMAIN}: \inline|<domain name>| - Domain name for the deployment.
+    \item \textbf{UID}: \inline|<user id (default: 2727)>| - Linux user ID for running containers. Make sure that the user has sufficient permissions to the filesystem.
+    \item \textbf{GID}: \inline|<group id (default: 2727)>| - Linux group ID for running containers.
+    \item \textbf{HTPASSWD\_PATH}: \inline|<path to htpasswd file>| - Path to HTTP basic auth password file for monitoring access.
+    \item \textbf{HTTP\_PROXY}: \inline|<http proxy URL>| - HTTP proxy URL for development behind a proxy (optional).
+    \item \textbf{HTTPS\_PROXY}: \inline|<https proxy URL>| - HTTPS proxy URL (optional).
 \end{itemize}
 
-Once the \lstinline|.env| file has been created, the next step is to build the Docker images for all services specified in the \lstinline|docker-compose.yml| file. This can be accomplished using the standard \lstinline|docker compose build| command. Alternatively, Docker Bake\footnote{Available at \url{https://docs.docker.com/build/bake/}.}, a tool that enables parallel building of multiple Docker images, may be used. To use Docker Bake, run \lstinline|docker buildx bake|.
+Once the \inline|.env| file has been created, the next step is to build the Docker images for all services specified in the \inline|docker-compose.yml| file. This can be accomplished using the standard \inline|docker compose build| command. Alternatively, Docker Bake\footnote{Available at \url{https://docs.docker.com/build/bake/}.}, a tool that enables parallel building of multiple Docker images, may be used. To use Docker Bake, run \inline|docker buildx bake|.
 
-CryptoShow supports accelerated computations using the CUDA architecture. To specify whether the application should utilize GPU or CPU resources, the developer must select the appropriate mode by passing the \lstinline|--profile <cpu/gpu>| flag when building and running the application with Docker Compose.
+CryptoShow supports accelerated computations using the CUDA architecture. To specify whether the application should utilize GPU or CPU resources, the developer must select the appropriate mode by passing the \inline|--profile <cpu/gpu>| flag when building and running the application with Docker Compose.
 
-As described in Section~\ref{sec:tests-monitoring}, monitoring features can be enabled by including the monitoring profile when running Docker Compose: \lstinline|--profile monitoring|.
+As described in Section~\ref{sec:tests-monitoring}, monitoring features can be enabled by including the monitoring profile when running Docker Compose: \inline|--profile monitoring|.
 
 Before deploying the application, make sure to enable incoming and outcoming traffic to ports 80 and 443 (if using SSL). Also, note that multiple ports are exposed:
 
@@ -224,14 +224,14 @@ Before deploying the application, make sure to enable incoming and outcoming tra
 
 Blocking direct access to the other ports is not strictly required, but leaving the ports open can lead into unauthorized access to the monitoring.
 
-Once the infrastructure is built, the application can be started using the \lstinline|docker compose up| command, along with any relevant profile flags as described above. The application will then be accessible on port 80 or 443, depending on the value of the ENABLE\_SSL environment variable.
+Once the infrastructure is built, the application can be started using the \inline|docker compose up| command, along with any relevant profile flags as described above. The application will then be accessible on port 80 or 443, depending on the value of the ENABLE\_SSL environment variable.
 
-Detailed step-by-step instructions, including SSL certificate generation and file permission configuration, are provided in the \lstinline|README| file.
+Detailed step-by-step instructions, including SSL certificate generation and file permission configuration, are provided in the \inline|README| file.
 
 \subsection{Local Frontend Development}
 \label{sec:local-frontend-development}
 
-For faster development, the frontend application can be run locally. First, install the required dependencies using the Bun package manager with \lstinline|bun i|. Then, start the development server using \lstinline|bun run dev|. The frontend will be accessible at port 3000.
+For faster development, the frontend application can be run locally. First, install the required dependencies using the Bun package manager with \inline|bun i|. Then, start the development server using \inline|bun run dev|. The frontend will be accessible at port 3000.
 
 \subsection{Local Backend Development}
 \label{sec:local-backend-development}

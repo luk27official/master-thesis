@@ -337,8 +337,8 @@
 - [ ] zeptat se kam psat o AI (GPT etc)?
 - [ ] checknout gramatiku pres Grammarly
 - [x] opravit \lstinline, sjednotit format (vykricniky nebo vertical bars)
-- [ ] u listingu se podivat obecne na barvy a udelat to nejak sjednocene
-- [ ] dat si pozor na keywords - jako je template, public etc., udelat, aby to nebylo modre
+- [x] u listingu se podivat obecne na barvy a udelat to nejak sjednocene
+- [x] dat si pozor na keywords - jako je template, public etc., udelat, aby to nebylo modre
 - [x] precist si intro a zaver, jestli to dava smysl a odpovida to tem napsanym kapitolam
 - [x] napsat abstrakt
 - [ ] napsat text :)
