@@ -115,26 +115,6 @@
   fontadjust=true}
 \fi
 
-% Define a separate style for \lstinline
-\lstdefinestyle{inlineblack}{
-  language=C++,
-  basicstyle=\footnotesize\ttfamily\color{black},
-  identifierstyle=\bfseries\color{black},
-  commentstyle=\color{green!50!black},
-  stringstyle=\color{red!50!black},
-  keywordstyle=\color{black}, % override to black
-  numberstyle=\color{black},
-  columns=fixed,
-  basewidth=0.5em,
-  fontadjust=true
-}
-
-% Redefine \lstinline to use the custom inline style
-\let\Oldlstinline\lstinline
-\renewcommand{\lstinline}[1][]{%
-  \Oldlstinline[style=inlineblack,#1]%
-}
-
 % Floating listings, used in the same way as the figure environment
 \ifcsname DeclareNewFloatType\endcsname
 \DeclareNewFloatType{listing}{}
