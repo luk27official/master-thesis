@@ -84,7 +84,8 @@
 \usepackage{algorithm}
 \usepackage{fancyvrb}       % improved verbatim environment
 \usepackage{listings}       % pretty-printer of source code
-\usepackage{tex/jslistings}
+\usepackage{tex/jslistings} % JavaScript listings
+\usepackage{acronym} 		% for acronyms and abbreviations
 
 % You might want to use cleveref for references
 % \usepackage{cleveref}
@@ -157,9 +158,8 @@
 
 %%% Abbreviations used in the thesis, if any, including their explanation
 %%% In mathematical theses, it could be better to move the list of abbreviations to the beginning of the thesis.
-\chapwithtoc{List of Abbreviations}
 
-\xxx{TODO: add the list of abbreviations}
+\include{acronyms}
 
 %%% Doctoral theses must contain a list of author's publications
 \ifx\ThesisType\TypePhD
