@@ -331,16 +331,16 @@
 - [x] popsat detailne jak trajektorie funguje v Mol*
 - [x] prepsat intro a zkontrolovat obecne reference mezi kapitolami/sekcemi
 - [x] udelat PDB IDs konzistentni - vsude velkymi pismeny a zkontrolovat, jak formatujeme ty nazvy
-- [ ] pridat zkratky (seznam) podle toho, co vsude mam v praci, pak tam pripadne pridat moznost prokliku z textu anebo obracene
+- [x] pridat zkratky (seznam) podle toho, co vsude mam v praci, pak tam pripadne pridat moznost prokliku z textu anebo obracene
 - [x] vymyslet use case a napsat ho
 - [x] pridat licenci do kodu, napsat to i do tech zdrojaku
-- [ ] zeptat se kam psat o AI (GPT etc)?
-- [ ] checknout gramatiku pres Grammarly
 - [x] opravit \lstinline, sjednotit format (vykricniky nebo vertical bars)
 - [x] u listingu se podivat obecne na barvy a udelat to nejak sjednocene
 - [x] dat si pozor na keywords - jako je template, public etc., udelat, aby to nebylo modre
 - [x] precist si intro a zaver, jestli to dava smysl a odpovida to tem napsanym kapitolam
 - [x] napsat abstrakt
+- [ ] zeptat se kam psat o AI (GPT etc)?
+- [ ] checknout gramatiku pres Grammarly
 - [ ] napsat text :)
 - [ ] nezapomenout pridat do final folderu i benchmarking, nejlepe asi do slozky primo se zdrojaky od CryptoShow (takze to pridat mezi ty 3 zakladni slozky BE, FE, monitoring)
 - [ ] pred uploadnutim do SISu oznacit verzi na GH nejakym tagem a napsat to do toho appendixu, napsat tam i o licenci
