@@ -83,7 +83,7 @@ AHoJ identifies binding residues by spatially marking user-defined ligands using
 
 For CryptoShow's trajectory animation functionality, we make use of the AHoJ public API to identify apo-holo structural pairs corresponding to the input structure. The query process requires the PDB ID of the input structure\footnote{As mentioned above, AlphaFold structures and custom structures are not supported by AHoJ. Additionally, the input structure may be in holo form. This is not validated in any way. Apo structures are generally more appropriate for this analysis, we leave this decision on the user as it does not affect the functionality of CryptoShow.}, the target chain containing the predicted cryptic binding site, and the central residue of the identified CBS. Listing \ref{lst:ahoj-query} demonstrates the query format. The API response contains all available paired structures, from which users can select any structure to visualize potential conformational transitions. Upon selection, the CryptoShow API initiates the trajectory computation.
 
-\begin{lstlisting}[caption={Sample query format for the AHoJ tool, specifying PDB ID 2src, chain A, aspartic acid residue at position 404}, label={lst:ahoj-query}]
+\begin{lstlisting}[caption={Sample query format for the AHoJ tool, specifically the 2SRC protein structure (Crystal Structure of Human Tyro\-sine-Protein Kinase C-SRC, in Complex with AMP-PNP), chain A, aspartic acid residue at position 404}, label={lst:ahoj-query}]
     2src A ASP 404
 \end{lstlisting}
 
@@ -161,7 +161,7 @@ Screenshots demonstrating the Mol* viewer in use are presented in Chapter~\ref{c
 
 An example of the Mol* code snippet is shown in Listing~\ref{lst:molstar-code}. The code changes the transparency of a given structure.
 
-\lstinputlisting[language=JavaScript, caption={Code snippet from \inline|frontend/src/components/MolstarComponent.ts| (modified).}, label={lst:molstar-code}]{code/molstar-example.tsx}
+\lstinputlisting[language=JavaScript, caption={Code snippet from \inline|frontend/src/components/MolstarComponent.ts|.}, label={lst:molstar-code}]{code/molstar-example.tsx}
 
 \section{Tests and Monitoring}
 \label{sec:tests-monitoring}

@@ -330,7 +330,7 @@
 - [x] zmenit diagram architektury v kapitole 3
 - [x] popsat detailne jak trajektorie funguje v Mol*
 - [x] prepsat intro a zkontrolovat obecne reference mezi kapitolami/sekcemi
-- [ ] udelat PDB IDs konzistentni - vsude velkymi pismeny a zkontrolovat, jak formatujeme ty nazvy
+- [x] udelat PDB IDs konzistentni - vsude velkymi pismeny a zkontrolovat, jak formatujeme ty nazvy
 - [ ] pridat zkratky (seznam) podle toho, co vsude mam v praci, pak tam pripadne pridat moznost prokliku z textu anebo obracene
 - [x] vymyslet use case a napsat ho
 - [x] pridat licenci do kodu, napsat to i do tech zdrojaku
