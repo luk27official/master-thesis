@@ -1,7 +1,7 @@
 \chapter{Methodology}
 \label{chap:methodology}
 
-In this chapter, we will cover the methodology used in this work. More details on the implementation in the application will be provided in Section \ref{sec:backend}.
+This chapter covers the methodology used in this work. Section \ref{sec:backend} provides more details on the implementation in the application.
 
 \section{Pipeline Overview}
 \label{sec:pipeline-overview}
@@ -9,12 +9,12 @@ In this chapter, we will cover the methodology used in this work. More details o
 The CryptoShow pipeline consists of several steps that work together to predict cryptic binding sites in protein structures and visualize them. The pipeline follows the steps outlined below, supported by Figure~\ref{fig:pipeline-overview}. The clustering, pocket smoothing, and visualization steps are newly implemented in this thesis.
 
 \begin{enumerate}
-    \item \textbf{Structure Input} - The pipeline starts with a protein structure, which can be provided in PDB or mmCIF format. The structure can be obtained from the RCSB PDB database (see Section~\ref{sec:rcsb-pdb}), AlphaFold database (see Section~\ref{sec:alphafold-db}), or a custom structure file.
+    \item \textbf{Structure Input} - The pipeline starts with a protein structure, which can be provided in PDB or mmCIF format. The structure can be obtained from the RCSB PDB database (see Section~\ref{sec:rcsb-pdb}), the AlphaFold database (see Section~\ref{sec:alphafold-db}), or a custom structure file.
     \item \textbf{Sequence Extraction} - The sequence of the protein is extracted from the provided structure file. This step is essential as the subsequent prediction model operates on sequence data.
     \item \textbf{Prediction} - The model used in CryptoBench (Section~\ref{sec:prediction}), referred to as \textbf{CB-Model}, is used to assign scores to individual residues on the protein sequence. The model generates residue-level predictions, which are then processed to identify potential binding site candidates.
-    \item \textbf{Clustering} - The predicted residues are clustered (Section~\ref{sec:clustering}) to form potential cryptic binding sites (pockets). This is crucial for the visualization, as coloring the clusters instead of just individual residues increases the interpretability of the results.
-    \item \textbf{Pocket smoothing} - The pockets are then smoothed using a machine learning model (Section~\ref{sec:clustering}), which enhances the predictions by adding residues that are likely part of the cryptic binding site, even if their individual scores did not exceed the original high-scoring threshold.
-    \item \textbf{Visualization} - The predicted cryptic binding sites are visualized in the frontend application (see Section \ref{sec:frontend}). The visualization includes the predicted binding sites and their associated scores. Also, the user can run an AHoJ query to retrieve apo-holo pairs of protein structures and visualize the trajectory animation of the conformational changes between the apo and holo structures.
+    \item \textbf{Clustering} - The predicted residues are clustered (Section~\ref{sec:clustering}) to form potential cryptic binding sites (pockets). This is crucial for visualization, as coloring the clusters instead of just individual residues increases the interpretability of the results.
+    \item \textbf{Pocket smoothing} - The pockets are then smoothed using a machine learning model (Section~\ref{sec:clustering}). This enhances the predictions by adding residues that are likely part of the cryptic binding site, even if their scores did not exceed the original high-scoring threshold.
+    \item \textbf{Visualization} - The predicted cryptic binding sites are visualized in the frontend application (Section \ref{sec:frontend}). The visualization includes the predicted binding sites and their associated scores. Also, the user can run an AHoJ query to retrieve apo-holo pairs of protein structures and visualize the trajectory animation of the conformational changes between the apo and holo structures.
 \end{enumerate}
 
 \begin{figure}[htbp]
@@ -32,7 +32,7 @@ The first step in the pipeline is to provide a protein structure in either PDB o
 \section{Prediction Using the CB-Model}
 \label{sec:prediction}
 
-The initial step in our methodology involves utilizing the CryptoBench \cite{vskrhak2025cryptobench} model to generate residue-level predictions for protein sequences. It is important to note that this model works solely with sequence information, without incorporating any structural (tertiary or quaternary) data. Specifically, we employ the tiny variant of the CryptoBench\footnote{Available at \url{https://github.com/skrhakv/TinyCryptobench}} model, which is trained on a reduced version of the fine-tuned ESM-2 embeddings \cite{lin2022language} with 650 million parameters, as opposed to the full 3 billion. This choice is motivated by the observation that prediction accuracy remains comparable (according to the authors) while computational requirements are significantly reduced, enabling the pipeline to run efficiently on standard personal computers without the need for a GPU.
+The initial step in our methodology involves utilizing the CryptoBench \cite{vskrhak2025cryptobench} model to generate residue-level predictions for protein sequences. It is important to note that this model works solely with sequence information, without incorporating any structural (tertiary or quaternary) data. Specifically, we employ the tiny variant of the CryptoBench\footnote{Available at \url{https://github.com/skrhakv/TinyCryptobench}} model, which is trained on a reduced version of the fine-tuned ESM-2 embeddings \cite{lin2022language} with 650 million parameters, as opposed to the full 3 billion. This choice is motivated by the observation that prediction accuracy remains comparable (according to the authors). At the same time, computational requirements are significantly reduced, enabling the pipeline to run efficiently on standard personal computers without the need for a GPU.
 
 The CryptoBench dataset was created by filtering the AHoJ-DB \cite{feidakis2024ahoj} dataset, which contains 57.8 million binding pockets (both apo and holo) \cite{apoholo-stats}. The filtering steps involved resolution filtering, removing redundant structures, geometric quality assurance, crypticity constraints, ligand filtering, and sequence clustering. The final dataset consists of 1107 apo-holo pairs with 5493 cryptic binding sites. This dataset is used to train the model that has been benchmarked against PocketMiner \cite{meller2023predicting} and P2Rank \cite{krivak2018p2rank}, and has shown better performance in terms of cryptic binding site prediction.
 
@@ -42,16 +42,16 @@ The CryptoBench dataset was created by filtering the AHoJ-DB \cite{feidakis2024a
 
 The next step in our methodology is to take the residue-level predictions generated by the CB-Model and cluster the high-scoring residues to form potential binding site candidates.
 
-There are many algorithms available for clustering, namely DBSCAN \cite{schubert2017dbscan}, single-linkage clustering, hierarchical clustering \cite{jarman2020hierarchical}, and many more. In our case, we opted for the DBSCAN algorithm, which is a density-based clustering algorithm that groups together points that are closely packed together. This approach is particularly suitable for our use case, as it allows us to identify clusters of high-scoring residues without requiring a predefined number of clusters, and allows the specification of minimum residue distance and minimum number of residues in a cluster.
+Many algorithms are available for clustering, namely DBSCAN \cite{schubert2017dbscan}, single-linkage clustering, hierarchical clustering \cite{jarman2020hierarchical}, and many more. In our case, we opted for the DBSCAN algorithm, a density-based clustering algorithm that groups points that are closely packed together. This approach is particularly suitable for our use case, as it allows us to identify clusters of high-scoring residues without requiring a predefined number of clusters. It also allows the specification of minimum residue distance and minimum number of residues in a cluster.
 
 Our method relies on three parameters to control the clustering process:
 \begin{itemize}
-    \item \textbf{EPS ($\epsilon$)} - This parameter defines the maximum distance between two residues for them to be considered as part of the same cluster. In our case, we opted for a value of 5.0~\AA, which is a reasonable distance for residues when considering their spatial proximity in a protein structure as the average distance between the C$\alpha$ atoms\footnote{The C$\alpha$ atom is the central carbon atom in the backbone of a protein, to which the amino group, carboxyl group, hydrogen atom, and side chain are attached.} in a protein structure is 3.8~\AA{} \cite{creighton1993proteins}.
-    \item \textbf{Minimum cluster size} - This parameter defines the minimum number of residues required to form a cluster. We set this value to 3, as two residues are not sufficient to form a binding site candidate, as the spatial complexity of a binding site is usually higher. This is also supported by the fact that less than 0.2\% of cryptic binding sites in the CryptoBench dataset have fewer than three residues.
+    \item \textbf{EPS ($\epsilon$)} - This parameter defines the maximum distance between two residues for them to be considered part of the same cluster. In our case, we opted for a value of 5.0~\AA, which is a reasonable distance for residues when considering their spatial proximity in a protein structure as the average distance between the C$\alpha$ atoms\footnote{The C$\alpha$ atom is the central carbon atom in the backbone of a protein, to which the amino group, carboxyl group, hydrogen atom, and side chain are attached.} in a protein structure is 3.8~\AA{} \cite{creighton1993proteins}.
+    \item \textbf{Minimum cluster size} - This parameter defines the minimum number of residues required to form a cluster. We set this value to 3, as two residues are insufficient to form a binding site candidate, as the spatial complexity of a binding site is usually higher. This is also supported by the fact that less than 0.2\% of cryptic binding sites in the CryptoBench dataset have fewer than three residues.
     \item \textbf{Minimum (CB-Model) prediction score} - This parameter defines the minimum score for a residue to be marked as a high-scoring residue. We opted for a value of 0.7 (inspired by the CryptoBench publication \cite{vskrhak2025cryptobench}), as this covers most of the dataset's binding residues, while also not marking the entire protein as a binding site candidate.
 \end{itemize}
 
-After the clustering is performed, we need to smooth the clusters to enhance the predictions. This is caused by the fact that the clustering is performed only on the high-scoring residues, which can lead to missing residues in the binding site (as shown in Section~\ref{sec:pipeline-evaluation} and in Figure~\ref{fig:smoothing-difference}). To address this, we collaborated with Vít Škrhák to develop an additional machine learning model. This model incorporates the protein sequence, the predicted clusters from the clustering step (along with sequence information), precomputed ESM-2 embeddings, and the residue distance matrix derived from the structure file. Altogether, this \textbf{smoothing model} is then trained on a modified version of the CryptoBench dataset, using the annotated cryptic binding sites as the training and test sets.
+After the clustering, we need to smooth the clusters to enhance the predictions. This is caused by the fact that the clustering is performed only on the high-scoring residues, which can lead to missing residues in the binding site (as shown in Section~\ref{sec:pipeline-evaluation} and Figure~\ref{fig:smoothing-difference}). We collaborated with Vít Škrhák to develop an additional machine learning model to address this. This model incorporates the protein sequence, the predicted clusters from the clustering step (along with sequence information), precomputed ESM-2 embeddings, and the residue distance matrix derived from the structure file. This \textbf{smoothing model} is then trained on a modified version of the CryptoBench dataset, using the annotated cryptic binding sites as the training and test sets.
 
 \begin{figure}
     \centering
@@ -60,11 +60,11 @@ After the clustering is performed, we need to smooth the clusters to enhance the
     \label{fig:smoothing-difference}
 \end{figure}
 
-The initial step involves preparing the dataset to train the smoothing model. The dataset, consisting of 5493 cryptic binding sites, is split into training and testing sets using an 80:20 ratio. The sets follow the same structure as the CryptoBench dataset to prevent data leakage, i.e., the train set from CryptoBench is used as the train set for the smoothing model, and the test set from CryptoBench is used as the test set for the smoothing model. The test set is further filtered by the following criteria:
+The initial step involves preparing the dataset to train the smoothing model. The dataset, consisting of 5493 cryptic binding sites, is split into training and testing sets using an 80:20 ratio. The sets follow the same structure as the CryptoBench dataset to prevent data leakage, i.e., the train set from CryptoBench is used as the train set for the smoothing model, and the test set from CryptoBench is used as the test set for the smoothing model. The following criteria further filter the test set:
 
 \begin{itemize}
     \item Pockets spanning multiple structure chains are omitted from the evaluation, as the process would be much more complicated, and the prediction would require complex approaches.
-    \item Many cryptic binding sites in the test set are similar to each other, which can lead to heavily inflated results. To address this, we have used the Szymkiewicz–Simpson coefficient (overlap), which is a measure of similarity between two sets $A, B$. The coefficient is defined in Equation~\ref{eq:szymkiewicz-simpson}.
+    \item Many cryptic binding sites in the test set are similar, which can lead to heavily inflated results. To address this, we have used the Szymkiewicz–Simpson coefficient (overlap), which measures similarity between sets $A$ and $B$. The coefficient is defined in Equation~\ref{eq:szymkiewicz-simpson}.
     \begin{equation}
         \text{Szymkiewicz–Simpson}(A, B) = \frac{|A \cap B|}{\min(|A|, |B|)}
         \label{eq:szymkiewicz-simpson}
@@ -74,7 +74,7 @@ The initial step involves preparing the dataset to train the smoothing model. Th
 
 After the filtering, we have a test set of 193 apo conformations and 230 cryptic binding sites (out of the original 570 before the filtering).
 
-Prior to training, it is essential to ensure that the precomputed embeddings from the previous step are available. Subsequently, the distance matrix for the residue coordinates must be calculated, which is accomplished using Equation~\ref{eq:distance-matrix}.
+Before training, it is essential to ensure that the precomputed embeddings from the previous step are available. Subsequently, the distance matrix for the residue coordinates must be calculated, which is accomplished using Equation~\ref{eq:distance-matrix}.
 
 \begin{equation}
 D_{ij} = \left\| \mathbf{c}_i - \mathbf{c}_j \right\|_2 = \sqrt{ \sum_{k=1}^3 (c_{ik} - c_{jk})^2 }
@@ -83,11 +83,11 @@ D_{ij} = \left\| \mathbf{c}_i - \mathbf{c}_j \right\|_2 = \sqrt{ \sum_{k=1}^3 (c
 
 where $D_{ij}$ denotes the Euclidean distance between residues $i$ and $j$, with $\mathbf{c}_i$ and $\mathbf{c}_j$ representing their respective 3D coordinates.
 
-After the computation of the distance matrices, the next step involves generating both positive and negative training examples for the dataset. For the positive examples, residues are identified as candidates if their distance to any binding residue is less than a specified positive threshold (set to 15~\AA). For each such residue, a feature vector is constructed by combining its embedding with the mean embedding of its nearby binding neighbors. These feature vectors are then labeled as positive examples.
+After the computation of the distance matrices, the next step involves generating positive and negative training examples for the dataset. For the positive examples, residues are identified as candidates if their distance to any binding residue is less than a specified positive threshold (set to 15~\AA). For each such residue, a feature vector is constructed by combining its embedding with the mean embedding of its nearby binding neighbors. These feature vectors are then labeled as positive examples.
 
-For negative examples, we identify residues that are located within a smaller threshold of 10~\AA{} from binding residues but are not themselves annotated as binding residues. These residues are labeled as negative examples. This strategy helps the model learn to differentiate between actual binding residues and nearby residues that do not participate in binding.
+For negative examples, we identify residues located within a smaller threshold of 10~\AA{} from binding residues but are not annotated as binding residues. These residues are labeled as negative examples. This strategy helps the model learn to differentiate between actual binding residues and nearby residues that do not participate in binding.
 
-For training, we begin by calculating the class weights and loading the dataset. The neural network, which uses the same architecture described in Section \ref{sec:prediction}, is then trained. Cross-validation was not performed here primarily because the CryptoBench dataset is already partitioned into well-defined train and test sets, minimizing the risk of data leakage. Additionally, cross-validation would not provide a significant additional benefit given the dataset's size and the existing split. Therefore, a straightforward train-test split was used, following the original CryptoBench partitioning. Evaluation of the model performance is described in Section~\ref{sec:pipeline-evaluation}.
+We begin training by calculating the class weights and loading the dataset. The neural network, which uses the same architecture described in Section \ref{sec:prediction}, is then trained. Cross-validation was not performed here primarily because the CryptoBench dataset is already partitioned into well-defined train and test sets, minimizing the risk of data leakage. Additionally, cross-validation would not provide a significant additional benefit given the dataset's size and the existing split. Therefore, a straightforward train-test split was used, following the original CryptoBench partitioning. Evaluation of the model performance is described in Section~\ref{sec:pipeline-evaluation}.
 
 The complete source code for the smoothing methodology can be found in the \inline|cryptoshow-benchmark/smoothing| directory. This includes scripts for model training, prepared training and testing datasets, inference, and a utility script for distance matrix computation.
 
@@ -96,19 +96,19 @@ The complete source code for the smoothing methodology can be found in the \inli
 
 After setting up the pipeline, we need to know if the clustering and smoothing steps perform well, i.e., if the final clusters correspond to actual binding sites. To address this, we have compared the clusters with the known binding sites from the CryptoBench test set, which contains 193 apo conformations and 230 cryptic binding sites (after filtering). The evaluation was performed in two steps: first, we benchmarked the clustering method without the smoothing model, and then we evaluated clustering including the smoothing model.
 
-The evaluation follows the same procedure as the CryptoShow pipeline - first, the predictions are generated for each of the test set structures, and then clustering is performed. After creating the clusters, we compute the following metrics for each cluster, i.e., a predicted binding site, and compare them with the known binding sites:
+The evaluation follows the same procedure as the CryptoShow pipeline - first, the predictions are generated for test set structure, and then clustering is performed. After creating the clusters, we compute the following metrics for each cluster, i.e., a predicted binding site, and compare them with the known binding sites:
 
 \begin{itemize}
-    \item \textbf{Distance between the predicted CBS center and the true CBS center (DCC)} - This metric is computed as the distance between the predicted CBS center and the center of the true CBS. Both centers are calculated as the average of the 3D coordinates of the residues in the predicted CBS and the true CBS, respectively. The distance is computed in \AA. This is a standard metric used in evaluations of pocket prediction methods \cite{kandel2021puresnet}.
+    \item \textbf{Distance between the predicted CBS center and the true CBS center (DCC)} - This metric is computed as the distance between the predicted CBS center and the center of the true CBS. Both centers are calculated as the average of the 3D coordinates of the residues in the predicted CBS and the true CBS, respectively. The distance is computed in \AA. This standard metric is used to evaluate pocket prediction methods \cite{kandel2021puresnet}.
     \item \textbf{Percentage of true CBS residues covered by the predicted CBS} - This metric is computed as the percentage of residues in the true CBS that are also part of the predicted CBS.
-    \item \textbf{Dice coefficient} - This metric is computed as the ratio of the number of residues in the intersection of the predicted CBS and the true CBS to the average number of residues in both sets $A, B$. It is defined in Equation~\ref{eq:dice-coefficient}.
+    \item \textbf{Dice coefficient} - This metric is computed as the ratio of the number of residues in the intersection of the predicted CBS and the true CBS to the average number of residues in both sets $A$ and $B$. It is defined in Equation~\ref{eq:dice-coefficient}.
     \begin{equation}
         \text{Dice}(A, B) = \frac{2 |A \cap B|}{|A| + |B|}
         \label{eq:dice-coefficient}
     \end{equation}
 \end{itemize}
 
-For each true CBS, after calculating the metrics against all predicted CBSs, the predicted CBS with the highest metric score is selected as the best match. After performing this procedure for all true CBSs and structures, we have plotted histograms to illustrate the performance of the clustering method. The results are visualized in Figure \ref{fig:clustering-benchmark}.
+After calculating the metrics against all predicted CBSs for each true CBS, the predicted CBS with the highest metric score is selected as the best match. After performing this procedure for all true CBSs and structures, we have plotted histograms to illustrate the performance of the clustering method. The results are visualized in Figure \ref{fig:clustering-benchmark}.
 
 \begin{figure}[htbp]
     \centering
@@ -117,7 +117,7 @@ For each true CBS, after calculating the metrics against all predicted CBSs, the
     \label{fig:clustering-benchmark}
 \end{figure}
 
-The results show that the clustering method without smoothing performs rather poorly, with the average DCC being around 10 \AA, and the percentage of true CBS residues covered by the predicted CBSs being around 25\%. This might not be a bad result, as one missing residue in the binding site can lead to a significant increase in the distance, but the percentage of residues covered is relatively low. This is caused by the fact that the clustering is performed only on the high-scoring residues. But, some of the true CBSs have residues with low scores (shown later in the section in Figure \ref{fig:clustering-benchmark-smoothened-dice}), which are still part of the binding site.
+The results show that the clustering method without smoothing performs poorly, with the average DCC being around 10 \AA, and the percentage of true CBS residues covered by the predicted CBSs being around 25\%. This might not be a bad result, as one missing residue in the binding site can significantly increase the distance, but the percentage of residues covered is relatively low. This is caused by the fact that the clustering is performed only on the high-scoring residues. But, some of the true CBSs have residues with low scores (shown later in the section in Figure \ref{fig:clustering-benchmark-smoothened-dice}), which are still part of the binding site.
 
 Now, we will evaluate the clustering method with the smoothing model included. The smoothing model is trained and tested on a filtered version of the CryptoBench dataset, as described in Section~\ref{sec:clustering}. The smoothing model is evaluated on the test set, and the following metrics - F1 score, AUC, and accuracy (described in Equations \ref{eq:f1-score}, \ref{eq:auc}, and \ref{eq:accuracy}) - are computed for each threshold. Table~\ref{tab:smoothing-thresholds} and Figure~\ref{fig:smoothing-roc} illustrate the model's performance across various thresholds.
 
@@ -168,7 +168,7 @@ where $\text{TP}$, $\text{TN}$, $\text{FP}$, and $\text{FN}$ denote true positiv
     \end{tabular}
 \end{table}
 
-During the smoothing step, the trained model is loaded and a threshold is set (with 0.7 chosen as the optimum based on the F1 score from the smoothing model evaluation, see Table~\ref{tab:smoothing-thresholds}). The relevant structure or sequence data is then prepared for inference. After running the model, the resulting smoothed pocket includes additional residues that are likely part of the cryptic binding site, even if their individual scores did not exceed the original high-scoring threshold.
+During the smoothing step, the trained model is loaded and a threshold is set (0.7 was chosen as the optimum based on the F1 score from the smoothing model evaluation, see Table~\ref{tab:smoothing-thresholds}). The relevant structure or sequence data is then prepared for inference. After running the model, the resulting smoothed pocket includes additional residues that are likely part of the cryptic binding site, even if their scores did not exceed the original high-scoring threshold.
 
 The results demonstrate improved performance. As shown in Figures \ref{fig:clustering-benchmark-smoothened} and \ref{fig:clustering-benchmark-smoothened-dice}, the smoothing approach yields an average DCC of 5.12~\AA{} (a substantial improvement from 9.26~\AA{} without smoothing), an average residue coverage of 77.8\% (compared to the previous 25.5\%), and an average Dice coefficient of 0.51 (versus the earlier 0.32). These findings demonstrate that the smoothing methodology enhances prediction performance. While the predictions are not flawless, the majority of predicted pockets exhibit DCC within the 0 to 5~\AA{} range, representing a satisfactory outcome.
 
