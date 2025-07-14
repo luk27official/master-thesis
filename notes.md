@@ -347,6 +347,7 @@
 - [ ] checknout xxx/TODOs v celem textu
 - [ ] checknout, ze existuji vsechny reference na obrazky, sekce atd.
 - [ ] checknout, ze nikde nemam overflow textu pres okraj stranky, pripadne potom opravit
+- [ ] checknout gramatiku u abstraktu, zaveru a 4. kapitoly po oprave
 
 ### Sanity check (before submission)
 

@@ -10,7 +10,7 @@ To use the CryptoShow application, either deploy it locally (see Section~\ref{se
 
 Upon opening the main page, an input table is displayed. Provide either a structure identifier (PDB or AlphaFold ID) or upload a PDB/mmCIF file. Once a valid structure is provided, the application will begin processing and displays the computation status. Processing time varies based on the structure size and server load.
 
-Once the computation is finished, the user is presented with a link to results of the computation. After clicking the link, the user is redirected to the visualization page. The following elements are shown:
+Once the computation is finished, the user is presented with a link to the calculation results. After clicking the link, the user is redirected to the visualization page. The following elements are shown:
 
 \begin{itemize}
     \item An interactive 3D visualization of the structure, allowing users to rotate and zoom. Residues that are part of detected cryptic binding sites are highlighted using distinct colors.
@@ -18,12 +18,12 @@ Once the computation is finished, the user is presented with a link to results o
     \item A table listing the identified cryptic binding sites with expandable rows. Each entry includes details about the involved residues, their scores, and a PyMOL selection string for visualizing the site in PyMOL. For each pocket (in PDB structures), users can initiate an AHoJ query to obtain apo-holo pairs and visualize possible conformational changes. Results can also be downloaded as a ZIP archive.
 \end{itemize}
 
-The 3D visualization in Mol* with the tool box is shown in Figure~\ref{fig:ui-molstar}. The results table with expandable rows is shown in Figure~\ref{fig:ui-table}.
+The 3D visualization in Mol* with the toolbox is shown in Figure~\ref{fig:ui-molstar}. The results table with expandable rows is shown in Figure~\ref{fig:ui-table}.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{img/ui-molstar.png}
-    \caption{Mol* 3D visualization of the protein structure of Calcium-free Calmodulin (1CFD), along with the Crystal Structure of Myosin-1c tail in complex with Calmodulin (4R8G) with the visualization tool box underneath.}
+    \caption{Mol* 3D visualization of the protein structure of Calcium-free Calmodulin (1CFD), along with the Crystal Structure of Myosin-1c tail in complex with Calmodulin (4R8G), with the visualization toolbox underneath.}
     \label{fig:ui-molstar}
 \end{figure}
 
