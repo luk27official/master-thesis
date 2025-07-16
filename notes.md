@@ -342,8 +342,8 @@
 - [x] zeptat se kam psat o AI (GPT etc)?
 - [x] checknout gramatiku pres Grammarly
 - [x] napsat text :)
-- [ ] nezapomenout pridat do final folderu i benchmarking, nejlepe asi do slozky primo se zdrojaky od CryptoShow (takze to pridat mezi ty 3 zakladni slozky BE, FE, monitoring)
-- [ ] pred uploadnutim do SISu oznacit verzi na GH nejakym tagem a napsat to do toho appendixu, napsat tam i o licenci
+- [x] nezapomenout pridat do final folderu i benchmarking, nejlepe asi do slozky primo se zdrojaky od CryptoShow (takze to pridat mezi ty 3 zakladni slozky BE, FE, monitoring)
+- [x] pred uploadnutim do SISu oznacit verzi na GH nejakym tagem a napsat to do toho appendixu, napsat tam i o licenci
 - [x] checknout xxx/TODOs v celem textu
 - [x] checknout, ze existuji vsechny reference na obrazky, sekce atd.
 - [x] checknout, ze nikde nemam overflow textu pres okraj stranky, pripadne potom opravit
