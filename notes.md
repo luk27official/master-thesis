@@ -340,11 +340,11 @@
 - [x] precist si intro a zaver, jestli to dava smysl a odpovida to tem napsanym kapitolam
 - [x] napsat abstrakt
 - [ ] zeptat se kam psat o AI (GPT etc)?
-- [ ] checknout gramatiku pres Grammarly
-- [ ] napsat text :)
+- [x] checknout gramatiku pres Grammarly
+- [x] napsat text :)
 - [ ] nezapomenout pridat do final folderu i benchmarking, nejlepe asi do slozky primo se zdrojaky od CryptoShow (takze to pridat mezi ty 3 zakladni slozky BE, FE, monitoring)
 - [ ] pred uploadnutim do SISu oznacit verzi na GH nejakym tagem a napsat to do toho appendixu, napsat tam i o licenci
-- [ ] checknout xxx/TODOs v celem textu
+- [x] checknout xxx/TODOs v celem textu
 - [ ] checknout, ze existuji vsechny reference na obrazky, sekce atd.
 - [ ] checknout, ze nikde nemam overflow textu pres okraj stranky, pripadne potom opravit
 - [ ] checknout gramatiku u abstraktu, zaveru a 4. kapitoly po oprave

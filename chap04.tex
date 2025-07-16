@@ -44,7 +44,7 @@ To illustrate the intended use of the CryptoShow application, we examine a real-
 
 As a case study, we use the protein dihydrofolate reductase (DHFR) from \textit{Escherichia coli}, an important target in antimicrobial drug development \cite{heaslet2009structural}. We begin with the apo structure, PDB ID \textbf{2W9T}, which shows DHFR in its unbound state with no visible deep binding pockets beyond the known active site.
 
-Using the CryptoShow application, we predict potential cryptic pockets based solely on the apo structure. One binding site is identified near the so-called Met20 loop\footnote{The Met20 loop is a flexible segment of DHFR, named after the methionine amino acid at position 20 (residue ID 42 in this structure), and is known for its role in modulating access to the active site through conformational changes.}, a flexible region of the protein known to undergo conformational changes. The prediction is shown in Figure~\ref{fig:ui-cryptic-pocket}.
+Using the CryptoShow application, we predict potential cryptic pockets based solely on the apo structure. One binding site is identified near the so-called Met20 loop\footnote{The Met20 loop is a flexible segment of DHFR, named after the methionine amino acid at position 20 (residue ID 42 in this structure), and is known for its role in modulating access to the active site through conformational changes.}, a flexible region of the protein known to undergo conformational changes. Figure~\ref{fig:ui-cryptic-pocket} illustrates this prediction, with the Met20 loop highlighted in light yellow.
 
 \begin{figure}[htbp]
     \centering
@@ -56,7 +56,21 @@ Using the CryptoShow application, we predict potential cryptic pockets based sol
 \subsection{Validation Using Holo Structure}
 \label{subsec:holo-validation}
 
-To evaluate the accuracy of the prediction, we consult the AHoJ database to identify known holo structures of DHFR. Indeed, a holo form is available: PDB ID \textbf{2W9S}, in which the protein is bound to the antimicrobial drug Trimethoprim. In this structure, the Met20 loop shifts position, exposing a pocket that matches the one predicted by the CryptoShow application from the apo form. The conformational change of the Met20 loop can be visualized in the application.
+To evaluate the accuracy of the prediction, we consult the AHoJ database by clicking the button in the pocket details window (see Figure~\ref{fig:ahoj-btn}) to identify known holo structures of DHFR. Indeed, a holo form is available: PDB ID \textbf{2W9S}, in which the protein is bound to the antimicrobial drug Trimethoprim. In this structure, the Met20 loop shifts position, exposing a pocket that matches the one predicted by the CryptoShow application from the apo form. The conformational change of the Met20 loop can be visualized in the application. Figure~\ref{fig:2w9t_2w9s} presents this structural comparison.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=\textwidth]{img/ahoj-btn.png}
+    \caption{Details window for the Met20 loop CBS in the 2W9T protein structure. The AHoJ query can be initiated by clicking the button.}
+    \label{fig:ahoj-btn}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=\textwidth]{img/2w9t_2w9s.png}
+    \caption{Structural comparison between DHFR apo (2W9T) and holo (2W9S) structures, showing the bound trimethoprim ligand and conformational changes in the Met20 loop region.}
+    \label{fig:2w9t_2w9s}
+\end{figure}
 
 This comparison between 2W9T (apo) and 2W9S (holo) provides a validation of the cryptic pocket prediction. The application was able to identify a site that is not visible in the apo structure but becomes occupied by a ligand in the holo structure.
 
