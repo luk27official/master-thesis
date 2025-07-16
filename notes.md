@@ -348,6 +348,7 @@
 - [ ] checknout, ze existuji vsechny reference na obrazky, sekce atd.
 - [ ] checknout, ze nikde nemam overflow textu pres okraj stranky, pripadne potom opravit
 - [ ] checknout gramatiku u abstraktu, zaveru a 4. kapitoly po oprave
+- [ ] predelat "Chapter 3" kolem strany 32
 
 ### Sanity check (before submission)
 
